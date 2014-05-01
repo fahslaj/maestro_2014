@@ -1,1 +1,9 @@
 C:\Users\fahslaj\Documents\Google Drive\Classes\CSSE333\Project\Code\maestro_2014\Maestro\Maestro\bin\Debug\Maestro.exe.config
+C:\Users\fahslaj\Documents\Google Drive\Classes\CSSE333\Project\Code\maestro_2014\Maestro\Maestro\bin\Debug\Maestro.exe
+C:\Users\fahslaj\Documents\Google Drive\Classes\CSSE333\Project\Code\maestro_2014\Maestro\Maestro\bin\Debug\Maestro.pdb
+C:\Users\fahslaj\Documents\Google Drive\Classes\CSSE333\Project\Code\maestro_2014\Maestro\Maestro\obj\Debug\Maestro.csprojResolveAssemblyReference.cache
+C:\Users\fahslaj\Documents\Google Drive\Classes\CSSE333\Project\Code\maestro_2014\Maestro\Maestro\obj\Debug\Maestro.DisplayWindow.resources
+C:\Users\fahslaj\Documents\Google Drive\Classes\CSSE333\Project\Code\maestro_2014\Maestro\Maestro\obj\Debug\Maestro.Properties.Resources.resources
+C:\Users\fahslaj\Documents\Google Drive\Classes\CSSE333\Project\Code\maestro_2014\Maestro\Maestro\obj\Debug\Maestro.csproj.GenerateResource.Cache
+C:\Users\fahslaj\Documents\Google Drive\Classes\CSSE333\Project\Code\maestro_2014\Maestro\Maestro\obj\Debug\Maestro.exe
+C:\Users\fahslaj\Documents\Google Drive\Classes\CSSE333\Project\Code\maestro_2014\Maestro\Maestro\obj\Debug\Maestro.pdb
