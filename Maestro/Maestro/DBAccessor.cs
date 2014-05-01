@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Maestro
 {
-    class DBAccessor
+    static class DBAccessor
     {
 
     }
