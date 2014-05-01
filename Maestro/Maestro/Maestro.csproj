@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBAccessor.cs" />
-    <Compile Include="DisplayWindow.cs" />
+    <Compile Include="DisplayWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DisplayWindow.Designer.cs">
       <DependentUpon>DisplayWindow.cs</DependentUpon>
     </Compile>

@@ -31,10 +31,40 @@ namespace Maestro
             
         }
 
-        /*public static DataTable insertEntry(String attributes)
+        public static DataTable insertEntry(String attributes, String tableName)
         {
+            String query = "";
+            if(!attributes.Equals("") && !tableName.Equals("")){
+                query = "INSERT INTO " + tableName + " VALUES (";
 
-        }*/
+                String currAttr = "";
+                while (attributes.Length > 0)
+                {
+                    String currChar = attributes.Substring(0, 1);
+                    if (currChar.Equals("|"))
+                    {
+                        query += currAttr + ",";
+                        currAttr = "";
+                    }
+                    else currAttr += currChar;
+
+                    attributes = attributes.Substring(1);
+                }
+                query = query.Substring(0, query.Length - 1);
+                query += ");";
+
+                using (SqlConnection sqlConn = new SqlConnection(""))
+                {
+                    SqlCommand cmd = new SqlCommand(query, sqlConn);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable table = new DataTable();
+                    da.Fill(table);
+                    return table;
+                }
+            }
+
+            return new DataTable();
+        }
 
         public static DataTable updateEntry(String tablename, DataRow oldrow, String attributes)
         {
