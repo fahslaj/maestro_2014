@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-//using System
+using System.Data.SqlClient;
+
 
 namespace Maestro
 {
@@ -15,17 +16,18 @@ namespace Maestro
             String query = "SELECT * FROM " + name;
 
             // create to strings for the connection and the query
-            string connString = @"Persist Security Info=False; User ID=joe;Initial Catalog=Inventory;Password=inventory;Data Source=vmspdgdr001.amr.corp.intel.com";
 
-            using (SqlConnection sqlConn = new SqlConnection(connString))
+            using (SqlConnection sqlConn = new SqlConnection(""))
             {
-                string sqlQuery = @"SELECT * from Items";
-                SqlCommand cmd = new SqlCommand(sqlQuery, sqlConn);
+                //string sqlQuery = @"SELECT * from Items";
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable table = new DataTable();
                 da.Fill(table);
-                dataGridView1.DataSource = new BindingSource(table, null);
+                return table;
+                //dataGridView1.DataSource = new BindingSource(table, null);
             }
+            
         }
 
         public DataTable insertEntry(String attributes)
