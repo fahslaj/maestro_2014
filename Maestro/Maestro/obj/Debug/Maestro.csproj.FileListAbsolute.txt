@@ -1,3 +1,0 @@
-C:\Users\fahslaj\Documents\Google Drive\Classes\CSSE333\Project\Code\maestro_2014\Maestro\Maestro\bin\Debug\Maestro.exe.config
-C:\Users\royappmj.ROSE-HULMAN\Desktop\maestro_2014\Maestro\Maestro\bin\Debug\Maestro.exe.config
-C:\Users\sadlercr\Documents\GitHub\maestro_2014\Maestro\Maestro\bin\Debug\Maestro.exe.config
