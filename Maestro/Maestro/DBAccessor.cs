@@ -12,7 +12,7 @@ namespace Maestro
     static class DBAccessor
     {
         static string connString = @"Persist Security Info=False; User ID=joe;Initial Catalog=Inventory;Password=shmoe;Data Source=bogus.network.name";
-        public DataTable selectAllTable(String name)
+        public static DataTable selectAllTable(String name)
         {
             String query = "SELECT * FROM " + name;
 
@@ -31,12 +31,12 @@ namespace Maestro
             
         }
 
-        public DataTable insertEntry(String attributes)
+        /*public static DataTable insertEntry(String attributes)
         {
 
-        }
+        }*/
 
-        public DataTable updateEntry(String tablename, DataRow oldrow, String attributes)
+        public static DataTable updateEntry(String tablename, DataRow oldrow, String attributes)
         {
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
@@ -51,7 +51,7 @@ namespace Maestro
 
         }
 
-        public DataTable deleteEntry(String tablename, String attributes)
+        public static DataTable deleteEntry(String tablename, String attributes)
         {
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
