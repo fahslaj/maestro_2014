@@ -40,26 +40,30 @@ namespace Maestro
         {
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
-                string sqlQuery = @"SELECT * from Items";
+                string sqlQuery = @"UPDATE " + tablename + " SET " + " WHERE ";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlConn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable table = new DataTable();
                 da.Fill(table);
-                dataGridView1.DataSource = new BindingSource(table, null);
+                //dataGridView1.DataSource = new BindingSource(table, null);
+                return table;
             }
+
         }
 
-        public DataTable deleteEntry(String attributes)
+        public DataTable deleteEntry(String tablename, String attributes)
         {
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
-                string sqlQuery = @"DELETE * from Items";
+                string sqlQuery = @"DELETE FROM " + tablename + " WHERE ";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlConn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable table = new DataTable();
                 da.Fill(table);
-                dataGridView1.DataSource = new BindingSource(table, null);
+                //dataGridView1.DataSource = new BindingSource(table, null);
+                return table;
             }
+
         }
     }
 }
