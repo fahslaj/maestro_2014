@@ -23,7 +23,7 @@ namespace Maestro
             ComboBox cmb = (ComboBox)(sender);
             String text = cmb.Text;
             Console.WriteLine(text);
-            dataGridView1.DataSource = DBAccessor.SelectAllTable(text);
+            //dataGridView1.DataSource = DBAccessor.SelectAllTable(text);
         }
     }
 }
