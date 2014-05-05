@@ -11,14 +11,18 @@ namespace Maestro
 {
     static class DBAccessor
     {
-        static string connString = @"Persist Security Info=False; User ID=joe;Initial Catalog=Inventory;Password=shmoe;Data Source=bogus.network.name";
+        static string connString = "user id=maestro;" + 
+                                       "password=maestro;server=titan.csse.rose-hulman.edu;" + 
+                                       "Trusted_Connection=yes;" + 
+                                       "database=Maestro; " + 
+                                       "connection timeout=30";
         public static DataTable selectAllTable(String name)
         {
             String query = "SELECT * FROM " + name;
 
             // create to strings for the connection and the query
 
-            using (SqlConnection sqlConn = new SqlConnection(""))
+            using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 //string sqlQuery = @"SELECT * from Items";
                 SqlCommand cmd = new SqlCommand(query, sqlConn);
