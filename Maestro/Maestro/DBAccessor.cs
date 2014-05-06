@@ -11,11 +11,7 @@ namespace Maestro
 {
     static class DBAccessor
     {
-        static string connString = "user id=maestro;" + 
-                                       "password=maestro;server=titan.csse.rose-hulman.edu;" + 
-                                       "Trusted_Connection=yes;" + 
-                                       "database=Maestro; " + 
-                                       "connection timeout=30";
+        static string connString = "Server=titan.csse.rose-hulman.edu;Database=Maestro;User Id=maestro;Password=maestro;";
         public static DataTable selectAllTable(String name)
         {
             String query = "SELECT * FROM " + name;
@@ -98,6 +94,21 @@ namespace Maestro
                 return table;
             }
 
+        }
+
+        public static DataTable insertIntoDB(string tableName, object[] attributeValues)
+        {
+            string query = "SELECT * FROM " + tableName;
+
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                //string sqlQuery = @"SELECT * from Items";
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
         }
     }
 }
