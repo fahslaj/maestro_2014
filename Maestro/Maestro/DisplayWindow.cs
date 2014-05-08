@@ -25,6 +25,18 @@ namespace Maestro
             Console.WriteLine(text);
             dataGridView1.DataSource = new BindingSource(DBAccessor.selectAllTable(text), null);
         }
+
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void RegisterButton_Click(object sender, EventArgs e)
+        {
+            RegisterWindow rw = new RegisterWindow();
+            rw.ShowDialog();
+        }
+
     }
 }
  

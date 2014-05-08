@@ -52,8 +52,8 @@ namespace Maestro
                 }
                 query = query.Substring(0, query.Length - 1);
                 query += ");";
-
-                using (SqlConnection sqlConn = new SqlConnection(""))
+                Console.WriteLine(query);
+                using (SqlConnection sqlConn = new SqlConnection(connString))
                 {
                     SqlCommand cmd = new SqlCommand(query, sqlConn);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
