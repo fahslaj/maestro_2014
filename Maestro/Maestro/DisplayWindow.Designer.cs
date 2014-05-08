@@ -38,11 +38,11 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 97);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 119);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(610, 375);
+            this.dataGridView1.Size = new System.Drawing.Size(813, 462);
             this.dataGridView1.TabIndex = 0;
             // 
             // comboBox1
@@ -58,21 +58,21 @@
             "Uploads",
             "Likes",
             "Belongs_To",
-            "Follows",
-            "Released_On"});
-            this.comboBox1.Location = new System.Drawing.Point(10, 11);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            "Follows"});
+            this.comboBox1.Location = new System.Drawing.Point(13, 14);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(92, 21);
+            this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 7;
             this.comboBox1.Text = "Select Table";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(10, 36);
+            this.LoginButton.Location = new System.Drawing.Point(13, 44);
+            this.LoginButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(91, 20);
+            this.LoginButton.Size = new System.Drawing.Size(121, 25);
             this.LoginButton.TabIndex = 8;
             this.LoginButton.Text = "Login";
             this.LoginButton.UseVisualStyleBackColor = true;
@@ -80,9 +80,10 @@
             // 
             // RegisterButton
             // 
-            this.RegisterButton.Location = new System.Drawing.Point(10, 62);
+            this.RegisterButton.Location = new System.Drawing.Point(13, 76);
+            this.RegisterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RegisterButton.Name = "RegisterButton";
-            this.RegisterButton.Size = new System.Drawing.Size(91, 22);
+            this.RegisterButton.Size = new System.Drawing.Size(121, 27);
             this.RegisterButton.TabIndex = 9;
             this.RegisterButton.Text = "Register User";
             this.RegisterButton.UseVisualStyleBackColor = true;
@@ -90,14 +91,14 @@
             // 
             // DisplayWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 479);
+            this.ClientSize = new System.Drawing.Size(835, 590);
             this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "DisplayWindow";
             this.Text = "Table Display";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -23,7 +23,10 @@ namespace Maestro
         public void ConfirmRegistration(object sender, EventArgs e)
         {
             if (textBox2.Text == textBox3.Text)
-                DBAccessor.insertEntry("'"+textBox1.Text + "'|'" + textBox2.Text + "'|'" + textBox3.Text + "'", "Users");
+            {
+                DBAccessor.insertEntry("'" + textBox1.Text + "'|'" + textBox2.Text + "'|'" + textBox3.Text + "'", "Users");
+                this.Close();
+            }
         }
 
         private void InitializeComponent()

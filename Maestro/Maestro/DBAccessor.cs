@@ -110,5 +110,21 @@ namespace Maestro
                 return dt;
             }
         }
+
+        public static Boolean verifyLoginInfo(string username, string password)
+        {
+            string query = "SELECT * FROM Users WHERE Username = '"+username+"' and Passwd = '"+password+"'";
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                //string sqlQuery = @"SELECT * from Items";
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count == 1)
+                    return true;
+            }
+            return false;
+        }
     }
 }

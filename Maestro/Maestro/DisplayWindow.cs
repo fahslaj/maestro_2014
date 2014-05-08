@@ -16,6 +16,7 @@ namespace Maestro
         public DisplayWindow()
         {
             InitializeComponent();
+            this.Text = "Maestro: Guest User";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -28,7 +29,9 @@ namespace Maestro
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            
+            LoginWindow lw = new LoginWindow();
+            lw.ShowDialog();
+            this.Text = "Maestro: Logged in as "+lw.LoggedIn;
         }
 
         private void RegisterButton_Click(object sender, EventArgs e)
