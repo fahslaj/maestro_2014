@@ -13,6 +13,8 @@ namespace Maestro
 {
     public partial class DisplayWindow : Form
     {
+        DataTable selectedTable;
+
         public DisplayWindow()
         {
             InitializeComponent();
@@ -24,7 +26,8 @@ namespace Maestro
             ComboBox cmb = (ComboBox)(sender);
             String text = cmb.Text;
             Console.WriteLine(text);
-            dataGridView1.DataSource = new BindingSource(DBAccessor.selectAllTable(text), null);
+            selectedTable = DBAccessor.selectAllTable(text);
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -38,6 +41,12 @@ namespace Maestro
         {
             RegisterWindow rw = new RegisterWindow();
             rw.ShowDialog();
+        }
+
+        private void AddEntryButton_Click(object sender, EventArgs e)
+        {
+            AddEntryWindow aew = new AddEntryWindow(selectedTable);
+            aew.ShowDialog();
         }
 
     }

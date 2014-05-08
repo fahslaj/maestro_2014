@@ -99,6 +99,7 @@
             this.AddEntryButton.TabIndex = 10;
             this.AddEntryButton.Text = "AddEntry";
             this.AddEntryButton.UseVisualStyleBackColor = true;
+            this.AddEntryButton.Click += new System.EventHandler(this.AddEntryButton_Click);
             // 
             // DisplayWindow
             // 

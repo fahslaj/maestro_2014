@@ -126,5 +126,22 @@ namespace Maestro
             }
             return false;
         }
+
+        public static string[] getAttributesFromTable(string tableName)
+        {
+            string query = "SELECT column_name FROM information_schema.columns WHERE table_name='"+tableName+"'";
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                //string sqlQuery = @"SELECT * from Items";
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                string[] attributeNames = new string[dt.Rows.Count];
+                for (int i = 0; i < dt.Columns.Count; i++)
+                    attributeNames[i] = (dt.Rows[i][0]).ToString();
+                return attributeNames;
+            }
+        }
     }
 }
