@@ -32,17 +32,18 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.LoginButton = new System.Windows.Forms.Button();
             this.RegisterButton = new System.Windows.Forms.Button();
+            this.AddEntryButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 119);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 44);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(813, 462);
+            this.dataGridView1.Size = new System.Drawing.Size(813, 537);
             this.dataGridView1.TabIndex = 0;
             // 
             // comboBox1
@@ -69,7 +70,7 @@
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(13, 44);
+            this.LoginButton.Location = new System.Drawing.Point(141, 13);
             this.LoginButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(121, 25);
@@ -80,20 +81,31 @@
             // 
             // RegisterButton
             // 
-            this.RegisterButton.Location = new System.Drawing.Point(13, 76);
+            this.RegisterButton.Location = new System.Drawing.Point(270, 14);
             this.RegisterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RegisterButton.Name = "RegisterButton";
-            this.RegisterButton.Size = new System.Drawing.Size(121, 27);
+            this.RegisterButton.Size = new System.Drawing.Size(121, 24);
             this.RegisterButton.TabIndex = 9;
             this.RegisterButton.Text = "Register User";
             this.RegisterButton.UseVisualStyleBackColor = true;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
+            // 
+            // AddEntryButton
+            // 
+            this.AddEntryButton.Location = new System.Drawing.Point(399, 13);
+            this.AddEntryButton.Margin = new System.Windows.Forms.Padding(4);
+            this.AddEntryButton.Name = "AddEntryButton";
+            this.AddEntryButton.Size = new System.Drawing.Size(121, 24);
+            this.AddEntryButton.TabIndex = 10;
+            this.AddEntryButton.Text = "AddEntry";
+            this.AddEntryButton.UseVisualStyleBackColor = true;
             // 
             // DisplayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(835, 590);
+            this.Controls.Add(this.AddEntryButton);
             this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.comboBox1);
@@ -112,6 +124,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.Button RegisterButton;
+        private System.Windows.Forms.Button AddEntryButton;
     }
 }
 
