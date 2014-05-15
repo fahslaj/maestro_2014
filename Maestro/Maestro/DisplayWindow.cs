@@ -62,11 +62,11 @@ namespace Maestro
         {
             RegisterWindow rw = new RegisterWindow();
             rw.ShowDialog();
-            if (ssh != null)
-            {
+            //if (ssh != null)
+            //{
                 ssh = new SshClient("137.112.128.188", "mpd", "mpd");
                 ssh.Connect();
-            }
+            //}
             SshCommand cmd1 = ssh.CreateCommand("cat port");
             String portnum = cmd1.Execute();
             int portnumnum = int.Parse(portnum);
@@ -124,10 +124,12 @@ namespace Maestro
             Console.WriteLine(filepath);
             SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");
             sftpClient.Connect();
+            char[] split = {'\\', '\\'};
+            String[] path = filepath.Split(split);
             System.IO.FileStream file = new System.IO.FileStream(filepath, System.IO.FileMode.Open);
             try
             {
-                sftpClient.UploadFile(file, "/var/lib/mpd/music/");
+                sftpClient.UploadFile(file, "/var/lib/mpd/music/" + path[path.Length - 1]);
             }
             catch (Renci.SshNet.Common.SshException sshe)
             {
