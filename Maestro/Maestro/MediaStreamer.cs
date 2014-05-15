@@ -88,6 +88,12 @@ namespace Maestro
             System.Console.WriteLine(Read());
         }
 
+        public void Clear()
+        {
+            Write("clear");
+            System.Console.WriteLine(Read());
+        }
+
         public String Read()
         {
             MPDControlStream.Read(InBuffer, 0, 300);

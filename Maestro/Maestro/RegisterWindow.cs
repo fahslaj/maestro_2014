@@ -14,6 +14,7 @@ namespace Maestro
         private TextBox textBox2;
         private TextBox textBox3;
         private Button RegisterConfirmButton;
+        public String username;
 
         public RegisterWindow()
         {
@@ -25,6 +26,7 @@ namespace Maestro
             if (textBox2.Text == textBox3.Text)
             {
                 DBAccessor.insertEntry("'" + textBox1.Text + "'|'" + textBox2.Text + "'|'" + textBox3.Text + "'", "Users");
+                username = textBox1.Text;
                 this.Close();
             }
         }
