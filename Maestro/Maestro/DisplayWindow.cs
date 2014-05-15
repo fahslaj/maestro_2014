@@ -7,35 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
-using System.Net.Sockets;
-using System.Net;
 
 namespace Maestro
 {
     public partial class DisplayWindow : Form
     {
         DataTable selectedTable;
+        MediaStreamer streamer;
 
         public DisplayWindow()
         {
             InitializeComponent();
             this.Text = "Maestro: Guest User";
-            TcpClient client = new TcpClient();
-            byte[] address = {137, 112, 128, 188};
-            IPAddress musicServer = new IPAddress(address);
-            client.Connect(musicServer, 6600);
-            NetworkStream stream = client.GetStream();
-            byte[] buffer = new byte[300];
-            stream.Read(buffer, 0, 300);
-            string text = System.Text.Encoding.Default.GetString(buffer);
-            System.Console.WriteLine(text);
-            buffer = Encoding.UTF8.GetBytes("status\n");
-            stream.Write(buffer, 0, buffer.Length);
-            buffer = new byte[300];
-            stream.Read(buffer, 0, 300);
-            text = System.Text.Encoding.Default.GetString(buffer);
-            System.Console.WriteLine(text);
+            byte[] address = {137,112,128,188};
+            streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, 8000);
+//            streamer.Play();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
