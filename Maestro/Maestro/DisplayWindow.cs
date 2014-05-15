@@ -88,7 +88,13 @@ namespace Maestro
         private void PlaySelectedButton_Click(object sender, EventArgs e)
         {
             PlayMediaWindow pmw = new PlayMediaWindow(streamer);
-            DataRow row = GetSelectedRow();
+            int rowNum = GetSelectedRowNumber();
+
+            if (rowNum >= 0)
+            {
+                DataRow row = selectedTable.Rows[GetSelectedRowNumber()];
+                System.Console.WriteLine(rowNum);
+            }
             pmw.Show();
 
         }
@@ -98,22 +104,9 @@ namespace Maestro
             
         }
 
-        private DataRow GetSelectedRow()
+        private int GetSelectedRowNumber()
         {
-            //Get the context.
-            BindingContext context = dataGridView1.BindingContext;
-
-            // Get the currency manager.
-            BindingManagerBase manager = context[selectedTable];
-
-            // Get the current row view.
-            DataRowView rowView = (DataRowView) manager.Current;
-
-            // Get the row.
-            DataRow row = rowView.Row;
-
-            Console.WriteLine(row.ItemArray[0]);
-            return row;
+            return dataGridView1.Rows.GetFirstRow(DataGridViewElementStates.Selected);
         }
 
         private void uploadButton_Click(object sender, EventArgs e)
