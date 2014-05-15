@@ -21,7 +21,6 @@ namespace Maestro
             this.Text = "Maestro: Guest User";
             byte[] address = {137,112,128,188};
             streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, 8000);
-//            streamer.Play();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -50,6 +49,13 @@ namespace Maestro
         {
             AddEntryWindow aew = new AddEntryWindow(selectedTable);
             aew.ShowDialog();
+        }
+
+        private void PlaySelectedButton_Click(object sender, EventArgs e)
+        {
+            PlayMediaWindow pmw = new PlayMediaWindow(streamer);
+            pmw.Show();
+
         }
 
     }
