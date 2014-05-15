@@ -30,11 +30,11 @@ namespace Maestro
             stream.Read(buffer, 0, 300);
             string text = System.Text.Encoding.Default.GetString(buffer);
             System.Console.WriteLine(text);
-            buffer = Encoding.UTF8.GetBytes("play");
+            buffer = Encoding.UTF8.GetBytes("status\n");
             stream.Write(buffer, 0, buffer.Length);
             buffer = new byte[300];
             stream.Read(buffer, 0, 300);
-            text = System.Text.Encoding.UTF8.GetString(buffer);
+            text = System.Text.Encoding.Default.GetString(buffer);
             System.Console.WriteLine(text);
         }
 
