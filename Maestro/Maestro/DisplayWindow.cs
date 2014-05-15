@@ -41,7 +41,7 @@ namespace Maestro
             LoginWindow lw = new LoginWindow();
             lw.ShowDialog();
             this.Text = "Maestro: Logged in as "+lw.LoggedIn;
-            if (ssh != null)
+            if (ssh == null)
             {
                 ssh = new SshClient("137.112.128.188", "mpd", "mpd");
                 ssh.Connect();
@@ -51,8 +51,8 @@ namespace Maestro
             int index = output.IndexOf("port");
             String port = output.Substring(index + 6, 4);
             int portnum = int.Parse(port);
-            SshCommand command = ssh.CreateCommand("mpd userconfs/" + lw.LoggedIn + ".conf &");
-            command.Execute();
+            SshCommand command = ssh.CreateCommand("mpd userconfs/" + lw.LoggedIn + ".conf --stdout");
+            System.Console.WriteLine(command.Execute());
 //            ssh.Disconnect();
             byte[] address = { 137, 112, 128, 188 };
             streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, portnum);
@@ -62,11 +62,11 @@ namespace Maestro
         {
             RegisterWindow rw = new RegisterWindow();
             rw.ShowDialog();
-            //if (ssh != null)
-            //{
+            if (ssh == null)
+            {
                 ssh = new SshClient("137.112.128.188", "mpd", "mpd");
                 ssh.Connect();
-            //}
+            }
             SshCommand cmd1 = ssh.CreateCommand("cat port");
             String portnum = cmd1.Execute();
             int portnumnum = int.Parse(portnum);
