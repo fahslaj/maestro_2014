@@ -25,7 +25,7 @@ namespace Maestro
         {
             if (textBox2.Text == textBox3.Text)
             {
-                DBAccessor.insertEntry("'" + textBox1.Text + "'|'" + textBox2.Text + "'|'" + textBox3.Text + "'", "Users");
+                DBAccessor.insertEntry("'" + textBox1.Text + "'|'" + Math.Abs(textBox2.Text.GetHashCode()) + "'", "Users");
                 username = textBox1.Text;
                 this.Close();
             }

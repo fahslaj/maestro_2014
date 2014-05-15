@@ -50,8 +50,8 @@ namespace Maestro
 
                     attributes = attributes.Substring(1);
                 }
-                query = query.Substring(0, query.Length - 1);
-                query += ");";
+                //query = query.Substring(0, query.Length - 1);
+                query += currAttr + ");";
                 Console.WriteLine(query);
                 using (SqlConnection sqlConn = new SqlConnection(connString))
                 {
