@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Renci.SshNet;
 
 namespace Maestro
 {
     public partial class AddEntryWindow : Form
     {
         private DataTable dt;
+        string filepath;
 
         public AddEntryWindow(DataTable dt)
         {
@@ -22,7 +24,29 @@ namespace Maestro
 
         private void UploadConfirmButton_Click(object sender, EventArgs e)
         {
+            SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");
+            sftpClient.Connect();
+            char[] split = { '\\', '\\' };
+            String[] path = filepath.Split(split);
+            System.IO.FileStream file = new System.IO.FileStream(filepath, System.IO.FileMode.Open);
+            try
+            {
+                sftpClient.UploadFile(file, "/var/lib/mpd/music/" + path[path.Length - 1]);
+            }
+            catch (Renci.SshNet.Common.SshException sshe)
+            {
+                System.Console.WriteLine(sshe.Message);
+            }
+            sftpClient.Disconnect();
             this.Close();
+        }
+
+        private void FileButton_Click(object sender, EventArgs e)
+        {
+            filepath = "";
+            if (ChooseFileDialog.ShowDialog() == DialogResult.OK)
+                filepath = ChooseFileDialog.FileName;
+            Console.WriteLine(filepath);
         }
     }
 }

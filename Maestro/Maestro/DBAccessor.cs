@@ -143,5 +143,22 @@ namespace Maestro
                 return attributeNames;
             }
         }
+
+        public static string[] getSongInfo(string songName)
+        {
+            string query = "SELECT * FROM SongView WHERE Title=" + songName;
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                //string sqlQuery = @"SELECT * from Items";
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                string[] songInfo = new string[dt.Rows.Count];
+                for (int i = 0; i < dt.Columns.Count; i++)
+                    songInfo[i] = (dt.Rows[i][0]).ToString();
+                return songInfo;
+            }
+        }
     }
 }

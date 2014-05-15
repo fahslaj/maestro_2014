@@ -13,8 +13,6 @@ namespace Maestro
     {
         NetworkStream MPDControlStream;
         WMPLib.WindowsMediaPlayer Player;
-        byte[] InBuffer;
-        byte[] OutBuffer;
 
         public MediaStreamer(IPAddress musicServer, int port, int mediaPort)
         {
@@ -24,7 +22,7 @@ namespace Maestro
 //            IPAddress musicServer = new IPAddress(address);
             client.Connect(musicServer, port);
             MPDControlStream = client.GetStream();
-            InBuffer = new byte[300];
+            //InBuffer = new byte[300];
             System.Console.WriteLine(Read());
             
             //            soundClient.Connect(musicServer, 8000);
@@ -94,16 +92,23 @@ namespace Maestro
             System.Console.WriteLine(Read());
         }
 
+        public void Close()
+        {
+            Player.close();
+        }
+
         public String Read()
         {
+            byte[] InBuffer = new byte[300];
             MPDControlStream.Read(InBuffer, 0, 300);
             return System.Text.Encoding.Default.GetString(InBuffer);
         }
 
         public void Write(String command)
         {
-            OutBuffer = Encoding.UTF8.GetBytes(command + "\n");
+            byte[] OutBuffer = Encoding.UTF8.GetBytes(command + "\n");
             MPDControlStream.Write(OutBuffer, 0, OutBuffer.Length);
+            System.Console.WriteLine(command);
             Thread.Sleep(100);
         }
     }

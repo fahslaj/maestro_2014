@@ -41,6 +41,8 @@
             this.ChooseFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.FileButton = new System.Windows.Forms.Button();
             this.UploadConfirmButton = new System.Windows.Forms.Button();
+            this.albumName = new System.Windows.Forms.Label();
+            this.albumTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // NameLabel
@@ -135,10 +137,11 @@
             this.FileButton.TabIndex = 10;
             this.FileButton.Text = "Choose File";
             this.FileButton.UseVisualStyleBackColor = true;
+            this.FileButton.Click += new System.EventHandler(this.FileButton_Click);
             // 
             // UploadConfirmButton
             // 
-            this.UploadConfirmButton.Location = new System.Drawing.Point(16, 343);
+            this.UploadConfirmButton.Location = new System.Drawing.Point(16, 392);
             this.UploadConfirmButton.Name = "UploadConfirmButton";
             this.UploadConfirmButton.Size = new System.Drawing.Size(108, 23);
             this.UploadConfirmButton.TabIndex = 11;
@@ -146,11 +149,29 @@
             this.UploadConfirmButton.UseVisualStyleBackColor = true;
             this.UploadConfirmButton.Click += new System.EventHandler(this.UploadConfirmButton_Click);
             // 
+            // albumName
+            // 
+            this.albumName.AutoSize = true;
+            this.albumName.Location = new System.Drawing.Point(14, 333);
+            this.albumName.Name = "albumName";
+            this.albumName.Size = new System.Drawing.Size(47, 17);
+            this.albumName.TabIndex = 12;
+            this.albumName.Text = "Album";
+            // 
+            // albumTextBox
+            // 
+            this.albumTextBox.Location = new System.Drawing.Point(16, 353);
+            this.albumTextBox.Name = "albumTextBox";
+            this.albumTextBox.Size = new System.Drawing.Size(297, 22);
+            this.albumTextBox.TabIndex = 13;
+            // 
             // AddEntryWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(332, 427);
+            this.Controls.Add(this.albumTextBox);
+            this.Controls.Add(this.albumName);
             this.Controls.Add(this.UploadConfirmButton);
             this.Controls.Add(this.FileButton);
             this.Controls.Add(this.TypeBox);
@@ -185,5 +206,7 @@
         private System.Windows.Forms.OpenFileDialog ChooseFileDialog;
         private System.Windows.Forms.Button FileButton;
         private System.Windows.Forms.Button UploadConfirmButton;
+        private System.Windows.Forms.Label albumName;
+        private System.Windows.Forms.TextBox albumTextBox;
     }
 }

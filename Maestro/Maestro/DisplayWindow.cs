@@ -51,7 +51,7 @@ namespace Maestro
             int index = output.IndexOf("port");
             String port = output.Substring(index + 6, 4);
             int portnum = int.Parse(port);
-            SshCommand command = ssh.CreateCommand("mpd userconfs/" + lw.LoggedIn + ".conf --stdout");
+            SshCommand command = ssh.CreateCommand("mpd userconfs/" + lw.LoggedIn + ".conf");
             System.Console.WriteLine(command.Execute());
 //            ssh.Disconnect();
             byte[] address = { 137, 112, 128, 188 };
@@ -70,7 +70,7 @@ namespace Maestro
             SshCommand cmd1 = ssh.CreateCommand("cat port");
             String portnum = cmd1.Execute();
             int portnumnum = int.Parse(portnum);
-            SshCommand command = ssh.CreateCommand("echo 'user \"mpd\"\nrestore_paused \"yes\"\npid_file \"/run/mpd/mpd.pid\"\ndb_file \"/var/lib/mpd/mpd.db\"\nstate_file \"/var/lib/mpd/mpdstate\"\nplaylist_directory \"/var/lib/mpd/playlists\"\nmusic_directory \"/var/lib/mpd/music\"\naudio_output {\n\ttype\t\"httpd\"\n\tbind_to_address\t\"137.112.128.188\"\n\tname\t\"My HTTP Stream\"\n\tencoder\t\"lame\"\n\tport\t\"" + portnum + "\"\n\tbitrate\t\"320\"\n\tformat\t\"44100:16:1\"\n}' > userconfs/" + rw.username + ".conf");
+            SshCommand command = ssh.CreateCommand("echo 'user \"mpd\"\nrestore_paused \"yes\"\npid_file \"/run/mpd/mpd.pid\"\ndb_file \"/var/lib/mpd/mpd.db\"\nstate_file \"/var/lib/mpd/mpdstate\"\nplaylist_directory \"/var/lib/mpd/playlists\"\nmusic_directory \"/var/lib/mpd/music\"\naudio_output {\n\ttype\t\"httpd\"\n\tbind_to_address\t\"137.112.128.188\"\n\tname\t\"My HTTP Stream\"\n\tencoder\t\"lame\"\n\tport\t\"" + portnum + "\" \n\tbitrate\t\"320\"\n\tformat\t\"44100:16:1\"\n}' > userconfs/" + rw.username + ".conf");
             command.Execute();
             //StreamPort = portnumnum;
             portnumnum++;
@@ -129,6 +129,14 @@ namespace Maestro
                 System.Console.WriteLine(sshe.Message);
             }
             sftpClient.Disconnect();
+        }
+
+        private void DisplayWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            streamer.Pause();
+            streamer.Close();
+            //Handle killing mpd process
+            ssh.Disconnect();
         }
 
     }
