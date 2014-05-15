@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,43 +33,6 @@ namespace Maestro
 
         private void InitializeComponent()
         {
-=======
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Maestro
-{
-    class RegisterWindow : Form
-    {
-        private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private Button RegisterConfirmButton;
-        public String username;
-
-        public RegisterWindow()
-        {
-            InitializeComponent();
-        }
-
-        public void ConfirmRegistration(object sender, EventArgs e)
-        {
-            if (textBox2.Text == textBox3.Text)
-            {
-                DBAccessor.insertEntry("'" + textBox1.Text + "'|'" + textBox2.Text + "'|'" + textBox3.Text + "'", "Users");
-                username = textBox1.Text;
-                this.Close();
-            }
-        }
-
-        private void InitializeComponent()
-        {
->>>>>>> a459a4b9cf76df4acab834da7d7756b4364315ff
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -102,10 +64,8 @@ namespace Maestro
             this.textBox2.Size = new System.Drawing.Size(129, 22);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "Password";
-<<<<<<< HEAD
-=======
             this.textBox2.UseSystemPasswordChar = true;
->>>>>>> a459a4b9cf76df4acab834da7d7756b4364315ff
+
             // 
             // textBox3
             // 
@@ -114,10 +74,8 @@ namespace Maestro
             this.textBox3.Size = new System.Drawing.Size(129, 22);
             this.textBox3.TabIndex = 3;
             this.textBox3.Text = "Repeat Password";
-<<<<<<< HEAD
-=======
             this.textBox3.UseSystemPasswordChar = true;
->>>>>>> a459a4b9cf76df4acab834da7d7756b4364315ff
+
             // 
             // RegisterConfirmButton
             // 
@@ -127,10 +85,8 @@ namespace Maestro
             this.RegisterConfirmButton.TabIndex = 4;
             this.RegisterConfirmButton.Text = "Register";
             this.RegisterConfirmButton.UseVisualStyleBackColor = true;
-<<<<<<< HEAD
             this.RegisterConfirmButton.Click += ConfirmRegistration;
-=======
->>>>>>> a459a4b9cf76df4acab834da7d7756b4364315ff
+
             // 
             // RegisterWindow
             // 
@@ -143,13 +99,6 @@ namespace Maestro
             this.Name = "RegisterWindow";
             this.ResumeLayout(false);
             this.PerformLayout();
-
-<<<<<<< HEAD
         }
     }
 }
-=======
-        }
-    }
-}
->>>>>>> a459a4b9cf76df4acab834da7d7756b4364315ff

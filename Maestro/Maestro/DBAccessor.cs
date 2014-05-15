@@ -113,7 +113,8 @@ namespace Maestro
 
         public static Boolean verifyLoginInfo(string username, string password)
         {
-            string query = "SELECT * FROM Users WHERE Username = '"+username+"' and Passwd = '"+password+"'";
+            string query = "SELECT * FROM Users WHERE Username = '" + username + "' and Passwd = '"
+                + Math.Abs(password.GetHashCode()) + "'";
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 //string sqlQuery = @"SELECT * from Items";
