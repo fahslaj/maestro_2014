@@ -48,6 +48,7 @@
             this.PasswordBox.Size = new System.Drawing.Size(115, 22);
             this.PasswordBox.TabIndex = 1;
             this.PasswordBox.Text = "Password";
+            this.PasswordBox.UseSystemPasswordChar = true;
             // 
             // LoginConfirmButton
             // 

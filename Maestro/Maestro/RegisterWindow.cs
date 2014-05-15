@@ -64,6 +64,7 @@ namespace Maestro
             this.textBox2.Size = new System.Drawing.Size(129, 22);
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "Password";
+            this.textBox2.UseSystemPasswordChar = true;
             // 
             // textBox3
             // 
@@ -72,6 +73,7 @@ namespace Maestro
             this.textBox3.Size = new System.Drawing.Size(129, 22);
             this.textBox3.TabIndex = 3;
             this.textBox3.Text = "Repeat Password";
+            this.textBox3.UseSystemPasswordChar = true;
             // 
             // RegisterConfirmButton
             // 
@@ -81,7 +83,6 @@ namespace Maestro
             this.RegisterConfirmButton.TabIndex = 4;
             this.RegisterConfirmButton.Text = "Register";
             this.RegisterConfirmButton.UseVisualStyleBackColor = true;
-            this.RegisterConfirmButton.Click += ConfirmRegistration;
             // 
             // RegisterWindow
             // 
