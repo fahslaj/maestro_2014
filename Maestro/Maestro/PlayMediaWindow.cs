@@ -23,6 +23,7 @@ namespace Maestro
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayMediaWindow));
             this.ImageDisplayerBox = new System.Windows.Forms.PictureBox();
             this.PlayButton = new System.Windows.Forms.Button();
             this.Pausebutton = new System.Windows.Forms.Button();
@@ -32,15 +33,17 @@ namespace Maestro
             // 
             // ImageDisplayerBox
             // 
-            this.ImageDisplayerBox.Location = new System.Drawing.Point(13, 13);
+            this.ImageDisplayerBox.Image = ((System.Drawing.Image)(resources.GetObject("ImageDisplayerBox.Image")));
+            this.ImageDisplayerBox.Location = new System.Drawing.Point(36, 24);
             this.ImageDisplayerBox.Name = "ImageDisplayerBox";
-            this.ImageDisplayerBox.Size = new System.Drawing.Size(339, 249);
+            this.ImageDisplayerBox.Size = new System.Drawing.Size(287, 223);
+            this.ImageDisplayerBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ImageDisplayerBox.TabIndex = 0;
             this.ImageDisplayerBox.TabStop = false;
             // 
             // PlayButton
             // 
-            this.PlayButton.Location = new System.Drawing.Point(126, 268);
+            this.PlayButton.Location = new System.Drawing.Point(121, 267);
             this.PlayButton.Name = "PlayButton";
             this.PlayButton.Size = new System.Drawing.Size(51, 26);
             this.PlayButton.TabIndex = 1;
@@ -50,7 +53,7 @@ namespace Maestro
             // 
             // Pausebutton
             // 
-            this.Pausebutton.Location = new System.Drawing.Point(183, 268);
+            this.Pausebutton.Location = new System.Drawing.Point(178, 267);
             this.Pausebutton.Name = "Pausebutton";
             this.Pausebutton.Size = new System.Drawing.Size(60, 26);
             this.Pausebutton.TabIndex = 2;
