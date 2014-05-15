@@ -46,6 +46,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(813, 537);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // comboBox1
             // 
@@ -53,14 +54,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Media",
             "Song",
-            "Album",
-            "Users",
-            "Playlist",
-            "Reviews",
-            "Uploads",
-            "Likes",
-            "Belongs_To",
-            "Follows"});
+            "SongView"});
             this.comboBox1.Location = new System.Drawing.Point(13, 14);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";

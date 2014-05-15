@@ -54,8 +54,32 @@ namespace Maestro
         private void PlaySelectedButton_Click(object sender, EventArgs e)
         {
             PlayMediaWindow pmw = new PlayMediaWindow(streamer);
+            DataRow row = GetSelectedRow();
             pmw.Show();
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private DataRow GetSelectedRow()
+        {
+            //Get the context.
+            BindingContext context = dataGridView1.BindingContext;
+
+            // Get the currency manager.
+            BindingManagerBase manager = context[selectedTable];
+
+            // Get the current row view.
+            DataRowView rowView = (DataRowView) manager.Current;
+
+            // Get the row.
+            DataRow row = rowView.Row;
+
+            Console.WriteLine(row.ItemArray[0]);
+            return row;
         }
 
     }
