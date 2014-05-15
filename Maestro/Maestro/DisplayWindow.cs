@@ -15,6 +15,7 @@ namespace Maestro
     {
         DataTable selectedTable;
         MediaStreamer streamer;
+        SshClient ssh;
 
         public DisplayWindow()
         {
@@ -40,8 +41,11 @@ namespace Maestro
             LoginWindow lw = new LoginWindow();
             lw.ShowDialog();
             this.Text = "Maestro: Logged in as "+lw.LoggedIn;
-            SshClient ssh = new SshClient("137.112.128.188", "mpd", "mpd");
-            ssh.Connect();
+            if (ssh != null)
+            {
+                ssh = new SshClient("137.112.128.188", "mpd", "mpd");
+                ssh.Connect();
+            }
             SshCommand cmd1 = ssh.CreateCommand("cat userconfs/" + lw.LoggedIn + ".conf");
             String output = cmd1.Execute();
             int index = output.IndexOf("port");
@@ -49,7 +53,7 @@ namespace Maestro
             int portnum = int.Parse(port);
             SshCommand command = ssh.CreateCommand("mpd userconfs/" + lw.LoggedIn + ".conf &");
             command.Execute();
-            ssh.Disconnect();
+//            ssh.Disconnect();
             byte[] address = { 137, 112, 128, 188 };
             streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, portnum);
         }
@@ -58,18 +62,21 @@ namespace Maestro
         {
             RegisterWindow rw = new RegisterWindow();
             rw.ShowDialog();
-            SshClient ssh = new SshClient("137.112.128.188", "mpd", "mpd");
-            ssh.Connect();
+            if (ssh != null)
+            {
+                ssh = new SshClient("137.112.128.188", "mpd", "mpd");
+                ssh.Connect();
+            }
             SshCommand cmd1 = ssh.CreateCommand("cat port");
             String portnum = cmd1.Execute();
+            int portnumnum = int.Parse(portnum);
             SshCommand command = ssh.CreateCommand("echo 'user \"mpd\"\nrestore_paused \"yes\"\npid_file \"/run/mpd/mpd.pid\"\ndb_file \"/var/lib/mpd/mpd.db\"\nstate_file \"/var/lib/mpd/mpdstate\"\nplaylist_directory \"/var/lib/mpd/playlists\"\nmusic_directory \"/var/lib/mpd/music\"\naudio_output {\n\ttype\t\"httpd\"\n\tbind_to_address\t\"137.112.128.188\"\n\tname\t\"My HTTP Stream\"\n\tencoder\t\"lame\"\n\tport\t\"" + portnum + "\"\n\tbitrate\t\"320\"\n\tformat\t\"44100:16:1\"\n}' > userconfs/" + rw.username + ".conf");
             command.Execute();
-            int portnumnum = int.Parse(portnum);
             //StreamPort = portnumnum;
             portnumnum++;
             SshCommand cmd2 = ssh.CreateCommand("echo \"" + portnumnum + "\" > port");
             cmd2.Execute();
-            ssh.Disconnect();
+ //           ssh.Disconnect();
         }
 
         private void AddEntryButton_Click(object sender, EventArgs e)
@@ -107,6 +114,26 @@ namespace Maestro
 
             Console.WriteLine(row.ItemArray[0]);
             return row;
+        }
+
+        private void uploadButton_Click(object sender, EventArgs e)
+        {
+            string filepath = "";
+            if (UploadFileDialog.ShowDialog() == DialogResult.OK)
+                filepath = UploadFileDialog.FileName;
+            Console.WriteLine(filepath);
+            SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");
+            sftpClient.Connect();
+            System.IO.FileStream file = new System.IO.FileStream(filepath, System.IO.FileMode.Open);
+            try
+            {
+                sftpClient.UploadFile(file, "/var/lib/mpd/music/");
+            }
+            catch (Renci.SshNet.Common.SshException sshe)
+            {
+                System.Console.WriteLine(sshe.Message);
+            }
+            sftpClient.Disconnect();
         }
 
     }
