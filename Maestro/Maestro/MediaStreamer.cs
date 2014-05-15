@@ -69,6 +69,13 @@ namespace Maestro
             System.Console.WriteLine(Read());
         }
 
+        public void SeekPercentage(double percentage, int songLength)
+        {
+            int secondsToSeek = (int)Math.Floor(percentage * songLength);
+            Write("seekcur " + secondsToSeek);
+            System.Console.WriteLine(Read());
+        }
+
         public void Stop()
         {
             Write("stop");
