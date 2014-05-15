@@ -41,7 +41,7 @@ namespace Maestro
             LoginWindow lw = new LoginWindow();
             lw.ShowDialog();
             this.Text = "Maestro: Logged in as "+lw.LoggedIn;
-            if (ssh != null)
+            if (ssh == null)
             {
                 ssh = new SshClient("137.112.128.188", "mpd", "mpd");
                 ssh.Connect();
@@ -51,8 +51,8 @@ namespace Maestro
             int index = output.IndexOf("port");
             String port = output.Substring(index + 6, 4);
             int portnum = int.Parse(port);
-            SshCommand command = ssh.CreateCommand("mpd userconfs/" + lw.LoggedIn + ".conf &");
-            command.Execute();
+            SshCommand command = ssh.CreateCommand("mpd userconfs/" + lw.LoggedIn + ".conf --stdout");
+            System.Console.WriteLine(command.Execute());
 //            ssh.Disconnect();
             byte[] address = { 137, 112, 128, 188 };
             streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, portnum);
@@ -62,7 +62,7 @@ namespace Maestro
         {
             RegisterWindow rw = new RegisterWindow();
             rw.ShowDialog();
-            if (ssh != null)
+            if (ssh == null)
             {
                 ssh = new SshClient("137.112.128.188", "mpd", "mpd");
                 ssh.Connect();
@@ -88,7 +88,13 @@ namespace Maestro
         private void PlaySelectedButton_Click(object sender, EventArgs e)
         {
             PlayMediaWindow pmw = new PlayMediaWindow(streamer);
-            DataRow row = GetSelectedRow();
+            int rowNum = GetSelectedRowNumber();
+
+            if (rowNum >= 0)
+            {
+                DataRow row = selectedTable.Rows[GetSelectedRowNumber()];
+                System.Console.WriteLine(rowNum);
+            }
             pmw.Show();
 
         }
@@ -98,22 +104,9 @@ namespace Maestro
             
         }
 
-        private DataRow GetSelectedRow()
+        private int GetSelectedRowNumber()
         {
-            //Get the context.
-            BindingContext context = dataGridView1.BindingContext;
-
-            // Get the currency manager.
-            BindingManagerBase manager = context[selectedTable];
-
-            // Get the current row view.
-            DataRowView rowView = (DataRowView) manager.Current;
-
-            // Get the row.
-            DataRow row = rowView.Row;
-
-            Console.WriteLine(row.ItemArray[0]);
-            return row;
+            return dataGridView1.Rows.GetFirstRow(DataGridViewElementStates.Selected);
         }
 
         private void uploadButton_Click(object sender, EventArgs e)
@@ -124,10 +117,12 @@ namespace Maestro
             Console.WriteLine(filepath);
             SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");
             sftpClient.Connect();
+            char[] split = {'\\', '\\'};
+            String[] path = filepath.Split(split);
             System.IO.FileStream file = new System.IO.FileStream(filepath, System.IO.FileMode.Open);
             try
             {
-                sftpClient.UploadFile(file, "/var/lib/mpd/music/");
+                sftpClient.UploadFile(file, "/var/lib/mpd/music/" + path[path.Length - 1]);
             }
             catch (Renci.SshNet.Common.SshException sshe)
             {
