@@ -13,6 +13,8 @@ namespace Maestro
     {
         NetworkStream MPDControlStream;
         WMPLib.WindowsMediaPlayer Player;
+        IPAddress ServerAddress;
+        int ConnectionPort;
 
         public MediaStreamer(IPAddress musicServer, int port, int mediaPort)
         {
@@ -20,6 +22,8 @@ namespace Maestro
             //            TcpClient soundClient = new TcpClient();
 //            byte[] address = { 137, 112, 128, 188 };
 //            IPAddress musicServer = new IPAddress(address);
+            ServerAddress = musicServer;
+            ConnectionPort = port;
             client.Connect(musicServer, port);
             MPDControlStream = client.GetStream();
             //InBuffer = new byte[300];
@@ -108,14 +112,34 @@ namespace Maestro
         public String Read()
         {
             byte[] InBuffer = new byte[300];
-            MPDControlStream.Read(InBuffer, 0, 300);
+            try
+            {
+                MPDControlStream.Read(InBuffer, 0, 300);
+            }
+            catch (System.IO.IOException ioex)
+            {
+                TcpClient client = new TcpClient();
+                client.Connect(ServerAddress, ConnectionPort);
+                MPDControlStream = client.GetStream();
+                MPDControlStream.Read(InBuffer, 0, 300);
+            }
             return System.Text.Encoding.Default.GetString(InBuffer);
         }
 
         public void Write(String command)
         {
             byte[] OutBuffer = Encoding.UTF8.GetBytes(command + "\n");
-            MPDControlStream.Write(OutBuffer, 0, OutBuffer.Length);
+            try
+            {
+                MPDControlStream.Write(OutBuffer, 0, OutBuffer.Length);
+            }
+            catch (System.IO.IOException ioex)
+            {
+                TcpClient client = new TcpClient();
+                client.Connect(ServerAddress, ConnectionPort);
+                MPDControlStream = client.GetStream();
+                MPDControlStream.Write(OutBuffer, 0, OutBuffer.Length);
+            }
             System.Console.WriteLine(command);
             Thread.Sleep(100);
         }
