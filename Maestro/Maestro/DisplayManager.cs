@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Maestro
 {
-    static class DisplayManager
+    public static class DisplayManager
     {
         public static MainMenu mm;
 
