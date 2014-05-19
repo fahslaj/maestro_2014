@@ -50,8 +50,8 @@ namespace Maestro
 
                     attributes = attributes.Substring(1);
                 }
-                query = query.Substring(0, query.Length - 1);
-                query += ");";
+                //query = query.Substring(0, query.Length - 1);
+                query += currAttr + ");";
                 Console.WriteLine(query);
                 using (SqlConnection sqlConn = new SqlConnection(connString))
                 {
@@ -85,7 +85,7 @@ namespace Maestro
         {
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
-                string sqlQuery = @"DELETE FROM " + tablename + " WHERE ";
+                string sqlQuery = @"DELETE FROM " + tablename + " WHERE " + attributes;
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlConn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable table = new DataTable();
@@ -113,7 +113,8 @@ namespace Maestro
 
         public static Boolean verifyLoginInfo(string username, string password)
         {
-            string query = "SELECT * FROM Users WHERE Username = '"+username+"' and Passwd = '"+password+"'";
+            string query = "SELECT * FROM Users WHERE Username = '" + username + "' and Passwd = '"
+                + Math.Abs(password.GetHashCode()) + "'";
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 //string sqlQuery = @"SELECT * from Items";
@@ -141,6 +142,23 @@ namespace Maestro
                 for (int i = 0; i < dt.Columns.Count; i++)
                     attributeNames[i] = (dt.Rows[i][0]).ToString();
                 return attributeNames;
+            }
+        }
+
+        public static string[] getSongInfo(string songName)
+        {
+            string query = "SELECT * FROM SongView WHERE Title=" + songName;
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                //string sqlQuery = @"SELECT * from Items";
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                string[] songInfo = new string[dt.Rows.Count];
+                for (int i = 0; i < dt.Columns.Count; i++)
+                    songInfo[i] = (dt.Rows[i][0]).ToString();
+                return songInfo;
             }
         }
     }
