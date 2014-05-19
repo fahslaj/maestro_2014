@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Maestro
 {
-    class MainMenu : Form
+    public class MainMenu : Form
     {
         private PictureBox pictureBox1;
         private TextBox textBox1;
@@ -68,7 +68,7 @@ namespace Maestro
             this.LoginButton.TabIndex = 3;
             this.LoginButton.Text = "Login";
             this.LoginButton.UseVisualStyleBackColor = true;
-            this.LoginButton.Click += new System.EventHandler(Manager.LoginButton_Click);
+            this.LoginButton.Click += new System.EventHandler(DisplayManager.LoginButton_Click);
             // 
             // RegisterButton
             // 
@@ -78,7 +78,7 @@ namespace Maestro
             this.RegisterButton.TabIndex = 4;
             this.RegisterButton.Text = "Register";
             this.RegisterButton.UseVisualStyleBackColor = true;
-            this.RegisterButton.Click += new System.EventHandler(Manager.RegisterButton_Click);
+            this.RegisterButton.Click += new System.EventHandler(DisplayManager.LoginButton_Click);
             // 
             // MainMenu
             // 
