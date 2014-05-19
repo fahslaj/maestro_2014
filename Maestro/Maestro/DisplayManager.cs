@@ -45,7 +45,10 @@ namespace Maestro
         public static void LoginButton_Click(object sender, EventArgs e)
         {
             if (!DBAccessor.verifyLoginInfo(mm.textBox1.Text, mm.textBox2.Text))
+            {
+                MessageBox.Show("Invalid User Information. Try again.");
                 return;
+            }
 
             DisplayWindow dw = new DisplayWindow();
             dw.SetUser(mm.textBox1.Text);
@@ -55,7 +58,10 @@ namespace Maestro
 
         public static void RegisterButton_Click(object sender, EventArgs e)
         {
-
+            RegisterWindow rw = new RegisterWindow();
+            rw.ShowDialog();
+            (new MediaManager()).Register(rw.username);
+            MessageBox.Show("Your account was created.");
         }
     }
 }

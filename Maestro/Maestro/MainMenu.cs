@@ -78,7 +78,7 @@ namespace Maestro
             this.RegisterButton.TabIndex = 4;
             this.RegisterButton.Text = "Register";
             this.RegisterButton.UseVisualStyleBackColor = true;
-            this.RegisterButton.Click += new System.EventHandler(DisplayManager.LoginButton_Click);
+            this.RegisterButton.Click += new System.EventHandler(DisplayManager.RegisterButton_Click);
             // 
             // MainMenu
             // 

@@ -132,6 +132,18 @@ namespace Maestro
             }
         }
 
+        private void PlayButton_Click(object sender, EventArgs e)
+        {
+            Manager.streamer.Play();
+            String[] info = Manager.streamer.GetSongInfo();
+
+        }
+
+        private void PauseButton_Click(object sender, EventArgs e)
+        {
+            Manager.streamer.Pause();
+        }
+
     }
 }
  

@@ -64,7 +64,7 @@ namespace Maestro
             // 
             // PlayMediaWindow
             // 
-            this.ClientSize = new System.Drawing.Size(389, 398);
+            this.ClientSize = new System.Drawing.Size(389, 400);
             this.Controls.Add(this.PauseButton);
             this.Controls.Add(this.PlayButton);
             this.Controls.Add(this.ImageDisplayerBox);
