@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Maestro
 {
@@ -11,8 +12,7 @@ namespace Maestro
     {
         private PictureBox ImageDisplayerBox;
         private Button PlayButton;
-        private Button Pausebutton;
-        private ProgressBar SeekBar;
+        private Button PauseButton;
         MediaStreamer streamer;
 
         public PlayMediaWindow(MediaStreamer streamer)
@@ -26,57 +26,50 @@ namespace Maestro
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayMediaWindow));
             this.ImageDisplayerBox = new System.Windows.Forms.PictureBox();
             this.PlayButton = new System.Windows.Forms.Button();
-            this.Pausebutton = new System.Windows.Forms.Button();
-            this.SeekBar = new System.Windows.Forms.ProgressBar();
+            this.PauseButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.SuspendLayout();
             // 
             // ImageDisplayerBox
             // 
             this.ImageDisplayerBox.Image = ((System.Drawing.Image)(resources.GetObject("ImageDisplayerBox.Image")));
-            this.ImageDisplayerBox.Location = new System.Drawing.Point(36, 24);
+            this.ImageDisplayerBox.Location = new System.Drawing.Point(-3, -4);
             this.ImageDisplayerBox.Name = "ImageDisplayerBox";
-            this.ImageDisplayerBox.Size = new System.Drawing.Size(287, 223);
+            this.ImageDisplayerBox.Size = new System.Drawing.Size(393, 406);
             this.ImageDisplayerBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ImageDisplayerBox.TabIndex = 0;
             this.ImageDisplayerBox.TabStop = false;
             // 
             // PlayButton
             // 
-            this.PlayButton.Location = new System.Drawing.Point(121, 267);
+            this.PlayButton.BackColor = System.Drawing.Color.Transparent;
+            this.PlayButton.Image = ((System.Drawing.Image)(resources.GetObject("PlayButton.Image")));
+            this.PlayButton.Location = new System.Drawing.Point(114, 306);
             this.PlayButton.Name = "PlayButton";
-            this.PlayButton.Size = new System.Drawing.Size(51, 26);
+            this.PlayButton.Size = new System.Drawing.Size(40, 40);
             this.PlayButton.TabIndex = 1;
-            this.PlayButton.Text = "Play";
-            this.PlayButton.UseVisualStyleBackColor = true;
+            this.PlayButton.UseVisualStyleBackColor = false;
             this.PlayButton.Click += new System.EventHandler(this.PlayButton_Click);
             // 
-            // Pausebutton
+            // PauseButton
             // 
-            this.Pausebutton.Location = new System.Drawing.Point(178, 267);
-            this.Pausebutton.Name = "Pausebutton";
-            this.Pausebutton.Size = new System.Drawing.Size(60, 26);
-            this.Pausebutton.TabIndex = 2;
-            this.Pausebutton.Text = "Pause";
-            this.Pausebutton.UseVisualStyleBackColor = true;
-            this.Pausebutton.Click += new System.EventHandler(this.Pausebutton_Click);
-            // 
-            // SeekBar
-            // 
-            this.SeekBar.Location = new System.Drawing.Point(12, 330);
-            this.SeekBar.Name = "SeekBar";
-            this.SeekBar.Size = new System.Drawing.Size(340, 23);
-            this.SeekBar.TabIndex = 3;
-            this.SeekBar.Click += new System.EventHandler(this.SeekBar_Click);
+            this.PauseButton.BackColor = System.Drawing.Color.Transparent;
+            this.PauseButton.Image = ((System.Drawing.Image)(resources.GetObject("PauseButton.Image")));
+            this.PauseButton.Location = new System.Drawing.Point(213, 306);
+            this.PauseButton.Name = "PauseButton";
+            this.PauseButton.Size = new System.Drawing.Size(40, 40);
+            this.PauseButton.TabIndex = 2;
+            this.PauseButton.UseVisualStyleBackColor = true;
+            this.PauseButton.Click += new System.EventHandler(this.Pausebutton_Click);
             // 
             // PlayMediaWindow
             // 
-            this.ClientSize = new System.Drawing.Size(364, 365);
-            this.Controls.Add(this.SeekBar);
-            this.Controls.Add(this.Pausebutton);
+            this.ClientSize = new System.Drawing.Size(389, 398);
+            this.Controls.Add(this.PauseButton);
             this.Controls.Add(this.PlayButton);
             this.Controls.Add(this.ImageDisplayerBox);
             this.Name = "PlayMediaWindow";
+            this.Text = "Maestro: Media Window";
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).EndInit();
             this.ResumeLayout(false);
 

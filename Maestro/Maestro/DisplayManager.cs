@@ -10,6 +10,7 @@ namespace Maestro
     {
         public static MainMenu mm;
 
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -19,13 +20,14 @@ namespace Maestro
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            MainMenu mm = new MainMenu();
-            DisplayWindow dw = new DisplayWindow();
+            MainMenu menu = new MainMenu();
 
-            Application.Run(dw); // change to mm when ready 
+            mm = menu;
+
+            Application.Run(mm); // change to mm when ready 
         }
 
-        public static void PromptMainMenu()
+        public static void ShowMainMenu()
         {
             mm.Show();
         }
@@ -42,7 +44,13 @@ namespace Maestro
 
         public static void LoginButton_Click(object sender, EventArgs e)
         {
+            if (!DBAccessor.verifyLoginInfo(mm.textBox1.Text, mm.textBox2.Text))
+                return;
 
+            DisplayWindow dw = new DisplayWindow();
+            dw.SetUser(mm.textBox1.Text);
+            HideMainMenu();
+            dw.ShowDialog();
         }
 
         public static void RegisterButton_Click(object sender, EventArgs e)

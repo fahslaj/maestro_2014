@@ -40,12 +40,10 @@ namespace Maestro
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
-        private void LoginButton_Click(object sender, EventArgs e)
+        public void SetUser(string NewUser)
         {
-            LoginWindow lw = new LoginWindow();
-            lw.ShowDialog();
-            this.CurrentUser = lw.LoggedIn;
-            this.Text = "Maestro: Logged in as " + lw.LoggedIn;
+            this.Text = "Maestro: Logged in as " + NewUser;
+            this.CurrentUser = NewUser;
             Manager.Login(CurrentUser);
         }
 
@@ -105,6 +103,32 @@ namespace Maestro
                 Manager.ssh.CreateCommand("kill " + output).Execute();
 
                 Manager.ssh.Disconnect();
+            }
+        }
+
+        private Boolean CloseNextCall = false;
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.CloseReason == CloseReason.WindowsShutDown || CloseNextCall) { CloseNextCall = false; return; }
+
+            // Confirm user wants to close
+            
+            switch (MessageBox.Show(this, "Exiting Maestro. \nReturn to the main menu?", "Closing", MessageBoxButtons.YesNoCancel))
+            {
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                case DialogResult.No: 
+                    System.Environment.Exit(0); 
+                    break;
+                default:
+                    DisplayManager.ShowMainMenu();
+                    CloseNextCall = true;
+                    this.Close();
+                    break;
             }
         }
 
