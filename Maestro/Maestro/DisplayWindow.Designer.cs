@@ -37,13 +37,13 @@
             this.PauseButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.writeReviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNewPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeReviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.BackButton = new System.Windows.Forms.Button();
             this.SkipButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -69,7 +69,7 @@
             "Media",
             "Song",
             "SongView"});
-            this.comboBox1.Location = new System.Drawing.Point(417, 46);
+            this.comboBox1.Location = new System.Drawing.Point(385, 0);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
@@ -79,7 +79,7 @@
             // 
             // AddEntryButton
             // 
-            this.AddEntryButton.Location = new System.Drawing.Point(554, 46);
+            this.AddEntryButton.Location = new System.Drawing.Point(513, -1);
             this.AddEntryButton.Margin = new System.Windows.Forms.Padding(4);
             this.AddEntryButton.Name = "AddEntryButton";
             this.AddEntryButton.Size = new System.Drawing.Size(121, 24);
@@ -123,7 +123,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.playlistToolStripMenuItem,
-            this.reviewToolStripMenuItem});
+            this.reviewToolStripMenuItem,
+            this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1245, 28);
@@ -133,37 +134,16 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addEntryToolStripMenuItem,
             this.logoutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // addEntryToolStripMenuItem
-            // 
-            this.addEntryToolStripMenuItem.Name = "addEntryToolStripMenuItem";
-            this.addEntryToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
-            this.addEntryToolStripMenuItem.Text = "Add Entry";
-            // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
             this.logoutToolStripMenuItem.Text = "Logout";
-            // 
-            // reviewToolStripMenuItem
-            // 
-            this.reviewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.writeReviewToolStripMenuItem});
-            this.reviewToolStripMenuItem.Name = "reviewToolStripMenuItem";
-            this.reviewToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
-            this.reviewToolStripMenuItem.Text = "Review";
-            // 
-            // writeReviewToolStripMenuItem
-            // 
-            this.writeReviewToolStripMenuItem.Name = "writeReviewToolStripMenuItem";
-            this.writeReviewToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
-            this.writeReviewToolStripMenuItem.Text = "Write Review";
             // 
             // playlistToolStripMenuItem
             // 
@@ -185,6 +165,25 @@
             this.editPlaylistToolStripMenuItem.Name = "editPlaylistToolStripMenuItem";
             this.editPlaylistToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.editPlaylistToolStripMenuItem.Text = "Edit Playlist";
+            // 
+            // reviewToolStripMenuItem
+            // 
+            this.reviewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.writeReviewToolStripMenuItem});
+            this.reviewToolStripMenuItem.Name = "reviewToolStripMenuItem";
+            this.reviewToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.reviewToolStripMenuItem.Text = "Review";
+            // 
+            // writeReviewToolStripMenuItem
+            // 
+            this.writeReviewToolStripMenuItem.Name = "writeReviewToolStripMenuItem";
+            this.writeReviewToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
+            this.writeReviewToolStripMenuItem.Text = "Write Review";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 24);
             // 
             // BackButton
             // 
@@ -246,7 +245,6 @@
         private System.Windows.Forms.Button PauseButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addEntryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem playlistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createNewPlaylistToolStripMenuItem;
@@ -255,6 +253,7 @@
         private System.Windows.Forms.ToolStripMenuItem writeReviewToolStripMenuItem;
         private System.Windows.Forms.Button BackButton;
         private System.Windows.Forms.Button SkipButton;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 
