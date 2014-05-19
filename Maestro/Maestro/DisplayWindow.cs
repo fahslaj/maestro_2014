@@ -47,13 +47,6 @@ namespace Maestro
             Manager.Login(CurrentUser);
         }
 
-        private void RegisterButton_Click(object sender, EventArgs e)
-        {
-            RegisterWindow rw = new RegisterWindow();
-            rw.ShowDialog();
-            Manager.Register(rw.username);
-        }
-
         private void AddEntryButton_Click(object sender, EventArgs e)
         {
             AddEntryWindow aew = new AddEntryWindow(selectedTable);
@@ -144,6 +137,16 @@ namespace Maestro
         {
             System.Console.WriteLine("Pause pressed");
             Manager.streamer.Pause();
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            Manager.streamer.Back();
+        }
+
+        private void SkipButton_Click(object sender, EventArgs e)
+        {
+            Manager.streamer.Skip();
         }
 
     }

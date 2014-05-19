@@ -53,13 +53,13 @@ namespace Maestro
             Player.controls.pause();
         }
 
-        public void FastForward()
+        public void Skip()
         {
             Write("next");
             System.Console.WriteLine(Read());
         }
 
-        public void Rewind()
+        public void Back()
         {
             Write("previous");
             System.Console.WriteLine(Read());
