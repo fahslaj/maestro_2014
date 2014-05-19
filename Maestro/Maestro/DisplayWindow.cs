@@ -42,7 +42,7 @@ namespace Maestro
 
         public void SetUser(string NewUser)
         {
-            this.Text = "Maestro: Logged in as " + NewUser;
+            this.Text = "Maestro: Logged on as " + NewUser;
             this.CurrentUser = NewUser;
             Manager.Login(CurrentUser);
         }
