@@ -118,6 +118,7 @@ namespace Maestro
             }
             catch (System.IO.IOException ioex)
             {
+                System.Console.WriteLine("Exception caught in Read: attempting to reopen socket...");
                 TcpClient client = new TcpClient();
                 client.Connect(ServerAddress, ConnectionPort);
                 MPDControlStream = client.GetStream();
@@ -135,6 +136,7 @@ namespace Maestro
             }
             catch (System.IO.IOException ioex)
             {
+                System.Console.WriteLine("Exception caught in Write: attempting to reopen socket...");
                 TcpClient client = new TcpClient();
                 client.Connect(ServerAddress, ConnectionPort);
                 MPDControlStream = client.GetStream();
