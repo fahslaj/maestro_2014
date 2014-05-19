@@ -55,7 +55,9 @@ namespace Maestro
 
         public static void RegisterButton_Click(object sender, EventArgs e)
         {
-
+            RegisterWindow rw = new RegisterWindow();
+            rw.ShowDialog();
+            (new MediaManager()).Register(rw.username);
         }
     }
 }
