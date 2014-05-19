@@ -12,6 +12,7 @@ namespace Maestro
     static class DBAccessor
     {
         static string connString = "Server=titan.csse.rose-hulman.edu;Database=Maestro;User Id=maestro;Password=maestro;";
+
         public static DataTable selectAllTable(String name)
         {
             String query = "SELECT * FROM " + name;
@@ -114,7 +115,7 @@ namespace Maestro
         public static Boolean verifyLoginInfo(string username, string password)
         {
             string query = "SELECT * FROM Users WHERE Username = '" + username + "' and Passwd = '"
-                + Math.Abs(password.GetHashCode()) + "'";
+                + Math.Abs(password.GetHashCode() + username.GetHashCode()) + "'";
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 //string sqlQuery = @"SELECT * from Items";
