@@ -10,8 +10,8 @@ namespace Maestro
     public class MainMenu : Form
     {
         private PictureBox pictureBox1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        public TextBox textBox1;
+        public TextBox textBox2;
         private Button LoginButton;
         private Button RegisterButton;
     
