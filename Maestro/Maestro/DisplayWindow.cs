@@ -16,6 +16,7 @@ namespace Maestro
         DataTable selectedTable;
         MediaStreamer streamer;
         SshClient ssh;
+        String CurrentUser;
 
         public DisplayWindow()
         {
@@ -41,6 +42,7 @@ namespace Maestro
             LoginWindow lw = new LoginWindow();
             lw.ShowDialog();
             this.Text = "Maestro: Logged in as "+lw.LoggedIn;
+            this.CurrentUser = lw.LoggedIn;
             if (ssh == null)
             {
                 ssh = new SshClient("137.112.128.188", "mpd", "mpd");
@@ -52,10 +54,10 @@ namespace Maestro
             String port = output.Substring(index + 6, 4);
             int portnum = int.Parse(port);
             SshCommand command = ssh.CreateCommand("mpd userconfs/" + lw.LoggedIn + ".conf");
-            System.Console.WriteLine(command.Execute());
+            output = command.Execute();
 //            ssh.Disconnect();
             byte[] address = { 137, 112, 128, 188 };
-            streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, portnum);
+            streamer = new MediaStreamer(new System.Net.IPAddress(address), portnum, portnum + 1);
         }
 
         private void RegisterButton_Click(object sender, EventArgs e)
@@ -70,10 +72,11 @@ namespace Maestro
             SshCommand cmd1 = ssh.CreateCommand("cat port");
             String portnum = cmd1.Execute();
             int portnumnum = int.Parse(portnum);
-            SshCommand command = ssh.CreateCommand("echo 'user \"mpd\"\nrestore_paused \"yes\"\npid_file \"/run/mpd/mpd.pid\"\ndb_file \"/var/lib/mpd/mpd.db\"\nstate_file \"/var/lib/mpd/mpdstate\"\nplaylist_directory \"/var/lib/mpd/playlists\"\nmusic_directory \"/var/lib/mpd/music\"\naudio_output {\n\ttype\t\"httpd\"\n\tbind_to_address\t\"137.112.128.188\"\n\tname\t\"My HTTP Stream\"\n\tencoder\t\"lame\"\n\tport\t\"" + portnum + "\" \n\tbitrate\t\"320\"\n\tformat\t\"44100:16:1\"\n}' > userconfs/" + rw.username + ".conf");
+            int streamPort = portnumnum++;
+            SshCommand command = ssh.CreateCommand("echo 'user \"mpd\"\nport \"" + portnumnum + "\"\nrestore_paused \"yes\"\npid_file \"/run/mpd/mpd.pid\"\ndb_file \"/var/lib/mpd/mpd.db\"\nstate_file \"/var/lib/mpd/mpdstate\"\nplaylist_directory \"/var/lib/mpd/playlists\"\nmusic_directory \"/var/lib/mpd/music\"\naudio_output {\n\ttype\t\"httpd\"\n\tbind_to_address\t\"137.112.128.188\"\n\tname\t\"My HTTP Stream\"\n\tencoder\t\"lame\"\n\tport\t\"" + streamPort + "\" \n\tbitrate\t\"320\"\n\tformat\t\"44100:16:1\"\n}' > userconfs/" + rw.username + ".conf");
             command.Execute();
             //StreamPort = portnumnum;
-            portnumnum++;
+            portnumnum += 2;
             SshCommand cmd2 = ssh.CreateCommand("echo \"" + portnumnum + "\" > port");
             cmd2.Execute();
  //           ssh.Disconnect();
@@ -111,32 +114,22 @@ namespace Maestro
 
         private void uploadButton_Click(object sender, EventArgs e)
         {
-            string filepath = "";
-            if (UploadFileDialog.ShowDialog() == DialogResult.OK)
-                filepath = UploadFileDialog.FileName;
-            Console.WriteLine(filepath);
-            SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");
-            sftpClient.Connect();
-            char[] split = {'\\', '\\'};
-            String[] path = filepath.Split(split);
-            System.IO.FileStream file = new System.IO.FileStream(filepath, System.IO.FileMode.Open);
-            try
-            {
-                sftpClient.UploadFile(file, "/var/lib/mpd/music/" + path[path.Length - 1]);
-            }
-            catch (Renci.SshNet.Common.SshException sshe)
-            {
-                System.Console.WriteLine(sshe.Message);
-            }
-            sftpClient.Disconnect();
+            
+            
         }
 
         private void DisplayWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            streamer.Pause();
-            streamer.Close();
-            //Handle killing mpd process
-            ssh.Disconnect();
+            if (CurrentUser != null)
+            {
+                streamer.Pause();
+                streamer.Close();
+                //Handle killing mpd process
+                String output = ssh.CreateCommand("ps aux | grep 'mpd userconfs/" + this.CurrentUser + ".conf' | cut -c 11-15").Execute();
+                ssh.CreateCommand("kill " + output.Substring(0, output.IndexOf("\n"))).Execute();
+
+                ssh.Disconnect();
+            }
         }
 
     }

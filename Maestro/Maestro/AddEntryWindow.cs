@@ -25,18 +25,24 @@ namespace Maestro
         private void UploadConfirmButton_Click(object sender, EventArgs e)
         {
             SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");
+            SshClient ssh = new SshClient("137.112.128.188", "mpd", "mpd");
+            ssh.Connect();
+            SshCommand cmd = ssh.CreateCommand("mkdir -p " + "'/var/lib/mpd/music/" + this.ArtistTextbox.Text + "/" + this.albumTextBox.Text + "'");
+            cmd.Execute();
+            ssh.Disconnect();
             sftpClient.Connect();
             char[] split = { '\\', '\\' };
             String[] path = filepath.Split(split);
             System.IO.FileStream file = new System.IO.FileStream(filepath, System.IO.FileMode.Open);
             try
             {
-                sftpClient.UploadFile(file, "/var/lib/mpd/music/" + path[path.Length - 1]);
+                sftpClient.UploadFile(file, "'/var/lib/mpd/music/" + this.ArtistTextbox.Text + "/" + this.albumTextBox.Text + "/" + "'");
             }
             catch (Renci.SshNet.Common.SshException sshe)
             {
                 System.Console.WriteLine(sshe.Message);
             }
+            file.Close();
             sftpClient.Disconnect();
             this.Close();
         }

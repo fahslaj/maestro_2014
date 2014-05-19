@@ -31,7 +31,7 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.ArtistLabel = new System.Windows.Forms.Label();
             this.NameTextBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ArtistTextbox = new System.Windows.Forms.TextBox();
             this.GenreTextBox = new System.Windows.Forms.TextBox();
             this.GenreLabel = new System.Windows.Forms.Label();
             this.ReleaseDateBox = new System.Windows.Forms.TextBox();
@@ -70,12 +70,12 @@
             this.NameTextBox.Size = new System.Drawing.Size(297, 22);
             this.NameTextBox.TabIndex = 2;
             // 
-            // textBox1
+            // ArtistTextbox
             // 
-            this.textBox1.Location = new System.Drawing.Point(16, 123);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(297, 22);
-            this.textBox1.TabIndex = 3;
+            this.ArtistTextbox.Location = new System.Drawing.Point(16, 123);
+            this.ArtistTextbox.Name = "ArtistTextbox";
+            this.ArtistTextbox.Size = new System.Drawing.Size(297, 22);
+            this.ArtistTextbox.TabIndex = 3;
             // 
             // GenreTextBox
             // 
@@ -180,7 +180,7 @@
             this.Controls.Add(this.ReleaseDateLabel);
             this.Controls.Add(this.GenreTextBox);
             this.Controls.Add(this.GenreLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ArtistTextbox);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.ArtistLabel);
             this.Controls.Add(this.NameLabel);
@@ -196,7 +196,7 @@
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label ArtistLabel;
         private System.Windows.Forms.TextBox NameTextBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ArtistTextbox;
         private System.Windows.Forms.TextBox GenreTextBox;
         private System.Windows.Forms.Label GenreLabel;
         private System.Windows.Forms.TextBox ReleaseDateBox;
