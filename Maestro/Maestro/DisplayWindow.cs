@@ -45,6 +45,7 @@ namespace Maestro
             LoginWindow lw = new LoginWindow();
             lw.ShowDialog();
             this.CurrentUser = lw.LoggedIn;
+            this.Text = "Maestro: Logged in as " + lw.LoggedIn;
             Manager.Login(CurrentUser);
         }
 
