@@ -66,6 +66,9 @@
     <Compile Include="LoginWindow.Designer.cs">
       <DependentUpon>LoginWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MediaStreamer.cs" />
     <Compile Include="PlayMediaWindow.cs">
       <SubType>Form</SubType>
@@ -83,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginWindow.resx">
       <DependentUpon>LoginWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayMediaWindow.resx">
       <DependentUpon>PlayMediaWindow.cs</DependentUpon>
