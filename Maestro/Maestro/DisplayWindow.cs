@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using Renci.SshNet;
 
@@ -56,6 +57,7 @@ namespace Maestro
             SshCommand command = ssh.CreateCommand("mpd userconfs/" + lw.LoggedIn + ".conf");
             output = command.Execute();
 //            ssh.Disconnect();
+            Thread.Sleep(100);
             byte[] address = { 137, 112, 128, 188 };
             streamer = new MediaStreamer(new System.Net.IPAddress(address), portnum, portnum + 1);
         }
@@ -66,8 +68,17 @@ namespace Maestro
             rw.ShowDialog();
             if (ssh == null)
             {
-                ssh = new SshClient("137.112.128.188", "mpd", "mpd");
-                ssh.Connect();
+                try
+                {
+                    ssh = new SshClient("137.112.128.188", "mpd", "mpd");
+                    ssh.Connect();
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine("Problems connecting to music server, try registering later!");
+                    DBAccessor.deleteEntry("Users", "Username = " + rw.username);
+                    return;
+                }
             }
             SshCommand cmd1 = ssh.CreateCommand("cat port");
             String portnum = cmd1.Execute();

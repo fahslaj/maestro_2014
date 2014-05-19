@@ -90,6 +90,8 @@ namespace Maestro
         private void PlayButton_Click(object sender, EventArgs e)
         {
             streamer.Play();
+            String[] info = streamer.GetSongInfo();
+            
         }
 
         private void Pausebutton_Click(object sender, EventArgs e)

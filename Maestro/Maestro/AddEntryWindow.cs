@@ -34,9 +34,12 @@ namespace Maestro
             char[] split = { '\\', '\\' };
             String[] path = filepath.Split(split);
             System.IO.FileStream file = new System.IO.FileStream(filepath, System.IO.FileMode.Open);
+            String uploadFilepath = this.ArtistTextbox.Text + "/" + this.albumTextBox.Text + "/" + path[path.Length - 1];
+            uploadFilepath.Replace(" ", "\\ ");
+            DBAccessor.insertEntry("'" + uploadFilepath + "'|'" + this.NameTextBox.Text + "'|'" + this.ArtistTextbox.Text + "'|NULL|'" + GenreTextBox.Text + "'|'" + TypeBox.Text + "'|'" + 300 + "'|" + ReleaseDateBox.Text, "Media");
             try
             {
-                sftpClient.UploadFile(file, "'/var/lib/mpd/music/" + this.ArtistTextbox.Text + "/" + this.albumTextBox.Text + "/" + "'");
+                sftpClient.UploadFile(file, "/var/lib/mpd/music/" + uploadFilepath);
             }
             catch (Renci.SshNet.Common.SshException sshe)
             {

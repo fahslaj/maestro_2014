@@ -34,8 +34,6 @@
             this.RegisterButton = new System.Windows.Forms.Button();
             this.AddEntryButton = new System.Windows.Forms.Button();
             this.PlaySelectedButton = new System.Windows.Forms.Button();
-            this.uploadButton = new System.Windows.Forms.Button();
-            this.UploadFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,27 +107,11 @@
             this.PlaySelectedButton.UseVisualStyleBackColor = true;
             this.PlaySelectedButton.Click += new System.EventHandler(this.PlaySelectedButton_Click);
             // 
-            // uploadButton
-            // 
-            this.uploadButton.Location = new System.Drawing.Point(657, 13);
-            this.uploadButton.Margin = new System.Windows.Forms.Padding(4);
-            this.uploadButton.Name = "uploadButton";
-            this.uploadButton.Size = new System.Drawing.Size(121, 24);
-            this.uploadButton.TabIndex = 12;
-            this.uploadButton.Text = "Upload";
-            this.uploadButton.UseVisualStyleBackColor = true;
-            this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
-            // 
-            // UploadFileDialog
-            // 
-            this.UploadFileDialog.FileName = "Null";
-            // 
             // DisplayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(835, 590);
-            this.Controls.Add(this.uploadButton);
             this.Controls.Add(this.PlaySelectedButton);
             this.Controls.Add(this.AddEntryButton);
             this.Controls.Add(this.RegisterButton);
@@ -153,8 +135,6 @@
         private System.Windows.Forms.Button RegisterButton;
         private System.Windows.Forms.Button AddEntryButton;
         private System.Windows.Forms.Button PlaySelectedButton;
-        private System.Windows.Forms.Button uploadButton;
-        private System.Windows.Forms.OpenFileDialog UploadFileDialog;
     }
 }
 

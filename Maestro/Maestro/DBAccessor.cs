@@ -85,7 +85,7 @@ namespace Maestro
         {
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
-                string sqlQuery = @"DELETE FROM " + tablename + " WHERE ";
+                string sqlQuery = @"DELETE FROM " + tablename + " WHERE " + attributes;
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlConn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable table = new DataTable();

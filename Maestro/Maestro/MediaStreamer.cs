@@ -97,6 +97,14 @@ namespace Maestro
             Player.close();
         }
 
+        public String[] GetSongInfo()
+        {
+            Write("currentsong");
+            String temp = Read();
+            System.Console.WriteLine(temp);
+            return temp.Split('\n');
+        }
+
         public String Read()
         {
             byte[] InBuffer = new byte[300];
