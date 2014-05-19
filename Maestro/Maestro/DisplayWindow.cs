@@ -84,7 +84,7 @@ namespace Maestro
             String portnum = cmd1.Execute();
             int portnumnum = int.Parse(portnum);
             int streamPort = portnumnum++;
-            SshCommand command = ssh.CreateCommand("echo 'user \"mpd\"\nport \"" + portnumnum + "\"\nrestore_paused \"yes\"\npid_file \"/run/mpd/mpd.pid\"\ndb_file \"/var/lib/mpd/mpd.db\"\nstate_file \"/var/lib/mpd/mpdstate\"\nplaylist_directory \"/var/lib/mpd/playlists\"\nmusic_directory \"/var/lib/mpd/music\"\naudio_output {\n\ttype\t\"httpd\"\n\tbind_to_address\t\"137.112.128.188\"\n\tname\t\"My HTTP Stream\"\n\tencoder\t\"lame\"\n\tport\t\"" + streamPort + "\" \n\tbitrate\t\"320\"\n\tformat\t\"44100:16:1\"\n}' > userconfs/" + rw.username + ".conf");
+            SshCommand command = ssh.CreateCommand("echo 'user \"mpd\"\nport \"" + portnumnum + "\"\nrestore_paused \"yes\"\npid_file \"/run/mpd/mpd.pid\"\ndb_file \"/var/lib/mpd/mpd.db\"\nstate_file \"/var/lib/mpd/" + CurrentUser + ".mpdstate\"\nplaylist_directory \"/var/lib/mpd/playlists\"\nmusic_directory \"/var/lib/mpd/music\"\naudio_output {\n\ttype\t\"httpd\"\n\tbind_to_address\t\"137.112.128.188\"\n\tname\t\"My HTTP Stream\"\n\tencoder\t\"lame\"\n\tport\t\"" + streamPort + "\" \n\tbitrate\t\"320\"\n\tformat\t\"44100:16:1\"\n}' > userconfs/" + rw.username + ".conf");
             command.Execute();
             //StreamPort = portnumnum;
             portnumnum += 2;
