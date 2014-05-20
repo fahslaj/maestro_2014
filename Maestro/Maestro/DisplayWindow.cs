@@ -63,6 +63,8 @@ namespace Maestro
 
         }
 
+
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
@@ -71,6 +73,11 @@ namespace Maestro
         private int GetSelectedRowNumber()
         {
             return dataGridView1.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+        }
+
+        private string GetSelectedMediaName()
+        {
+            return null;
         }
 
         private void DisplayWindow_FormClosed(object sender = null, FormClosedEventArgs e = null)
@@ -185,6 +192,13 @@ namespace Maestro
                 Console.WriteLine(path); // full path
                 Console.WriteLine(System.IO.Path.GetFileName(path)); // file name
             }*/
+        }
+
+        private void writeReviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //ReviewEditor re = new ReviewEditor(GetSelectedMediaName());
+            ReviewEditor re = new ReviewEditor();
+            re.ShowDialog();
         }
 
 
