@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using Renci.SshNet;
+using System.IO;
 
 namespace Maestro
 {
@@ -47,12 +48,6 @@ namespace Maestro
             Manager.Login(CurrentUser);
         }
 
-        private void AddEntryButton_Click(object sender, EventArgs e)
-        {
-            AddEntryWindow aew = new AddEntryWindow(selectedTable);
-            aew.ShowDialog();
-            Manager.streamer.Write("update");
-        }
 
         private void PlaySelectedButton_Click(object sender, EventArgs e)
         {
@@ -78,13 +73,7 @@ namespace Maestro
             return dataGridView1.Rows.GetFirstRow(DataGridViewElementStates.Selected);
         }
 
-        private void uploadButton_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
-
-        private void DisplayWindow_FormClosed(object sender, FormClosedEventArgs e)
+        private void DisplayWindow_FormClosed(object sender = null, FormClosedEventArgs e = null)
         {
             if (CurrentUser != null)
             {
@@ -101,11 +90,16 @@ namespace Maestro
 
         private Boolean CloseNextCall = false;
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e = null)
         {
             base.OnFormClosing(e);
 
-            if (e.CloseReason == CloseReason.WindowsShutDown || CloseNextCall) { CloseNextCall = false; return; }
+            if (e.CloseReason == CloseReason.WindowsShutDown || CloseNextCall) 
+            { 
+                CloseNextCall = false; 
+                this.DisplayWindow_FormClosed(); 
+                return; 
+            }
 
             // Confirm user wants to close
             
@@ -114,15 +108,21 @@ namespace Maestro
                 case DialogResult.Cancel:
                     e.Cancel = true;
                     break;
-                case DialogResult.No: 
+                case DialogResult.No:
+                    this.DisplayWindow_FormClosed();
                     System.Environment.Exit(0); 
                     break;
                 default:
-                    DisplayManager.ShowMainMenu();
-                    CloseNextCall = true;
-                    this.Close();
+                    ReturnToMainMenu();
                     break;
             }
+        }
+
+        private void ReturnToMainMenu()
+        {
+            DisplayManager.ShowMainMenu();
+            CloseNextCall = true;
+            this.Close();
         }
 
         private void PlayButton_Click(object sender, EventArgs e)
@@ -146,6 +146,45 @@ namespace Maestro
         {
             Manager.streamer.Skip();
         }
+
+        private void songToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddEntryWindow aew = new AddEntryWindow(selectedTable);
+            aew.ShowDialog();
+            Manager.streamer.Write("update");
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.DisplayWindow_FormClosed();
+            System.Environment.Exit(0);
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReturnToMainMenu();
+        }
+
+        private void MuteUnmuteButton_Click(object sender, EventArgs e)
+        {
+            if (Manager.streamer.Muted)
+            {
+                Manager.streamer.UnMute();
+                this.MuteUnmuteButton.Image = System.Drawing.Image.FromFile("..\\..\\Resources\\Unmute Button.png");
+            }
+            else
+            {
+                Manager.streamer.Mute();
+                this.MuteUnmuteButton.Image = System.Drawing.Image.FromFile("..\\..\\Resources\\Mute Button.png");
+            }
+            /*
+            foreach (var path in Directory.GetFiles("..\\..\\Resources\\Unmute Button.png"))
+            {
+                Console.WriteLine(path); // full path
+                Console.WriteLine(System.IO.Path.GetFileName(path)); // file name
+            }*/
+        }
+
 
     }
 }

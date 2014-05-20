@@ -31,13 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisplayWindow));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.AddEntryButton = new System.Windows.Forms.Button();
             this.ImageDisplayerBox = new System.Windows.Forms.PictureBox();
             this.PlayButton = new System.Windows.Forms.Button();
             this.PauseButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNewPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +47,17 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.BackButton = new System.Windows.Forms.Button();
             this.SkipButton = new System.Windows.Forms.Button();
+            this.myReviewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchReviewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.myPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchAllPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.songToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.albumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.favoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.myUploadedMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MuteUnmuteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -77,17 +89,6 @@
             this.comboBox1.Text = "Select Table";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // AddEntryButton
-            // 
-            this.AddEntryButton.Location = new System.Drawing.Point(513, -1);
-            this.AddEntryButton.Margin = new System.Windows.Forms.Padding(4);
-            this.AddEntryButton.Name = "AddEntryButton";
-            this.AddEntryButton.Size = new System.Drawing.Size(121, 24);
-            this.AddEntryButton.TabIndex = 10;
-            this.AddEntryButton.Text = "AddEntry";
-            this.AddEntryButton.UseVisualStyleBackColor = true;
-            this.AddEntryButton.Click += new System.EventHandler(this.AddEntryButton_Click);
-            // 
             // ImageDisplayerBox
             // 
             this.ImageDisplayerBox.Image = ((System.Drawing.Image)(resources.GetObject("ImageDisplayerBox.Image")));
@@ -102,7 +103,7 @@
             // 
             this.PlayButton.BackColor = System.Drawing.Color.Transparent;
             this.PlayButton.Image = ((System.Drawing.Image)(resources.GetObject("PlayButton.Image")));
-            this.PlayButton.Location = new System.Drawing.Point(140, 371);
+            this.PlayButton.Location = new System.Drawing.Point(165, 371);
             this.PlayButton.Name = "PlayButton";
             this.PlayButton.Size = new System.Drawing.Size(40, 40);
             this.PlayButton.TabIndex = 13;
@@ -112,7 +113,7 @@
             // 
             this.PauseButton.BackColor = System.Drawing.Color.Transparent;
             this.PauseButton.Image = ((System.Drawing.Image)(resources.GetObject("PauseButton.Image")));
-            this.PauseButton.Location = new System.Drawing.Point(186, 371);
+            this.PauseButton.Location = new System.Drawing.Point(211, 371);
             this.PauseButton.Name = "PauseButton";
             this.PauseButton.Size = new System.Drawing.Size(40, 40);
             this.PauseButton.TabIndex = 14;
@@ -122,6 +123,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.mediaToolStripMenuItem,
             this.playlistToolStripMenuItem,
             this.reviewToolStripMenuItem,
             this.toolStripMenuItem1});
@@ -134,7 +136,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.logoutToolStripMenuItem});
+            this.logoutToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -142,14 +145,35 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // mediaToolStripMenuItem
+            // 
+            this.mediaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uploadMediaToolStripMenuItem,
+            this.myUploadedMediaToolStripMenuItem,
+            this.favoritesToolStripMenuItem,
+            this.searchMediaToolStripMenuItem});
+            this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
+            this.mediaToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
+            this.mediaToolStripMenuItem.Text = "Media";
             // 
             // playlistToolStripMenuItem
             // 
             this.playlistToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createNewPlaylistToolStripMenuItem,
-            this.editPlaylistToolStripMenuItem});
+            this.editPlaylistToolStripMenuItem,
+            this.myPlaylistsToolStripMenuItem,
+            this.searchAllPlaylistsToolStripMenuItem});
             this.playlistToolStripMenuItem.Name = "playlistToolStripMenuItem";
             this.playlistToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.playlistToolStripMenuItem.Text = "Playlist";
@@ -169,7 +193,9 @@
             // reviewToolStripMenuItem
             // 
             this.reviewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.writeReviewToolStripMenuItem});
+            this.writeReviewToolStripMenuItem,
+            this.myReviewsToolStripMenuItem,
+            this.searchReviewsToolStripMenuItem});
             this.reviewToolStripMenuItem.Name = "reviewToolStripMenuItem";
             this.reviewToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
             this.reviewToolStripMenuItem.Text = "Review";
@@ -177,7 +203,7 @@
             // writeReviewToolStripMenuItem
             // 
             this.writeReviewToolStripMenuItem.Name = "writeReviewToolStripMenuItem";
-            this.writeReviewToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
+            this.writeReviewToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
             this.writeReviewToolStripMenuItem.Text = "Write Review";
             // 
             // toolStripMenuItem1
@@ -189,7 +215,7 @@
             // 
             this.BackButton.BackColor = System.Drawing.Color.Transparent;
             this.BackButton.Image = ((System.Drawing.Image)(resources.GetObject("BackButton.Image")));
-            this.BackButton.Location = new System.Drawing.Point(94, 371);
+            this.BackButton.Location = new System.Drawing.Point(119, 371);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(40, 40);
             this.BackButton.TabIndex = 16;
@@ -200,24 +226,99 @@
             // 
             this.SkipButton.BackColor = System.Drawing.Color.Transparent;
             this.SkipButton.Image = ((System.Drawing.Image)(resources.GetObject("SkipButton.Image")));
-            this.SkipButton.Location = new System.Drawing.Point(232, 371);
+            this.SkipButton.Location = new System.Drawing.Point(257, 371);
             this.SkipButton.Name = "SkipButton";
             this.SkipButton.Size = new System.Drawing.Size(40, 40);
             this.SkipButton.TabIndex = 17;
             this.SkipButton.UseVisualStyleBackColor = true;
             this.SkipButton.Click += new System.EventHandler(this.SkipButton_Click);
             // 
+            // myReviewsToolStripMenuItem
+            // 
+            this.myReviewsToolStripMenuItem.Name = "myReviewsToolStripMenuItem";
+            this.myReviewsToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.myReviewsToolStripMenuItem.Text = "My Reviews";
+            // 
+            // searchReviewsToolStripMenuItem
+            // 
+            this.searchReviewsToolStripMenuItem.Name = "searchReviewsToolStripMenuItem";
+            this.searchReviewsToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.searchReviewsToolStripMenuItem.Text = "Search Reviews";
+            // 
+            // myPlaylistsToolStripMenuItem
+            // 
+            this.myPlaylistsToolStripMenuItem.Name = "myPlaylistsToolStripMenuItem";
+            this.myPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.myPlaylistsToolStripMenuItem.Text = "My Playlists";
+            // 
+            // searchAllPlaylistsToolStripMenuItem
+            // 
+            this.searchAllPlaylistsToolStripMenuItem.Name = "searchAllPlaylistsToolStripMenuItem";
+            this.searchAllPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.searchAllPlaylistsToolStripMenuItem.Text = "Search All Playlists";
+            // 
+            // uploadMediaToolStripMenuItem
+            // 
+            this.uploadMediaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.songToolStripMenuItem,
+            this.albumToolStripMenuItem});
+            this.uploadMediaToolStripMenuItem.Name = "uploadMediaToolStripMenuItem";
+            this.uploadMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.uploadMediaToolStripMenuItem.Text = "Upload Media";
+            // 
+            // songToolStripMenuItem
+            // 
+            this.songToolStripMenuItem.Name = "songToolStripMenuItem";
+            this.songToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.songToolStripMenuItem.Text = "Song";
+            this.songToolStripMenuItem.Click += new System.EventHandler(this.songToolStripMenuItem_Click);
+            // 
+            // albumToolStripMenuItem
+            // 
+            this.albumToolStripMenuItem.Name = "albumToolStripMenuItem";
+            this.albumToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.albumToolStripMenuItem.Text = "Album";
+            // 
+            // favoritesToolStripMenuItem
+            // 
+            this.favoritesToolStripMenuItem.Name = "favoritesToolStripMenuItem";
+            this.favoritesToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.favoritesToolStripMenuItem.Text = "Favorites";
+            // 
+            // searchMediaToolStripMenuItem
+            // 
+            this.searchMediaToolStripMenuItem.Name = "searchMediaToolStripMenuItem";
+            this.searchMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.searchMediaToolStripMenuItem.Text = "Search Media";
+            // 
+            // myUploadedMediaToolStripMenuItem
+            // 
+            this.myUploadedMediaToolStripMenuItem.Name = "myUploadedMediaToolStripMenuItem";
+            this.myUploadedMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.myUploadedMediaToolStripMenuItem.Text = "My Uploaded Media";
+            // 
+            // MuteUnmuteButton
+            // 
+            this.MuteUnmuteButton.BackColor = System.Drawing.Color.Transparent;
+            this.MuteUnmuteButton.Image = ((System.Drawing.Image)(resources.GetObject("MuteUnmuteButton.Image")));
+            this.MuteUnmuteButton.Location = new System.Drawing.Point(73, 371);
+            this.MuteUnmuteButton.Name = "MuteUnmuteButton";
+            this.MuteUnmuteButton.Size = new System.Drawing.Size(40, 40);
+            this.MuteUnmuteButton.TabIndex = 18;
+            this.MuteUnmuteButton.UseVisualStyleBackColor = true;
+            this.MuteUnmuteButton.Click += new System.EventHandler(this.MuteUnmuteButton_Click);
+            // 
             // DisplayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1245, 423);
+            this.Controls.Add(this.MuteUnmuteButton);
             this.Controls.Add(this.SkipButton);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.PauseButton);
             this.Controls.Add(this.PlayButton);
             this.Controls.Add(this.ImageDisplayerBox);
-            this.Controls.Add(this.AddEntryButton);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
@@ -239,7 +340,6 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button AddEntryButton;
         private System.Windows.Forms.PictureBox ImageDisplayerBox;
         private System.Windows.Forms.Button PlayButton;
         private System.Windows.Forms.Button PauseButton;
@@ -254,6 +354,19 @@
         private System.Windows.Forms.Button BackButton;
         private System.Windows.Forms.Button SkipButton;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mediaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uploadMediaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem songToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem albumToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem favoritesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem myPlaylistsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchAllPlaylistsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem myReviewsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchReviewsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchMediaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem myUploadedMediaToolStripMenuItem;
+        private System.Windows.Forms.Button MuteUnmuteButton;
     }
 }
 
