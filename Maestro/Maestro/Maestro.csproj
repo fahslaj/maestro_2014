@@ -71,6 +71,12 @@
     </Compile>
     <Compile Include="MediaManager.cs" />
     <Compile Include="MediaStreamer.cs" />
+    <Compile Include="PlaylistEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlaylistEditor.Designer.cs">
+      <DependentUpon>PlaylistEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlayMediaWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaylistEditor.resx">
+      <DependentUpon>PlaylistEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayMediaWindow.resx">
       <DependentUpon>PlayMediaWindow.cs</DependentUpon>
