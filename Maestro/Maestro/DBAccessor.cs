@@ -165,13 +165,21 @@ namespace Maestro
 
         public static void AddReview(String username, String mediaFilepath, int rating, String content)
         {
-            string query = "WriteReview @User=" + username + " @MedFP=" + mediaFilepath + " @Rate=" + rating + " @Cont=" + content;
+            //string query = "WriteReview ='" + username + "', @MedFP='" + mediaFilepath + "', @Rate=" + rating + ", @Cont='" + content + "'";
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 //string sqlQuery = @"SELECT * from Items";
-                SqlCommand cmd = new SqlCommand(query, sqlConn);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                /*DataTable dt = new DataTable();
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand("WriteReview", sqlConn) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Add("@User", SqlDbType.VarChar).Value = username;
+                cmd.Parameters.Add("@MedFP", SqlDbType.VarChar).Value = mediaFilepath;
+                cmd.Parameters.Add("@Rate", SqlDbType.Int).Value = rating;
+                cmd.Parameters.Add("@Cont", SqlDbType.Text).Value = content;
+                cmd.ExecuteNonQuery();
+                sqlConn.Close();
+                /*SqlDataAdapter da = new SqlDataAdapter();
+                da.InsertCommand = cmd;
+                DataTable dt = new DataTable();
                 da.Fill(dt);
                 string[] songInfo = new string[dt.Rows.Count];
                 for (int i = 0; i < dt.Columns.Count; i++)

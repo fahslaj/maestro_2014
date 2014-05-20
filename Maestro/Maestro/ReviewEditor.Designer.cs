@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.ContentLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ContentTextBox = new System.Windows.Forms.TextBox();
             this.RatingBar = new System.Windows.Forms.TrackBar();
             this.Rating1 = new System.Windows.Forms.Label();
             this.Rating10 = new System.Windows.Forms.Label();
@@ -56,13 +56,13 @@
             this.ContentLabel.TabIndex = 0;
             this.ContentLabel.Text = "Review Content For:";
             // 
-            // textBox1
+            // ContentTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 43);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(585, 268);
-            this.textBox1.TabIndex = 1;
+            this.ContentTextBox.Location = new System.Drawing.Point(13, 43);
+            this.ContentTextBox.Multiline = true;
+            this.ContentTextBox.Name = "ContentTextBox";
+            this.ContentTextBox.Size = new System.Drawing.Size(585, 268);
+            this.ContentTextBox.TabIndex = 1;
             // 
             // RatingBar
             // 
@@ -212,7 +212,7 @@
             this.Controls.Add(this.Rating10);
             this.Controls.Add(this.Rating1);
             this.Controls.Add(this.RatingBar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ContentTextBox);
             this.Controls.Add(this.ContentLabel);
             this.MaximumSize = new System.Drawing.Size(628, 514);
             this.MinimumSize = new System.Drawing.Size(628, 514);
@@ -227,7 +227,7 @@
         #endregion
 
         private System.Windows.Forms.Label ContentLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ContentTextBox;
         private System.Windows.Forms.TrackBar RatingBar;
         private System.Windows.Forms.Label Rating1;
         private System.Windows.Forms.Label Rating10;
