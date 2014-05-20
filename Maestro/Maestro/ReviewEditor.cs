@@ -14,17 +14,19 @@ namespace Maestro
     {
         public string Content;
         public int Rating;
+        public bool submit; //ensures db is only affected through the Submit button
 
         public ReviewEditor(string MediaName)
         {
             InitializeComponent();
-            //this.RatingBar.Enabled = false;
+            this.submit = false;
             this.MediaName.Text = MediaName;
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
             this.Content = ContentTextBox.Text;
+            this.submit = true;
             this.Close();
         }
 
