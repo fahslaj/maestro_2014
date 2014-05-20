@@ -234,6 +234,12 @@ namespace Maestro
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
+        private void createNewPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlaylistEditor pe = new PlaylistEditor();
+
+        }
+
 
     }
 }
