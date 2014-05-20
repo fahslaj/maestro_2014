@@ -15,7 +15,7 @@ namespace Maestro
     public partial class DisplayWindow : Form
     {
         DataTable selectedTable;
-       // MediaStreamer streamer;
+        // MediaStreamer streamer;
         //SshClient ssh;
         String CurrentUser;
         MediaManager Manager;
@@ -36,6 +36,7 @@ namespace Maestro
             ComboBox cmb = (ComboBox)(sender);
             String text = cmb.Text;
             Console.WriteLine(text);
+            //GetSelectedRowNumber();
             selectedTable = DBAccessor.selectAllTable(text);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
@@ -49,6 +50,7 @@ namespace Maestro
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
+            GetSelectedRowNumber();
             RegisterWindow rw = new RegisterWindow();
             rw.ShowDialog();
             Manager.Register(rw.username);
@@ -56,6 +58,7 @@ namespace Maestro
 
         private void AddEntryButton_Click(object sender, EventArgs e)
         {
+            //GetSelectedRowNumber();
             AddEntryWindow aew = new AddEntryWindow(selectedTable);
             aew.ShowDialog();
             Manager.streamer.Write("update");
@@ -80,9 +83,12 @@ namespace Maestro
             
         }
 
-        private int GetSelectedRowNumber()
+        //Gets the (0-based) index of the first fully highlighted row
+        public int GetSelectedRowNumber()
         {
-            return dataGridView1.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            int firstRow = dataGridView1.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            System.Console.WriteLine("first selected row index: " + firstRow);
+            return firstRow;
         }
 
         private void uploadButton_Click(object sender, EventArgs e)
@@ -141,6 +147,7 @@ namespace Maestro
 
         private void PauseButton_Click(object sender, EventArgs e)
         {
+            //GetSelectedRowNumber();
             Manager.streamer.Pause();
         }
 
