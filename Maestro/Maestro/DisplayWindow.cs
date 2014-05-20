@@ -26,6 +26,8 @@ namespace Maestro
             InitializeComponent();
             this.Text = "Maestro: Guest User";
             Manager = new MediaManager();
+            selectedTable = DBAccessor.selectAllTable("Media");
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
 //            byte[] address = { 137, 112, 128, 188 };
 //            streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, 8000);
             

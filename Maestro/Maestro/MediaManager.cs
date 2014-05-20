@@ -62,7 +62,7 @@ namespace Maestro
             cmd2.Execute();
             //           ssh.Disconnect();
         }
-
+        /*
         public void UploadSong(String songFilepath)
         {
             SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");
@@ -116,6 +116,6 @@ namespace Maestro
             }
             file.Close();
             sftpClient.Disconnect();
-        }
+        }*/
     }
 }
