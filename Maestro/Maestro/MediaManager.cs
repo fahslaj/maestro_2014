@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Renci.SshNet;
+using TagLib;
 
 namespace Maestro
 {
@@ -75,6 +76,8 @@ namespace Maestro
             char[] split = { '\\', '\\' };
             String[] path = songFilepath.Split(split);
             System.IO.FileStream file = new System.IO.FileStream(songFilepath, System.IO.FileMode.Open);
+            TagLib.File tagFile = TagLib.File.Create(songFilepath);
+            System.Console.WriteLine(tagFile.Tag.Year);
             String uploadFilepath = this.ArtistTextbox.Text + "/" + this.albumTextBox.Text + "/" + path[path.Length - 1];
             //uploadFilepath.Replace(" ", "\\ ");
             DBAccessor.insertEntry("'" + uploadFilepath + "'|'" + this.NameTextBox.Text + "'|'" + this.ArtistTextbox.Text + "'|NULL|'" + GenreTextBox.Text + "'|'" + TypeBox.Text + "'|'" + 300 + "'|" + ReleaseDateBox.Text, "Media");
@@ -89,8 +92,8 @@ namespace Maestro
             file.Close();
             sftpClient.Disconnect();
             //this.Close();
-        }
-
+        }*/
+        /*
         public void UploadAlbum(String songFilepath)
         {
             SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");

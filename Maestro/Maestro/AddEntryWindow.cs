@@ -24,7 +24,7 @@ namespace Maestro
 
         private void UploadConfirmButton_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void FileButton_Click(object sender, EventArgs e)
@@ -33,6 +33,16 @@ namespace Maestro
             if (ChooseFileDialog.ShowDialog() == DialogResult.OK)
                 filepath = ChooseFileDialog.FileName;
             Console.WriteLine(filepath);
+
+            TagLib.File tagFile = TagLib.File.Create(filepath);
+
+            this.NameTextBox.Text = tagFile.Tag.Title;
+            this.ArtistTextbox.Text = tagFile.Tag.FirstPerformer;
+            this.albumTextBox.Text = tagFile.Tag.Album;
+            this.GenreTextBox.Text = tagFile.Tag.FirstGenre;
+            this.ReleaseDateBox.Text = tagFile.Tag.Year + "";
+
+            System.Console.WriteLine(tagFile.Properties.Duration + "");
         }
     }
 }

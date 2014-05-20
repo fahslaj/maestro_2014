@@ -16,10 +16,12 @@ namespace Maestro
         IPAddress ServerAddress;
         int ConnectionPort;
         public Boolean Muted;
+        TcpClient client;
 
         public MediaStreamer(IPAddress musicServer, int port, int mediaPort)
         {
-            TcpClient client = new TcpClient();
+            //TcpClient client = new TcpClient();
+            client = new TcpClient();
             //            TcpClient soundClient = new TcpClient();
 //            byte[] address = { 137, 112, 128, 188 };
 //            IPAddress musicServer = new IPAddress(address);
