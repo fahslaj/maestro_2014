@@ -212,6 +212,7 @@
             this.createNewPlaylistToolStripMenuItem.Name = "createNewPlaylistToolStripMenuItem";
             this.createNewPlaylistToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.createNewPlaylistToolStripMenuItem.Text = "Create New Playlist";
+            this.createNewPlaylistToolStripMenuItem.Click += new System.EventHandler(this.createNewPlaylistToolStripMenuItem_Click);
             // 
             // editPlaylistToolStripMenuItem
             // 
