@@ -117,11 +117,20 @@ namespace Maestro
             Write("playlist");
             String temp = Read();
             System.Console.WriteLine(temp);
-            String[] toReturn = new String[temp.Length];
-            foreach (String str in temp.Split('\n'))
+
+            //foreach (String str in temp.Split('\n'))
+            String[] splitString = temp.Split('\n');
+            String str = splitString[0];
+            if (splitString.Length - 2 <= 0)
+                return null;
+            String[] toReturn = new String[splitString.Length - 2];
+            int i = 0;
+            while (str != "OK")
             {
                 String[] temp2 = str.Split(':');
-                toReturn[int.Parse(temp2[0])] = temp2[2];
+                toReturn[int.Parse(temp2[0])] = temp2[2].Substring(1);
+                i++;
+                str = splitString[i];
             }
             return toReturn;
         }

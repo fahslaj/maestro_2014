@@ -260,6 +260,22 @@ namespace Maestro
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
+        private void showCurrentPlayQueueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String[] playlist = Manager.streamer.GetInternalPlaylist();
+            String attributes = "";
+            for (int i = 0; i < playlist.Length; i++)
+            {
+                attributes += "Filepath='" + playlist[i] + "'";
+                if (i < playlist.Length - 1)
+                {
+                    attributes += " OR ";
+                }
+            }
+            selectedTable = DBAccessor.selectCurrentPlaylist(attributes);
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
+        }
+
 
     }
 }

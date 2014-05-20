@@ -58,6 +58,7 @@
             this.SkipButton = new System.Windows.Forms.Button();
             this.MuteUnmuteButton = new System.Windows.Forms.Button();
             this.SearchBar = new System.Windows.Forms.TextBox();
+            this.showCurrentPlayQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -203,7 +204,8 @@
             this.createNewPlaylistToolStripMenuItem,
             this.editPlaylistToolStripMenuItem,
             this.myPlaylistsToolStripMenuItem,
-            this.searchAllPlaylistsToolStripMenuItem});
+            this.searchAllPlaylistsToolStripMenuItem,
+            this.showCurrentPlayQueueToolStripMenuItem});
             this.playlistToolStripMenuItem.Name = "playlistToolStripMenuItem";
             this.playlistToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.playlistToolStripMenuItem.Text = "Playlist";
@@ -211,26 +213,26 @@
             // createNewPlaylistToolStripMenuItem
             // 
             this.createNewPlaylistToolStripMenuItem.Name = "createNewPlaylistToolStripMenuItem";
-            this.createNewPlaylistToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.createNewPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
             this.createNewPlaylistToolStripMenuItem.Text = "Create New Playlist";
             this.createNewPlaylistToolStripMenuItem.Click += new System.EventHandler(this.createNewPlaylistToolStripMenuItem_Click);
             // 
             // editPlaylistToolStripMenuItem
             // 
             this.editPlaylistToolStripMenuItem.Name = "editPlaylistToolStripMenuItem";
-            this.editPlaylistToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.editPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
             this.editPlaylistToolStripMenuItem.Text = "Edit Playlist";
             // 
             // myPlaylistsToolStripMenuItem
             // 
             this.myPlaylistsToolStripMenuItem.Name = "myPlaylistsToolStripMenuItem";
-            this.myPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.myPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
             this.myPlaylistsToolStripMenuItem.Text = "My Playlists";
             // 
             // searchAllPlaylistsToolStripMenuItem
             // 
             this.searchAllPlaylistsToolStripMenuItem.Name = "searchAllPlaylistsToolStripMenuItem";
-            this.searchAllPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.searchAllPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
             this.searchAllPlaylistsToolStripMenuItem.Text = "Search All Playlists";
             // 
             // reviewToolStripMenuItem
@@ -309,6 +311,13 @@
             this.SearchBar.TabIndex = 18;
             this.SearchBar.Text = "Search";
             // 
+            // showCurrentPlayQueueToolStripMenuItem
+            // 
+            this.showCurrentPlayQueueToolStripMenuItem.Name = "showCurrentPlayQueueToolStripMenuItem";
+            this.showCurrentPlayQueueToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
+            this.showCurrentPlayQueueToolStripMenuItem.Text = "Show Current Play Queue";
+            this.showCurrentPlayQueueToolStripMenuItem.Click += new System.EventHandler(this.showCurrentPlayQueueToolStripMenuItem_Click);
+            // 
             // DisplayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -367,6 +376,7 @@
         private System.Windows.Forms.ToolStripMenuItem myUploadedMediaToolStripMenuItem;
         private System.Windows.Forms.Button MuteUnmuteButton;
         private System.Windows.Forms.TextBox SearchBar;
+        private System.Windows.Forms.ToolStripMenuItem showCurrentPlayQueueToolStripMenuItem;
     }
 }
 
