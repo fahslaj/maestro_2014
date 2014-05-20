@@ -23,7 +23,7 @@ namespace Maestro
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            this.Content = ContentLabel.Text;
+            this.Content = ContentTextBox.Text;
             this.Close();
         }
 
