@@ -62,5 +62,60 @@ namespace Maestro
             cmd2.Execute();
             //           ssh.Disconnect();
         }
+
+        public void UploadSong(String songFilepath)
+        {
+            SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");
+            SshClient ssh = new SshClient("137.112.128.188", "mpd", "mpd");
+            ssh.Connect();
+            SshCommand cmd = ssh.CreateCommand("mkdir -p " + "'/var/lib/mpd/music/" + this.ArtistTextbox.Text + "/" + this.albumTextBox.Text + "'");
+            cmd.Execute();
+            ssh.Disconnect();
+            sftpClient.Connect();
+            char[] split = { '\\', '\\' };
+            String[] path = songFilepath.Split(split);
+            System.IO.FileStream file = new System.IO.FileStream(songFilepath, System.IO.FileMode.Open);
+            String uploadFilepath = this.ArtistTextbox.Text + "/" + this.albumTextBox.Text + "/" + path[path.Length - 1];
+            //uploadFilepath.Replace(" ", "\\ ");
+            DBAccessor.insertEntry("'" + uploadFilepath + "'|'" + this.NameTextBox.Text + "'|'" + this.ArtistTextbox.Text + "'|NULL|'" + GenreTextBox.Text + "'|'" + TypeBox.Text + "'|'" + 300 + "'|" + ReleaseDateBox.Text, "Media");
+            try
+            {
+                sftpClient.UploadFile(file, "/var/lib/mpd/music/" + uploadFilepath);
+            }
+            catch (Renci.SshNet.Common.SshException sshe)
+            {
+                System.Console.WriteLine(sshe.Message);
+            }
+            file.Close();
+            sftpClient.Disconnect();
+            //this.Close();
+        }
+
+        public void UploadAlbum(String songFilepath)
+        {
+            SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");
+            SshClient ssh = new SshClient("137.112.128.188", "mpd", "mpd");
+            ssh.Connect();
+            SshCommand cmd = ssh.CreateCommand("mkdir -p " + "'/var/lib/mpd/music/" + this.ArtistTextbox.Text + "/" + this.albumTextBox.Text + "'");
+            cmd.Execute();
+            ssh.Disconnect();
+            sftpClient.Connect();
+            char[] split = { '\\', '\\' };
+            String[] path = songFilepath.Split(split);
+            System.IO.FileStream file = new System.IO.FileStream(songFilepath, System.IO.FileMode.Open);
+            String uploadFilepath = this.ArtistTextbox.Text + "/" + this.albumTextBox.Text + "/" + path[path.Length - 1];
+            //uploadFilepath.Replace(" ", "\\ ");
+            DBAccessor.insertEntry("'" + uploadFilepath + "'|'" + this.NameTextBox.Text + "'|'" + this.ArtistTextbox.Text + "'|NULL|'" + GenreTextBox.Text + "'|'" + TypeBox.Text + "'|'" + 300 + "'|" + ReleaseDateBox.Text, "Media");
+            try
+            {
+                sftpClient.UploadFile(file, "/var/lib/mpd/music/" + uploadFilepath);
+            }
+            catch (Renci.SshNet.Common.SshException sshe)
+            {
+                System.Console.WriteLine(sshe.Message);
+            }
+            file.Close();
+            sftpClient.Disconnect();
+        }
     }
 }
