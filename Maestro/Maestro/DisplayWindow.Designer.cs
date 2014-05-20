@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisplayWindow));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.ImageDisplayerBox = new System.Windows.Forms.PictureBox();
             this.PlayButton = new System.Windows.Forms.Button();
             this.PauseButton = new System.Windows.Forms.Button();
@@ -58,6 +57,7 @@
             this.BackButton = new System.Windows.Forms.Button();
             this.SkipButton = new System.Windows.Forms.Button();
             this.MuteUnmuteButton = new System.Windows.Forms.Button();
+            this.SearchBar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -73,21 +73,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(860, 393);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Media",
-            "Song",
-            "SongView"});
-            this.comboBox1.Location = new System.Drawing.Point(385, 0);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 7;
-            this.comboBox1.Text = "Select Table";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // ImageDisplayerBox
             // 
@@ -206,6 +191,7 @@
             this.searchMediaToolStripMenuItem.Name = "searchMediaToolStripMenuItem";
             this.searchMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
             this.searchMediaToolStripMenuItem.Text = "Search Media";
+            this.searchMediaToolStripMenuItem.Click += new System.EventHandler(this.searchMediaToolStripMenuItem_Click);
             // 
             // playlistToolStripMenuItem
             // 
@@ -309,18 +295,25 @@
             this.MuteUnmuteButton.UseVisualStyleBackColor = true;
             this.MuteUnmuteButton.Click += new System.EventHandler(this.MuteUnmuteButton_Click);
             // 
+            // SearchBar
+            // 
+            this.SearchBar.Location = new System.Drawing.Point(385, 3);
+            this.SearchBar.Name = "SearchBar";
+            this.SearchBar.Size = new System.Drawing.Size(860, 22);
+            this.SearchBar.TabIndex = 18;
+            this.SearchBar.Text = "Search";
+            // 
             // DisplayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1245, 423);
-            this.Controls.Add(this.MuteUnmuteButton);
+            this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.SkipButton);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.PauseButton);
             this.Controls.Add(this.PlayButton);
             this.Controls.Add(this.ImageDisplayerBox);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -340,7 +333,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.PictureBox ImageDisplayerBox;
         private System.Windows.Forms.Button PlayButton;
         private System.Windows.Forms.Button PauseButton;
@@ -368,6 +360,7 @@
         private System.Windows.Forms.ToolStripMenuItem searchMediaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem myUploadedMediaToolStripMenuItem;
         private System.Windows.Forms.Button MuteUnmuteButton;
+        private System.Windows.Forms.TextBox SearchBar;
     }
 }
 

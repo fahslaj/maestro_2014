@@ -72,6 +72,7 @@
             this.RatingBar.Size = new System.Drawing.Size(585, 56);
             this.RatingBar.TabIndex = 2;
             this.RatingBar.Value = 1;
+            this.RatingBar.Scroll += new System.EventHandler(this.RatingBar_Scroll);
             // 
             // Rating1
             // 
@@ -180,6 +181,7 @@
             this.SubmitButton.TabIndex = 14;
             this.SubmitButton.Text = "Submit";
             this.SubmitButton.UseVisualStyleBackColor = true;
+            this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
             // CancelButton
             // 
@@ -189,6 +191,7 @@
             this.CancelButton.TabIndex = 15;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // ReviewEditor
             // 

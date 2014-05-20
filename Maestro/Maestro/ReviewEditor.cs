@@ -12,9 +12,29 @@ namespace Maestro
 {
     public partial class ReviewEditor : Form
     {
-        public ReviewEditor()
+        public string Content;
+        public int Rating;
+
+        public ReviewEditor(string MediaName)
         {
-            InitializeComponent();
+           InitializeComponent();
+            this.MediaName.Text = MediaName;
+        }
+
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            this.Content = ContentLabel.Text;
+            this.Close();
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void RatingBar_Scroll(object sender, EventArgs e)
+        {
+            this.Rating = ((TrackBar)(sender)).Value;
         }
     }
 }
