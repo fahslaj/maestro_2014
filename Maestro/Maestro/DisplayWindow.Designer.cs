@@ -66,6 +66,7 @@
             this.followPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unsubscribeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showReviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -261,7 +262,8 @@
             this.reviewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.writeReviewToolStripMenuItem,
             this.myReviewsToolStripMenuItem,
-            this.searchReviewsToolStripMenuItem});
+            this.searchReviewsToolStripMenuItem,
+            this.showReviewToolStripMenuItem});
             this.reviewToolStripMenuItem.Name = "reviewToolStripMenuItem";
             this.reviewToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
             this.reviewToolStripMenuItem.Text = "Review";
@@ -387,6 +389,13 @@
             this.unsubscribeToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.unsubscribeToolStripMenuItem.Text = "Unsubscribe";
             // 
+            // showReviewToolStripMenuItem
+            // 
+            this.showReviewToolStripMenuItem.Name = "showReviewToolStripMenuItem";
+            this.showReviewToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.showReviewToolStripMenuItem.Text = "Show Review";
+            this.showReviewToolStripMenuItem.Click += new System.EventHandler(this.showReviewToolStripMenuItem_Click);
+            // 
             // DisplayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -455,6 +464,7 @@
         private System.Windows.Forms.ToolStripMenuItem followPlaylistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchSongsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unsubscribeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showReviewToolStripMenuItem;
     }
 }
 

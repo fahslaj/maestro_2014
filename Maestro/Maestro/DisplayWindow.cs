@@ -66,6 +66,7 @@ namespace Maestro
             //GetSelectedRowNumber();
             AddEntryWindow aew = new AddEntryWindow(selectedTable);
             aew.ShowDialog();
+            
             Manager.streamer.Write("update");
         }
 
@@ -192,7 +193,7 @@ namespace Maestro
         {
             AddEntryWindow aew = new AddEntryWindow(selectedTable);
             aew.ShowDialog();
-
+            Manager.UploadSong(aew.filepath, aew.artist, aew.album, aew.name, aew.genre, aew.releaseDate, aew.length, CurrentUser);
             Manager.streamer.Write("update");
         }
 
@@ -341,6 +342,11 @@ namespace Maestro
         {
             selectedTable = DBAccessor.selectAllTable("SongView");
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
+        }
+
+        private void showReviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
 
 
