@@ -39,24 +39,24 @@
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.playlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createNewPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.writeReviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.BackButton = new System.Windows.Forms.Button();
-            this.SkipButton = new System.Windows.Forms.Button();
-            this.myReviewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchReviewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.myPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchAllPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.songToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.albumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.myUploadedMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.favoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.myUploadedMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createNewPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.myPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchAllPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeReviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.myReviewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchReviewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.BackButton = new System.Windows.Forms.Button();
+            this.SkipButton = new System.Windows.Forms.Button();
             this.MuteUnmuteButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
@@ -145,14 +145,14 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -166,6 +166,46 @@
             this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
             this.mediaToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
             this.mediaToolStripMenuItem.Text = "Media";
+            // 
+            // uploadMediaToolStripMenuItem
+            // 
+            this.uploadMediaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.songToolStripMenuItem,
+            this.albumToolStripMenuItem});
+            this.uploadMediaToolStripMenuItem.Name = "uploadMediaToolStripMenuItem";
+            this.uploadMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.uploadMediaToolStripMenuItem.Text = "Upload Media";
+            // 
+            // songToolStripMenuItem
+            // 
+            this.songToolStripMenuItem.Name = "songToolStripMenuItem";
+            this.songToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.songToolStripMenuItem.Text = "Song";
+            this.songToolStripMenuItem.Click += new System.EventHandler(this.songToolStripMenuItem_Click);
+            // 
+            // albumToolStripMenuItem
+            // 
+            this.albumToolStripMenuItem.Name = "albumToolStripMenuItem";
+            this.albumToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.albumToolStripMenuItem.Text = "Album";
+            // 
+            // myUploadedMediaToolStripMenuItem
+            // 
+            this.myUploadedMediaToolStripMenuItem.Name = "myUploadedMediaToolStripMenuItem";
+            this.myUploadedMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.myUploadedMediaToolStripMenuItem.Text = "My Uploaded Media";
+            // 
+            // favoritesToolStripMenuItem
+            // 
+            this.favoritesToolStripMenuItem.Name = "favoritesToolStripMenuItem";
+            this.favoritesToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.favoritesToolStripMenuItem.Text = "Favorites";
+            // 
+            // searchMediaToolStripMenuItem
+            // 
+            this.searchMediaToolStripMenuItem.Name = "searchMediaToolStripMenuItem";
+            this.searchMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.searchMediaToolStripMenuItem.Text = "Search Media";
             // 
             // playlistToolStripMenuItem
             // 
@@ -190,6 +230,18 @@
             this.editPlaylistToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
             this.editPlaylistToolStripMenuItem.Text = "Edit Playlist";
             // 
+            // myPlaylistsToolStripMenuItem
+            // 
+            this.myPlaylistsToolStripMenuItem.Name = "myPlaylistsToolStripMenuItem";
+            this.myPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.myPlaylistsToolStripMenuItem.Text = "My Playlists";
+            // 
+            // searchAllPlaylistsToolStripMenuItem
+            // 
+            this.searchAllPlaylistsToolStripMenuItem.Name = "searchAllPlaylistsToolStripMenuItem";
+            this.searchAllPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.searchAllPlaylistsToolStripMenuItem.Text = "Search All Playlists";
+            // 
             // reviewToolStripMenuItem
             // 
             this.reviewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -205,6 +257,19 @@
             this.writeReviewToolStripMenuItem.Name = "writeReviewToolStripMenuItem";
             this.writeReviewToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
             this.writeReviewToolStripMenuItem.Text = "Write Review";
+            this.writeReviewToolStripMenuItem.Click += new System.EventHandler(this.writeReviewToolStripMenuItem_Click);
+            // 
+            // myReviewsToolStripMenuItem
+            // 
+            this.myReviewsToolStripMenuItem.Name = "myReviewsToolStripMenuItem";
+            this.myReviewsToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.myReviewsToolStripMenuItem.Text = "My Reviews";
+            // 
+            // searchReviewsToolStripMenuItem
+            // 
+            this.searchReviewsToolStripMenuItem.Name = "searchReviewsToolStripMenuItem";
+            this.searchReviewsToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.searchReviewsToolStripMenuItem.Text = "Search Reviews";
             // 
             // toolStripMenuItem1
             // 
@@ -232,70 +297,6 @@
             this.SkipButton.TabIndex = 17;
             this.SkipButton.UseVisualStyleBackColor = true;
             this.SkipButton.Click += new System.EventHandler(this.SkipButton_Click);
-            // 
-            // myReviewsToolStripMenuItem
-            // 
-            this.myReviewsToolStripMenuItem.Name = "myReviewsToolStripMenuItem";
-            this.myReviewsToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
-            this.myReviewsToolStripMenuItem.Text = "My Reviews";
-            // 
-            // searchReviewsToolStripMenuItem
-            // 
-            this.searchReviewsToolStripMenuItem.Name = "searchReviewsToolStripMenuItem";
-            this.searchReviewsToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
-            this.searchReviewsToolStripMenuItem.Text = "Search Reviews";
-            // 
-            // myPlaylistsToolStripMenuItem
-            // 
-            this.myPlaylistsToolStripMenuItem.Name = "myPlaylistsToolStripMenuItem";
-            this.myPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
-            this.myPlaylistsToolStripMenuItem.Text = "My Playlists";
-            // 
-            // searchAllPlaylistsToolStripMenuItem
-            // 
-            this.searchAllPlaylistsToolStripMenuItem.Name = "searchAllPlaylistsToolStripMenuItem";
-            this.searchAllPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
-            this.searchAllPlaylistsToolStripMenuItem.Text = "Search All Playlists";
-            // 
-            // uploadMediaToolStripMenuItem
-            // 
-            this.uploadMediaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.songToolStripMenuItem,
-            this.albumToolStripMenuItem});
-            this.uploadMediaToolStripMenuItem.Name = "uploadMediaToolStripMenuItem";
-            this.uploadMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
-            this.uploadMediaToolStripMenuItem.Text = "Upload Media";
-            // 
-            // songToolStripMenuItem
-            // 
-            this.songToolStripMenuItem.Name = "songToolStripMenuItem";
-            this.songToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
-            this.songToolStripMenuItem.Text = "Song";
-            this.songToolStripMenuItem.Click += new System.EventHandler(this.songToolStripMenuItem_Click);
-            // 
-            // albumToolStripMenuItem
-            // 
-            this.albumToolStripMenuItem.Name = "albumToolStripMenuItem";
-            this.albumToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
-            this.albumToolStripMenuItem.Text = "Album";
-            // 
-            // favoritesToolStripMenuItem
-            // 
-            this.favoritesToolStripMenuItem.Name = "favoritesToolStripMenuItem";
-            this.favoritesToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
-            this.favoritesToolStripMenuItem.Text = "Favorites";
-            // 
-            // searchMediaToolStripMenuItem
-            // 
-            this.searchMediaToolStripMenuItem.Name = "searchMediaToolStripMenuItem";
-            this.searchMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
-            this.searchMediaToolStripMenuItem.Text = "Search Media";
-            // 
-            // myUploadedMediaToolStripMenuItem
-            // 
-            this.myUploadedMediaToolStripMenuItem.Name = "myUploadedMediaToolStripMenuItem";
-            this.myUploadedMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
-            this.myUploadedMediaToolStripMenuItem.Text = "My Uploaded Media";
             // 
             // MuteUnmuteButton
             // 

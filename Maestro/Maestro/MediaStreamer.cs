@@ -115,19 +115,27 @@ namespace Maestro
             Write("playlist");
             String temp = Read();
             System.Console.WriteLine(temp);
-            return temp.Split(':');
+            String[] toReturn = new String[temp.Length];
+            foreach (String str in temp.Split('\n'))
+            {
+                String[] temp2 = str.Split(':');
+                toReturn[int.Parse(temp2[0])] = temp2[2];
+            }
+            return toReturn;
         }
 
         public void Mute()
         {
             Write("setvol 0");
             System.Console.WriteLine(Read());
+            Muted = true;
         }
 
         public void Unmute()
         {
             Write("setvol 100");
             System.Console.WriteLine(Read());
+            Muted = false;
         }
 
         public String Read()
