@@ -252,6 +252,7 @@ namespace Maestro
         {
             PlaylistEditor pe = new PlaylistEditor();
             pe.Show();
+            //TODO Make it work.
         }
 
         private void searchReviewsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -274,6 +275,34 @@ namespace Maestro
             }
             selectedTable = DBAccessor.selectCurrentPlaylist(attributes);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
+        }
+
+        private void editPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlaylistEditor pe = new PlaylistEditor();
+            pe.Show();
+            // TODO Make it work
+        }
+
+        private void searchAllPlaylistsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedTable = DBAccessor.selectAllTable("Playlist");
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
+        }
+
+        private void expandPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO Get selected row's key information and join playlist with belongs to
+        }
+
+        private void myReviewsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO "" "" same as above but with username matchup to playlist
+        }
+
+        private void addFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO add to playlist in db
         }
 
 

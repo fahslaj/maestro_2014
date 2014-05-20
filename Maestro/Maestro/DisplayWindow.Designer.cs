@@ -41,7 +41,6 @@
             this.uploadMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.songToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.albumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.myUploadedMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.favoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,6 +48,7 @@
             this.editPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchAllPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showCurrentPlayQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeReviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myReviewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +58,9 @@
             this.SkipButton = new System.Windows.Forms.Button();
             this.MuteUnmuteButton = new System.Windows.Forms.Button();
             this.SearchBar = new System.Windows.Forms.TextBox();
-            this.showCurrentPlayQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expandPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.followPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addFavoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -150,8 +152,8 @@
             // 
             this.mediaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uploadMediaToolStripMenuItem,
-            this.myUploadedMediaToolStripMenuItem,
             this.favoritesToolStripMenuItem,
+            this.addFavoriteToolStripMenuItem,
             this.searchMediaToolStripMenuItem});
             this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
             this.mediaToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
@@ -163,7 +165,7 @@
             this.songToolStripMenuItem,
             this.albumToolStripMenuItem});
             this.uploadMediaToolStripMenuItem.Name = "uploadMediaToolStripMenuItem";
-            this.uploadMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.uploadMediaToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.uploadMediaToolStripMenuItem.Text = "Upload Media";
             // 
             // songToolStripMenuItem
@@ -179,22 +181,16 @@
             this.albumToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
             this.albumToolStripMenuItem.Text = "Album";
             // 
-            // myUploadedMediaToolStripMenuItem
-            // 
-            this.myUploadedMediaToolStripMenuItem.Name = "myUploadedMediaToolStripMenuItem";
-            this.myUploadedMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
-            this.myUploadedMediaToolStripMenuItem.Text = "My Uploaded Media";
-            // 
             // favoritesToolStripMenuItem
             // 
             this.favoritesToolStripMenuItem.Name = "favoritesToolStripMenuItem";
-            this.favoritesToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.favoritesToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.favoritesToolStripMenuItem.Text = "Favorites";
             // 
             // searchMediaToolStripMenuItem
             // 
             this.searchMediaToolStripMenuItem.Name = "searchMediaToolStripMenuItem";
-            this.searchMediaToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.searchMediaToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.searchMediaToolStripMenuItem.Text = "Search Media";
             this.searchMediaToolStripMenuItem.Click += new System.EventHandler(this.searchMediaToolStripMenuItem_Click);
             // 
@@ -205,6 +201,8 @@
             this.editPlaylistToolStripMenuItem,
             this.myPlaylistsToolStripMenuItem,
             this.searchAllPlaylistsToolStripMenuItem,
+            this.expandPlaylistToolStripMenuItem,
+            this.followPlaylistToolStripMenuItem,
             this.showCurrentPlayQueueToolStripMenuItem});
             this.playlistToolStripMenuItem.Name = "playlistToolStripMenuItem";
             this.playlistToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
@@ -222,6 +220,7 @@
             this.editPlaylistToolStripMenuItem.Name = "editPlaylistToolStripMenuItem";
             this.editPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
             this.editPlaylistToolStripMenuItem.Text = "Edit Playlist";
+            this.editPlaylistToolStripMenuItem.Click += new System.EventHandler(this.editPlaylistToolStripMenuItem_Click);
             // 
             // myPlaylistsToolStripMenuItem
             // 
@@ -234,6 +233,14 @@
             this.searchAllPlaylistsToolStripMenuItem.Name = "searchAllPlaylistsToolStripMenuItem";
             this.searchAllPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
             this.searchAllPlaylistsToolStripMenuItem.Text = "Search All Playlists";
+            this.searchAllPlaylistsToolStripMenuItem.Click += new System.EventHandler(this.searchAllPlaylistsToolStripMenuItem_Click);
+            // 
+            // showCurrentPlayQueueToolStripMenuItem
+            // 
+            this.showCurrentPlayQueueToolStripMenuItem.Name = "showCurrentPlayQueueToolStripMenuItem";
+            this.showCurrentPlayQueueToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
+            this.showCurrentPlayQueueToolStripMenuItem.Text = "Show Current Play Queue";
+            this.showCurrentPlayQueueToolStripMenuItem.Click += new System.EventHandler(this.showCurrentPlayQueueToolStripMenuItem_Click);
             // 
             // reviewToolStripMenuItem
             // 
@@ -257,6 +264,7 @@
             this.myReviewsToolStripMenuItem.Name = "myReviewsToolStripMenuItem";
             this.myReviewsToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
             this.myReviewsToolStripMenuItem.Text = "My Reviews";
+            this.myReviewsToolStripMenuItem.Click += new System.EventHandler(this.myReviewsToolStripMenuItem_Click);
             // 
             // searchReviewsToolStripMenuItem
             // 
@@ -311,12 +319,25 @@
             this.SearchBar.TabIndex = 18;
             this.SearchBar.Text = "Search";
             // 
-            // showCurrentPlayQueueToolStripMenuItem
+            // expandPlaylistToolStripMenuItem
             // 
-            this.showCurrentPlayQueueToolStripMenuItem.Name = "showCurrentPlayQueueToolStripMenuItem";
-            this.showCurrentPlayQueueToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
-            this.showCurrentPlayQueueToolStripMenuItem.Text = "Show Current Play Queue";
-            this.showCurrentPlayQueueToolStripMenuItem.Click += new System.EventHandler(this.showCurrentPlayQueueToolStripMenuItem_Click);
+            this.expandPlaylistToolStripMenuItem.Name = "expandPlaylistToolStripMenuItem";
+            this.expandPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
+            this.expandPlaylistToolStripMenuItem.Text = "Expand Playlist";
+            this.expandPlaylistToolStripMenuItem.Click += new System.EventHandler(this.expandPlaylistToolStripMenuItem_Click);
+            // 
+            // followPlaylistToolStripMenuItem
+            // 
+            this.followPlaylistToolStripMenuItem.Name = "followPlaylistToolStripMenuItem";
+            this.followPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
+            this.followPlaylistToolStripMenuItem.Text = "Follow Playlist";
+            // 
+            // addFavoriteToolStripMenuItem
+            // 
+            this.addFavoriteToolStripMenuItem.Name = "addFavoriteToolStripMenuItem";
+            this.addFavoriteToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.addFavoriteToolStripMenuItem.Text = "Add Favorite";
+            this.addFavoriteToolStripMenuItem.Click += new System.EventHandler(this.addFavoriteToolStripMenuItem_Click);
             // 
             // DisplayWindow
             // 
@@ -373,10 +394,12 @@
         private System.Windows.Forms.ToolStripMenuItem myReviewsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchReviewsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchMediaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem myUploadedMediaToolStripMenuItem;
         private System.Windows.Forms.Button MuteUnmuteButton;
         private System.Windows.Forms.TextBox SearchBar;
         private System.Windows.Forms.ToolStripMenuItem showCurrentPlayQueueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem expandPlaylistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem followPlaylistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addFavoriteToolStripMenuItem;
     }
 }
 
