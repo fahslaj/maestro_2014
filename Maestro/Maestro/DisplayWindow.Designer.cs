@@ -75,7 +75,6 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(860, 393);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // ImageDisplayerBox
             // 
@@ -96,6 +95,7 @@
             this.PlayButton.Size = new System.Drawing.Size(40, 40);
             this.PlayButton.TabIndex = 13;
             this.PlayButton.UseVisualStyleBackColor = false;
+            this.PlayButton.Click += new System.EventHandler(this.PlayButton_Click);
             // 
             // PauseButton
             // 
@@ -106,6 +106,7 @@
             this.PauseButton.Size = new System.Drawing.Size(40, 40);
             this.PauseButton.TabIndex = 14;
             this.PauseButton.UseVisualStyleBackColor = true;
+            this.PauseButton.Click += new System.EventHandler(this.PauseButton_Click);
             // 
             // menuStrip1
             // 
@@ -260,6 +261,7 @@
             this.searchReviewsToolStripMenuItem.Name = "searchReviewsToolStripMenuItem";
             this.searchReviewsToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
             this.searchReviewsToolStripMenuItem.Text = "Search Reviews";
+            this.searchReviewsToolStripMenuItem.Click += new System.EventHandler(this.searchReviewsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 

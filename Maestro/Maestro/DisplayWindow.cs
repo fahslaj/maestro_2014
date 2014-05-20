@@ -81,8 +81,6 @@ namespace Maestro
 
         }
 
-
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
@@ -238,6 +236,12 @@ namespace Maestro
         {
             PlaylistEditor pe = new PlaylistEditor();
             pe.Show();
+        }
+
+        private void searchReviewsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedTable = DBAccessor.selectAllTable("Reviews");
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
 
