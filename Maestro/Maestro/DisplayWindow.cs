@@ -192,6 +192,7 @@ namespace Maestro
         {
             AddEntryWindow aew = new AddEntryWindow(selectedTable);
             aew.ShowDialog();
+
             Manager.streamer.Write("update");
         }
 
