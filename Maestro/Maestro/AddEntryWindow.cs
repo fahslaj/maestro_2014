@@ -15,6 +15,12 @@ namespace Maestro
     {
         private DataTable dt;
         public string filepath;
+        public string name;
+        public string artist;
+        public string album;
+        public string genre;
+        public int length;
+        public int releaseDate;
 
         public AddEntryWindow(DataTable dt)
         {
@@ -24,7 +30,12 @@ namespace Maestro
 
         private void UploadConfirmButton_Click(object sender, EventArgs e)
         {
-
+            name = this.NameTextBox.Text;
+            artist = this.ArtistTextbox.Text;
+            genre = this.GenreTextBox.Text;
+            album = this.albumTextBox.Text;
+            releaseDate = int.Parse(this.ReleaseDateBox.Text);
+            this.Close();
         }
 
         private void FileButton_Click(object sender, EventArgs e)
@@ -43,6 +54,7 @@ namespace Maestro
             this.albumTextBox.Text = tagFile.Tag.Album;
             this.GenreTextBox.Text = tagFile.Tag.FirstGenre;
             this.ReleaseDateBox.Text = tagFile.Tag.Year + "";
+            length = (int)tagFile.Properties.Duration.TotalSeconds;
 
             System.Console.WriteLine(tagFile.Properties.Duration + "");
         }
