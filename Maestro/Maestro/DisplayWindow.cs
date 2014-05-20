@@ -26,7 +26,7 @@ namespace Maestro
             InitializeComponent();
             this.Text = "Maestro: Guest User";
             Manager = new MediaManager();
-            selectedTable = DBAccessor.selectAllTable("Media");
+            selectedTable = DBAccessor.selectAllTable("SongView");
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
 //            byte[] address = { 137, 112, 128, 188 };
 //            streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, 8000);
@@ -324,6 +324,8 @@ namespace Maestro
         private void SearchButton_Click(object sender, EventArgs e)
         {
             //TODO search through all media for keywords
+            selectedTable = DBAccessor.selectSearchTable("SongView", this.SearchBar.Text);
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
         private void albumToolStripMenuItem_Click(object sender, EventArgs e)

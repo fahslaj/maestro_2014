@@ -32,6 +32,25 @@ namespace Maestro
             
         }
 
+        public static DataTable selectSearchTable(String tableName, String searchKeywords)
+        {
+            String query = "SELECT * FROM " + tableName + " WHERE Title LIKE '%" + searchKeywords + "%';";
+
+            // create to strings for the connection and the query
+
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                //string sqlQuery = @"SELECT * from Items";
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable table = new DataTable();
+                da.Fill(table);
+                return table;
+                //dataGridView1.DataSource = new BindingSource(table, null);
+            }
+
+        }
+
         public static DataTable selectCurrentPlaylist(String condition)
         {
             String query = "SELECT Name, Artist, Length, Genre, Uploader, ReleaseDate FROM Media WHERE " + condition;
@@ -259,5 +278,7 @@ namespace Maestro
             }
             return result;
         }
+
+
     }
 }
