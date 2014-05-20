@@ -26,6 +26,8 @@ namespace Maestro
             InitializeComponent();
             this.Text = "Maestro: Guest User";
             Manager = new MediaManager();
+            selectedTable = DBAccessor.selectAllTable("Media");
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
 //            byte[] address = { 137, 112, 128, 188 };
 //            streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, 8000);
             
@@ -96,7 +98,12 @@ namespace Maestro
 
         private string GetSelectedMediaName()
         {
-            return null;
+            return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[1].Value;
+        }
+
+        private string GetSelectedMediaFilepath()
+        {
+            return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[0].Value;
         }
 
         private void DisplayWindow_FormClosed(object sender = null, FormClosedEventArgs e = null)
@@ -215,9 +222,16 @@ namespace Maestro
 
         private void writeReviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ReviewEditor re = new ReviewEditor(GetSelectedMediaName());
-            ReviewEditor re = new ReviewEditor();
+            ReviewEditor re = new ReviewEditor(GetSelectedMediaName());
             re.ShowDialog();
+
+            DBAccessor.AddReview(this.CurrentUser, this.GetSelectedMediaFilepath(), re.Rating, re.Content);
+        }
+
+        private void searchMediaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedTable = DBAccessor.selectAllTable("Media");
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
 
