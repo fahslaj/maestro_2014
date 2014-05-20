@@ -15,7 +15,7 @@ namespace Maestro
         WMPLib.WindowsMediaPlayer Player;
         IPAddress ServerAddress;
         int ConnectionPort;
-        Boolean Muted;
+        public Boolean Muted;
 
         public MediaStreamer(IPAddress musicServer, int port, int mediaPort)
         {

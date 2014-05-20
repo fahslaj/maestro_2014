@@ -190,7 +190,7 @@ namespace Maestro
         {
             if (Manager.streamer.Muted)
             {
-                Manager.streamer.UnMute();
+                Manager.streamer.Unmute();
                 this.MuteUnmuteButton.Image = System.Drawing.Image.FromFile("..\\..\\Resources\\Unmute Button.png");
             }
             else
