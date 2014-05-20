@@ -276,6 +276,12 @@ namespace Maestro
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
+        private void PlayNext_Click(object sender, EventArgs e)
+        {
+            String path = GetSelectedMediaFilepath();
+            Manager.streamer.Add(path);
+        }
+
 
     }
 }

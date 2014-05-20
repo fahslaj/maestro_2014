@@ -59,6 +59,7 @@
             this.MuteUnmuteButton = new System.Windows.Forms.Button();
             this.SearchBar = new System.Windows.Forms.TextBox();
             this.showCurrentPlayQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlayNext = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -74,7 +75,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(860, 393);
+            this.dataGridView1.Size = new System.Drawing.Size(860, 360);
             this.dataGridView1.TabIndex = 0;
             // 
             // ImageDisplayerBox
@@ -135,14 +136,14 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -318,11 +319,22 @@
             this.showCurrentPlayQueueToolStripMenuItem.Text = "Show Current Play Queue";
             this.showCurrentPlayQueueToolStripMenuItem.Click += new System.EventHandler(this.showCurrentPlayQueueToolStripMenuItem_Click);
             // 
+            // PlayNext
+            // 
+            this.PlayNext.Location = new System.Drawing.Point(1153, 395);
+            this.PlayNext.Name = "PlayNext";
+            this.PlayNext.Size = new System.Drawing.Size(92, 28);
+            this.PlayNext.TabIndex = 19;
+            this.PlayNext.Text = "Play Next...";
+            this.PlayNext.UseVisualStyleBackColor = true;
+            this.PlayNext.Click += new System.EventHandler(this.PlayNext_Click);
+            // 
             // DisplayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1245, 423);
+            this.Controls.Add(this.PlayNext);
             this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.SkipButton);
             this.Controls.Add(this.BackButton);
@@ -377,6 +389,7 @@
         private System.Windows.Forms.Button MuteUnmuteButton;
         private System.Windows.Forms.TextBox SearchBar;
         private System.Windows.Forms.ToolStripMenuItem showCurrentPlayQueueToolStripMenuItem;
+        private System.Windows.Forms.Button PlayNext;
     }
 }
 

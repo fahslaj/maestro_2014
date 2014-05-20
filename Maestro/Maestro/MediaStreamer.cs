@@ -89,7 +89,7 @@ namespace Maestro
 
         public void Add(String filepath)
         {
-            Write("add " + filepath);
+            Write("add " + "\"" + filepath + "\"");
             System.Console.WriteLine(Read());
         }
 
