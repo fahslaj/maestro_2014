@@ -127,13 +127,15 @@ namespace Maestro
 
         private void PlayButton_Click(object sender, EventArgs e)
         {
+            System.Console.WriteLine("Play pressed");
             Manager.streamer.Play();
-            String[] info = Manager.streamer.GetSongInfo();
-
+            //String[] info = Manager.streamer.GetSongInfo();
+            
         }
 
         private void PauseButton_Click(object sender, EventArgs e)
         {
+            System.Console.WriteLine("Pause pressed");
             Manager.streamer.Pause();
         }
 

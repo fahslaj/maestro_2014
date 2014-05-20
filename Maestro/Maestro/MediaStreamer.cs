@@ -15,6 +15,7 @@ namespace Maestro
         WMPLib.WindowsMediaPlayer Player;
         IPAddress ServerAddress;
         int ConnectionPort;
+        Boolean Muted;
 
         public MediaStreamer(IPAddress musicServer, int port, int mediaPort)
         {
@@ -109,6 +110,26 @@ namespace Maestro
             return temp.Split('\n');
         }
 
+        public String[] GetInternalPlaylist()
+        {
+            Write("playlist");
+            String temp = Read();
+            System.Console.WriteLine(temp);
+            return temp.Split(':');
+        }
+
+        public void Mute()
+        {
+            Write("setvol 0");
+            System.Console.WriteLine(Read());
+        }
+
+        public void Unmute()
+        {
+            Write("setvol 100");
+            System.Console.WriteLine(Read());
+        }
+
         public String Read()
         {
             byte[] InBuffer = new byte[300];
@@ -118,6 +139,7 @@ namespace Maestro
             }
             catch (System.IO.IOException ioex)
             {
+                System.Console.WriteLine("Exception caught in Read: attempting to reopen socket...");
                 TcpClient client = new TcpClient();
                 client.Connect(ServerAddress, ConnectionPort);
                 MPDControlStream = client.GetStream();
@@ -135,6 +157,7 @@ namespace Maestro
             }
             catch (System.IO.IOException ioex)
             {
+                System.Console.WriteLine("Exception caught in Write: attempting to reopen socket...");
                 TcpClient client = new TcpClient();
                 client.Connect(ServerAddress, ConnectionPort);
                 MPDControlStream = client.GetStream();
