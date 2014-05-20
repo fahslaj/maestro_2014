@@ -302,7 +302,18 @@ namespace Maestro
 
         private void addFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO add to playlist in db
+            //TODO add favorite to user
+        }
+
+        private void PlayNext_Click(object sender, EventArgs e)
+        {
+            String path = GetSelectedMediaFilepath();
+            Manager.streamer.Add(path);
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            //TODO search through all media for keywords
         }
 
 

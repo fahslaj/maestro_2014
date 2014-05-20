@@ -42,12 +42,15 @@
             this.songToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.albumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.favoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addFavoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchMediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNewPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchAllPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expandPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.followPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showCurrentPlayQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeReviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,9 +61,8 @@
             this.SkipButton = new System.Windows.Forms.Button();
             this.MuteUnmuteButton = new System.Windows.Forms.Button();
             this.SearchBar = new System.Windows.Forms.TextBox();
-            this.expandPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.followPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addFavoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlayNext = new System.Windows.Forms.Button();
+            this.SearchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -76,7 +78,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(860, 393);
+            this.dataGridView1.Size = new System.Drawing.Size(860, 360);
             this.dataGridView1.TabIndex = 0;
             // 
             // ImageDisplayerBox
@@ -137,14 +139,14 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -186,6 +188,13 @@
             this.favoritesToolStripMenuItem.Name = "favoritesToolStripMenuItem";
             this.favoritesToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.favoritesToolStripMenuItem.Text = "Favorites";
+            // 
+            // addFavoriteToolStripMenuItem
+            // 
+            this.addFavoriteToolStripMenuItem.Name = "addFavoriteToolStripMenuItem";
+            this.addFavoriteToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.addFavoriteToolStripMenuItem.Text = "Add Favorite";
+            this.addFavoriteToolStripMenuItem.Click += new System.EventHandler(this.addFavoriteToolStripMenuItem_Click);
             // 
             // searchMediaToolStripMenuItem
             // 
@@ -234,6 +243,19 @@
             this.searchAllPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
             this.searchAllPlaylistsToolStripMenuItem.Text = "Search All Playlists";
             this.searchAllPlaylistsToolStripMenuItem.Click += new System.EventHandler(this.searchAllPlaylistsToolStripMenuItem_Click);
+            // 
+            // expandPlaylistToolStripMenuItem
+            // 
+            this.expandPlaylistToolStripMenuItem.Name = "expandPlaylistToolStripMenuItem";
+            this.expandPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
+            this.expandPlaylistToolStripMenuItem.Text = "Expand Playlist";
+            this.expandPlaylistToolStripMenuItem.Click += new System.EventHandler(this.expandPlaylistToolStripMenuItem_Click);
+            // 
+            // followPlaylistToolStripMenuItem
+            // 
+            this.followPlaylistToolStripMenuItem.Name = "followPlaylistToolStripMenuItem";
+            this.followPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
+            this.followPlaylistToolStripMenuItem.Text = "Follow Playlist";
             // 
             // showCurrentPlayQueueToolStripMenuItem
             // 
@@ -315,35 +337,37 @@
             // 
             this.SearchBar.Location = new System.Drawing.Point(385, 3);
             this.SearchBar.Name = "SearchBar";
-            this.SearchBar.Size = new System.Drawing.Size(860, 22);
+            this.SearchBar.Size = new System.Drawing.Size(701, 22);
             this.SearchBar.TabIndex = 18;
             this.SearchBar.Text = "Search";
             // 
-            // expandPlaylistToolStripMenuItem
+            // PlayNext
             // 
-            this.expandPlaylistToolStripMenuItem.Name = "expandPlaylistToolStripMenuItem";
-            this.expandPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
-            this.expandPlaylistToolStripMenuItem.Text = "Expand Playlist";
-            this.expandPlaylistToolStripMenuItem.Click += new System.EventHandler(this.expandPlaylistToolStripMenuItem_Click);
+            this.PlayNext.Location = new System.Drawing.Point(1153, 395);
+            this.PlayNext.Name = "PlayNext";
+            this.PlayNext.Size = new System.Drawing.Size(92, 28);
+            this.PlayNext.TabIndex = 19;
+            this.PlayNext.Text = "Play Next...";
+            this.PlayNext.UseVisualStyleBackColor = true;
+            this.PlayNext.Click += new System.EventHandler(this.PlayNext_Click);
             // 
-            // followPlaylistToolStripMenuItem
+            // SearchButton
             // 
-            this.followPlaylistToolStripMenuItem.Name = "followPlaylistToolStripMenuItem";
-            this.followPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
-            this.followPlaylistToolStripMenuItem.Text = "Follow Playlist";
-            // 
-            // addFavoriteToolStripMenuItem
-            // 
-            this.addFavoriteToolStripMenuItem.Name = "addFavoriteToolStripMenuItem";
-            this.addFavoriteToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
-            this.addFavoriteToolStripMenuItem.Text = "Add Favorite";
-            this.addFavoriteToolStripMenuItem.Click += new System.EventHandler(this.addFavoriteToolStripMenuItem_Click);
+            this.SearchButton.Location = new System.Drawing.Point(1093, 3);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(152, 25);
+            this.SearchButton.TabIndex = 20;
+            this.SearchButton.Text = "Search";
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // DisplayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1245, 423);
+            this.Controls.Add(this.SearchButton);
+            this.Controls.Add(this.PlayNext);
             this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.SkipButton);
             this.Controls.Add(this.BackButton);
@@ -400,6 +424,8 @@
         private System.Windows.Forms.ToolStripMenuItem expandPlaylistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem followPlaylistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addFavoriteToolStripMenuItem;
+        private System.Windows.Forms.Button PlayNext;
+        private System.Windows.Forms.Button SearchButton;
     }
 }
 
