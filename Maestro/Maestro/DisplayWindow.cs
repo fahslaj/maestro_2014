@@ -49,7 +49,6 @@ namespace Maestro
             Manager.Login(CurrentUser);
         }
 
-<<<<<<< HEAD
         private void RegisterButton_Click(object sender, EventArgs e)
         {
             GetSelectedRowNumber();
@@ -65,8 +64,6 @@ namespace Maestro
             aew.ShowDialog();
             Manager.streamer.Write("update");
         }
-=======
->>>>>>> fc5f4e9b6f614b2aa57f79a6af11a323a6f6b1f9
 
         private void PlaySelectedButton_Click(object sender, EventArgs e)
         {
@@ -157,11 +154,7 @@ namespace Maestro
 
         private void PauseButton_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            //GetSelectedRowNumber();
-=======
             System.Console.WriteLine("Pause pressed");
->>>>>>> fc5f4e9b6f614b2aa57f79a6af11a323a6f6b1f9
             Manager.streamer.Pause();
         }
 
