@@ -108,6 +108,7 @@
             this.PlayButton.Size = new System.Drawing.Size(40, 40);
             this.PlayButton.TabIndex = 13;
             this.PlayButton.UseVisualStyleBackColor = false;
+            this.PlayButton.Click += this.PlayButton_Click;
             // 
             // PauseButton
             // 
@@ -118,6 +119,7 @@
             this.PauseButton.Size = new System.Drawing.Size(40, 40);
             this.PauseButton.TabIndex = 14;
             this.PauseButton.UseVisualStyleBackColor = true;
+            this.PauseButton.Click += this.PauseButton_Click;
             // 
             // menuStrip1
             // 
