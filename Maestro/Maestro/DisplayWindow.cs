@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using Renci.SshNet;
+using System.IO;
 
 namespace Maestro
 {
@@ -43,11 +44,12 @@ namespace Maestro
 
         public void SetUser(string NewUser)
         {
-            this.Text = "Maestro: Logged in as " + NewUser;
+            this.Text = "Maestro: Logged on as " + NewUser;
             this.CurrentUser = NewUser;
             Manager.Login(CurrentUser);
         }
 
+<<<<<<< HEAD
         private void RegisterButton_Click(object sender, EventArgs e)
         {
             GetSelectedRowNumber();
@@ -63,6 +65,8 @@ namespace Maestro
             aew.ShowDialog();
             Manager.streamer.Write("update");
         }
+=======
+>>>>>>> fc5f4e9b6f614b2aa57f79a6af11a323a6f6b1f9
 
         private void PlaySelectedButton_Click(object sender, EventArgs e)
         {
@@ -91,13 +95,7 @@ namespace Maestro
             return firstRow;
         }
 
-        private void uploadButton_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
-
-        private void DisplayWindow_FormClosed(object sender, FormClosedEventArgs e)
+        private void DisplayWindow_FormClosed(object sender = null, FormClosedEventArgs e = null)
         {
             if (CurrentUser != null)
             {
@@ -114,11 +112,16 @@ namespace Maestro
 
         private Boolean CloseNextCall = false;
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e = null)
         {
             base.OnFormClosing(e);
 
-            if (e.CloseReason == CloseReason.WindowsShutDown || CloseNextCall) { CloseNextCall = false; return; }
+            if (e.CloseReason == CloseReason.WindowsShutDown || CloseNextCall) 
+            { 
+                CloseNextCall = false; 
+                this.DisplayWindow_FormClosed(); 
+                return; 
+            }
 
             // Confirm user wants to close
             
@@ -127,29 +130,89 @@ namespace Maestro
                 case DialogResult.Cancel:
                     e.Cancel = true;
                     break;
-                case DialogResult.No: 
+                case DialogResult.No:
+                    this.DisplayWindow_FormClosed();
                     System.Environment.Exit(0); 
                     break;
                 default:
-                    DisplayManager.ShowMainMenu();
-                    CloseNextCall = true;
-                    this.Close();
+                    ReturnToMainMenu();
                     break;
             }
         }
 
+        private void ReturnToMainMenu()
+        {
+            DisplayManager.ShowMainMenu();
+            CloseNextCall = true;
+            this.Close();
+        }
+
         private void PlayButton_Click(object sender, EventArgs e)
         {
+            System.Console.WriteLine("Play pressed");
             Manager.streamer.Play();
-            String[] info = Manager.streamer.GetSongInfo();
-
+            //String[] info = Manager.streamer.GetSongInfo();
+            
         }
 
         private void PauseButton_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             //GetSelectedRowNumber();
+=======
+            System.Console.WriteLine("Pause pressed");
+>>>>>>> fc5f4e9b6f614b2aa57f79a6af11a323a6f6b1f9
             Manager.streamer.Pause();
         }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            Manager.streamer.Back();
+        }
+
+        private void SkipButton_Click(object sender, EventArgs e)
+        {
+            Manager.streamer.Skip();
+        }
+
+        private void songToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddEntryWindow aew = new AddEntryWindow(selectedTable);
+            aew.ShowDialog();
+            Manager.streamer.Write("update");
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.DisplayWindow_FormClosed();
+            System.Environment.Exit(0);
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReturnToMainMenu();
+        }
+
+        private void MuteUnmuteButton_Click(object sender, EventArgs e)
+        {
+            if (Manager.streamer.Muted)
+            {
+                Manager.streamer.UnMute();
+                this.MuteUnmuteButton.Image = System.Drawing.Image.FromFile("..\\..\\Resources\\Unmute Button.png");
+            }
+            else
+            {
+                Manager.streamer.Mute();
+                this.MuteUnmuteButton.Image = System.Drawing.Image.FromFile("..\\..\\Resources\\Mute Button.png");
+            }
+            /*
+            foreach (var path in Directory.GetFiles("..\\..\\Resources\\Unmute Button.png"))
+            {
+                Console.WriteLine(path); // full path
+                Console.WriteLine(System.IO.Path.GetFileName(path)); // file name
+            }*/
+        }
+
 
     }
 }
