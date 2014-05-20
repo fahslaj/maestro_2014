@@ -49,8 +49,6 @@
             this.editPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchAllPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.expandPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.followPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showCurrentPlayQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeReviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +61,9 @@
             this.SearchBar = new System.Windows.Forms.TextBox();
             this.PlayNext = new System.Windows.Forms.Button();
             this.SearchButton = new System.Windows.Forms.Button();
+            this.selectedPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expandPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.followPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -95,7 +96,7 @@
             // 
             this.PlayButton.BackColor = System.Drawing.Color.Transparent;
             this.PlayButton.Image = ((System.Drawing.Image)(resources.GetObject("PlayButton.Image")));
-            this.PlayButton.Location = new System.Drawing.Point(165, 371);
+            this.PlayButton.Location = new System.Drawing.Point(125, 371);
             this.PlayButton.Name = "PlayButton";
             this.PlayButton.Size = new System.Drawing.Size(40, 40);
             this.PlayButton.TabIndex = 13;
@@ -106,7 +107,7 @@
             // 
             this.PauseButton.BackColor = System.Drawing.Color.Transparent;
             this.PauseButton.Image = ((System.Drawing.Image)(resources.GetObject("PauseButton.Image")));
-            this.PauseButton.Location = new System.Drawing.Point(211, 371);
+            this.PauseButton.Location = new System.Drawing.Point(171, 371);
             this.PauseButton.Name = "PauseButton";
             this.PauseButton.Size = new System.Drawing.Size(40, 40);
             this.PauseButton.TabIndex = 14;
@@ -139,14 +140,14 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -173,15 +174,16 @@
             // songToolStripMenuItem
             // 
             this.songToolStripMenuItem.Name = "songToolStripMenuItem";
-            this.songToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.songToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.songToolStripMenuItem.Text = "Song";
             this.songToolStripMenuItem.Click += new System.EventHandler(this.songToolStripMenuItem_Click);
             // 
             // albumToolStripMenuItem
             // 
             this.albumToolStripMenuItem.Name = "albumToolStripMenuItem";
-            this.albumToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.albumToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.albumToolStripMenuItem.Text = "Album";
+            this.albumToolStripMenuItem.Click += new System.EventHandler(this.albumToolStripMenuItem_Click);
             // 
             // favoritesToolStripMenuItem
             // 
@@ -210,8 +212,7 @@
             this.editPlaylistToolStripMenuItem,
             this.myPlaylistsToolStripMenuItem,
             this.searchAllPlaylistsToolStripMenuItem,
-            this.expandPlaylistToolStripMenuItem,
-            this.followPlaylistToolStripMenuItem,
+            this.selectedPlaylistToolStripMenuItem,
             this.showCurrentPlayQueueToolStripMenuItem});
             this.playlistToolStripMenuItem.Name = "playlistToolStripMenuItem";
             this.playlistToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
@@ -243,19 +244,6 @@
             this.searchAllPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
             this.searchAllPlaylistsToolStripMenuItem.Text = "Search All Playlists";
             this.searchAllPlaylistsToolStripMenuItem.Click += new System.EventHandler(this.searchAllPlaylistsToolStripMenuItem_Click);
-            // 
-            // expandPlaylistToolStripMenuItem
-            // 
-            this.expandPlaylistToolStripMenuItem.Name = "expandPlaylistToolStripMenuItem";
-            this.expandPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
-            this.expandPlaylistToolStripMenuItem.Text = "Expand Playlist";
-            this.expandPlaylistToolStripMenuItem.Click += new System.EventHandler(this.expandPlaylistToolStripMenuItem_Click);
-            // 
-            // followPlaylistToolStripMenuItem
-            // 
-            this.followPlaylistToolStripMenuItem.Name = "followPlaylistToolStripMenuItem";
-            this.followPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
-            this.followPlaylistToolStripMenuItem.Text = "Follow Playlist";
             // 
             // showCurrentPlayQueueToolStripMenuItem
             // 
@@ -304,7 +292,7 @@
             // 
             this.BackButton.BackColor = System.Drawing.Color.Transparent;
             this.BackButton.Image = ((System.Drawing.Image)(resources.GetObject("BackButton.Image")));
-            this.BackButton.Location = new System.Drawing.Point(119, 371);
+            this.BackButton.Location = new System.Drawing.Point(79, 371);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(40, 40);
             this.BackButton.TabIndex = 16;
@@ -315,7 +303,7 @@
             // 
             this.SkipButton.BackColor = System.Drawing.Color.Transparent;
             this.SkipButton.Image = ((System.Drawing.Image)(resources.GetObject("SkipButton.Image")));
-            this.SkipButton.Location = new System.Drawing.Point(257, 371);
+            this.SkipButton.Location = new System.Drawing.Point(217, 371);
             this.SkipButton.Name = "SkipButton";
             this.SkipButton.Size = new System.Drawing.Size(40, 40);
             this.SkipButton.TabIndex = 17;
@@ -343,11 +331,11 @@
             // 
             // PlayNext
             // 
-            this.PlayNext.Location = new System.Drawing.Point(1153, 395);
+            this.PlayNext.Image = ((System.Drawing.Image)(resources.GetObject("PlayNext.Image")));
+            this.PlayNext.Location = new System.Drawing.Point(263, 371);
             this.PlayNext.Name = "PlayNext";
-            this.PlayNext.Size = new System.Drawing.Size(92, 28);
+            this.PlayNext.Size = new System.Drawing.Size(40, 40);
             this.PlayNext.TabIndex = 19;
-            this.PlayNext.Text = "Play Next...";
             this.PlayNext.UseVisualStyleBackColor = true;
             this.PlayNext.Click += new System.EventHandler(this.PlayNext_Click);
             // 
@@ -360,6 +348,27 @@
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // selectedPlaylistToolStripMenuItem
+            // 
+            this.selectedPlaylistToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.expandPlaylistToolStripMenuItem,
+            this.followPlaylistToolStripMenuItem});
+            this.selectedPlaylistToolStripMenuItem.Name = "selectedPlaylistToolStripMenuItem";
+            this.selectedPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
+            this.selectedPlaylistToolStripMenuItem.Text = "Selected Playlist";
+            // 
+            // expandPlaylistToolStripMenuItem
+            // 
+            this.expandPlaylistToolStripMenuItem.Name = "expandPlaylistToolStripMenuItem";
+            this.expandPlaylistToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
+            this.expandPlaylistToolStripMenuItem.Text = "Expand Playlist";
+            // 
+            // followPlaylistToolStripMenuItem
+            // 
+            this.followPlaylistToolStripMenuItem.Name = "followPlaylistToolStripMenuItem";
+            this.followPlaylistToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
+            this.followPlaylistToolStripMenuItem.Text = "Follow Playlist";
             // 
             // DisplayWindow
             // 
@@ -421,11 +430,12 @@
         private System.Windows.Forms.Button MuteUnmuteButton;
         private System.Windows.Forms.TextBox SearchBar;
         private System.Windows.Forms.ToolStripMenuItem showCurrentPlayQueueToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem expandPlaylistToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem followPlaylistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addFavoriteToolStripMenuItem;
         private System.Windows.Forms.Button PlayNext;
         private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.ToolStripMenuItem selectedPlaylistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem expandPlaylistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem followPlaylistToolStripMenuItem;
     }
 }
 

@@ -96,11 +96,17 @@ namespace Maestro
 
         private string GetSelectedMediaName()
         {
-            return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[1].Value;
+            if (GetSelectedRowNumber() < 0)
+                return null;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[1].Value;
+            
+            return s;
         }
 
         private string GetSelectedMediaFilepath()
         {
+            if (GetSelectedRowNumber() < 0)
+                return null;
             return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[0].Value;
         }
 
@@ -220,6 +226,8 @@ namespace Maestro
 
         private void writeReviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (GetSelectedMediaName() == null)
+                return;
             ReviewEditor re = new ReviewEditor(GetSelectedMediaName());
             int reviewType = DBAccessor.CheckReviewValidity(this.CurrentUser, this.GetSelectedMediaFilepath());
             //rating and content are both null, so no special case
@@ -308,12 +316,19 @@ namespace Maestro
         private void PlayNext_Click(object sender, EventArgs e)
         {
             String path = GetSelectedMediaFilepath();
+            if (path != null)
+                return;
             Manager.streamer.Add(path);
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
             //TODO search through all media for keywords
+        }
+
+        private void albumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
 

@@ -14,7 +14,7 @@ namespace Maestro
     public partial class AddEntryWindow : Form
     {
         private DataTable dt;
-        string filepath;
+        public string filepath;
 
         public AddEntryWindow(DataTable dt)
         {
@@ -32,6 +32,8 @@ namespace Maestro
             filepath = "";
             if (ChooseFileDialog.ShowDialog() == DialogResult.OK)
                 filepath = ChooseFileDialog.FileName;
+            if (filepath == "")
+                return;
             Console.WriteLine(filepath);
 
             TagLib.File tagFile = TagLib.File.Create(filepath);
