@@ -169,6 +169,7 @@ namespace Maestro
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 //string sqlQuery = @"SELECT * from Items";
+                if (content == null) content = "";
                 sqlConn.Open();
                 SqlCommand cmd = new SqlCommand("WriteReview", sqlConn) { CommandType = CommandType.StoredProcedure };
                 cmd.Parameters.Add("@User", SqlDbType.VarChar).Value = username;

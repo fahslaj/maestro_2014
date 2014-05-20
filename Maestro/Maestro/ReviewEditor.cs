@@ -17,7 +17,8 @@ namespace Maestro
 
         public ReviewEditor(string MediaName)
         {
-           InitializeComponent();
+            InitializeComponent();
+            //this.RatingBar.Enabled = false;
             this.MediaName.Text = MediaName;
         }
 
