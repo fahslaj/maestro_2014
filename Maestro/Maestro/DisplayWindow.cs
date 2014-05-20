@@ -274,6 +274,7 @@ namespace Maestro
         private void showCurrentPlayQueueToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String[] playlist = Manager.streamer.GetInternalPlaylist();
+            if (playlist == null) return;
             String attributes = "";
             for (int i = 0; i < playlist.Length; i++)
             {
