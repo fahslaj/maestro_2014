@@ -188,5 +188,57 @@ namespace Maestro
                 return songInfo;*/
             }
         }
+
+        public static void UpdateReview(String username, String mediaFilepath, int rating, String content)
+        {
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                if (content == null) content = "";
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand("UpdateReview", sqlConn) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Add("@User", SqlDbType.VarChar).Value = username;
+                cmd.Parameters.Add("@MedFP", SqlDbType.VarChar).Value = mediaFilepath;
+                cmd.Parameters.Add("@Rate", SqlDbType.Int).Value = rating;
+                cmd.Parameters.Add("@Cont", SqlDbType.Text).Value = content;
+                cmd.ExecuteNonQuery();
+                sqlConn.Close();
+            }
+        }
+
+        public static int GetCurrentRating(String username, String mediaFilepath)
+        {
+            int result = 1;
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand("GetCurrentRating", sqlConn) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Add("@User", SqlDbType.VarChar).Value = username;
+                cmd.Parameters.Add("@MedFP", SqlDbType.VarChar).Value = mediaFilepath;
+                cmd.Parameters.Add(new SqlParameter("@Rate", SqlDbType.Int));
+                cmd.Parameters["@Rate"].Direction = ParameterDirection.Output;
+                cmd.ExecuteNonQuery();
+                result = (int)cmd.Parameters["@Rate"].Value;
+                sqlConn.Close();
+            }
+            return result;
+        }
+
+        public static int CheckReviewValidity(String username, String mediaFilepath)
+        {
+            int result = 0;
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand("CheckReviewExistence", sqlConn) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Add("@User", SqlDbType.VarChar).Value = username;
+                cmd.Parameters.Add("@MedFP", SqlDbType.VarChar).Value = mediaFilepath;
+                cmd.Parameters.Add(new SqlParameter("@out", SqlDbType.Int));
+                cmd.Parameters["@out"].Direction = ParameterDirection.Output;
+                cmd.ExecuteNonQuery();
+                result = (int)cmd.Parameters["@out"].Value;
+                sqlConn.Close();
+            }
+            return result;
+        }
     }
 }

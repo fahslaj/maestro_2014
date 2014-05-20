@@ -221,9 +221,25 @@ namespace Maestro
         private void writeReviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ReviewEditor re = new ReviewEditor(GetSelectedMediaName());
-            re.ShowDialog();
-
-            DBAccessor.AddReview(this.CurrentUser, this.GetSelectedMediaFilepath(), re.Rating, re.Content);
+            int reviewType = DBAccessor.CheckReviewValidity(this.CurrentUser, this.GetSelectedMediaFilepath());
+            //rating and content are both null, so no special case
+            if (reviewType == 0)
+            {
+                re.ShowDialog();
+                DBAccessor.AddReview(this.CurrentUser, this.GetSelectedMediaFilepath(), re.Rating, re.Content);
+            }
+            //rating is not null but content is, so this review needs to be updated, not inserted
+            else if (reviewType == 1)
+            {
+                re.RatingBar.Value = DBAccessor.GetCurrentRating(this.CurrentUser, this.GetSelectedMediaFilepath());
+                re.ShowDialog();
+                DBAccessor.UpdateReview(this.CurrentUser, this.GetSelectedMediaFilepath(), re.Rating, re.Content);
+            }
+            //item has already been reviewed, so it can't be reviewed again
+            else if (reviewType == 2)
+            {
+                MessageBox.Show("You have already reviewed this item!");
+            }
         }
 
         private void searchMediaToolStripMenuItem_Click(object sender, EventArgs e)

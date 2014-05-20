@@ -228,7 +228,7 @@
 
         private System.Windows.Forms.Label ContentLabel;
         private System.Windows.Forms.TextBox ContentTextBox;
-        private System.Windows.Forms.TrackBar RatingBar;
+        public System.Windows.Forms.TrackBar RatingBar;
         private System.Windows.Forms.Label Rating1;
         private System.Windows.Forms.Label Rating10;
         private System.Windows.Forms.Label Rating3;
