@@ -318,7 +318,7 @@ namespace Maestro
         private void PlayNext_Click(object sender, EventArgs e)
         {
             String path = GetSelectedMediaFilepath();
-            if (path != null)
+            if (path == null)
                 return;
             Manager.streamer.Add(path);
         }
@@ -333,6 +333,12 @@ namespace Maestro
         private void albumToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void searchSongsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedTable = DBAccessor.selectAllTable("SongView");
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
 

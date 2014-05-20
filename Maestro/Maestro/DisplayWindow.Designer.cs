@@ -64,6 +64,8 @@
             this.selectedPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expandPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.followPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unsubscribeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -132,6 +134,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.logoutToolStripMenuItem,
+            this.unsubscribeToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
@@ -157,7 +160,8 @@
             this.uploadMediaToolStripMenuItem,
             this.favoritesToolStripMenuItem,
             this.addFavoriteToolStripMenuItem,
-            this.searchMediaToolStripMenuItem});
+            this.searchMediaToolStripMenuItem,
+            this.searchSongsToolStripMenuItem});
             this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
             this.mediaToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
             this.mediaToolStripMenuItem.Text = "Media";
@@ -370,6 +374,19 @@
             this.followPlaylistToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
             this.followPlaylistToolStripMenuItem.Text = "Follow Playlist";
             // 
+            // searchSongsToolStripMenuItem
+            // 
+            this.searchSongsToolStripMenuItem.Name = "searchSongsToolStripMenuItem";
+            this.searchSongsToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
+            this.searchSongsToolStripMenuItem.Text = "Search Songs";
+            this.searchSongsToolStripMenuItem.Click += new System.EventHandler(this.searchSongsToolStripMenuItem_Click);
+            // 
+            // unsubscribeToolStripMenuItem
+            // 
+            this.unsubscribeToolStripMenuItem.Name = "unsubscribeToolStripMenuItem";
+            this.unsubscribeToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.unsubscribeToolStripMenuItem.Text = "Unsubscribe";
+            // 
             // DisplayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -436,6 +453,8 @@
         private System.Windows.Forms.ToolStripMenuItem selectedPlaylistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem expandPlaylistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem followPlaylistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchSongsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unsubscribeToolStripMenuItem;
     }
 }
 
