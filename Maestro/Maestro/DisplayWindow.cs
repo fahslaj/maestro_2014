@@ -257,6 +257,7 @@ namespace Maestro
         private void searchMediaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectedTable = DBAccessor.selectAllTable("Media");
+            CurrentTable = "Media";
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 

@@ -34,7 +34,9 @@ namespace Maestro
 
         public static DataTable selectSearchTable(String tableName, String searchKeywords)
         {
-            String query = "SELECT * FROM " + tableName + " WHERE Title LIKE '%" + searchKeywords + "%';";
+            String searchOn = "";
+            //add ability to search other tables
+            String query = "SELECT * FROM " + tableName + " WHERE " + searchOn + " LIKE '%" + searchKeywords + "%';";
 
             // create to strings for the connection and the query
 
