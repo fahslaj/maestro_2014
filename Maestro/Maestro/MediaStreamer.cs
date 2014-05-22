@@ -46,7 +46,7 @@ namespace Maestro
 
         public void Play()
         {
-            Refresh();
+            while (!Refresh());
             Write("play");
             System.Console.WriteLine(Read());
             Player.controls.play();
@@ -55,7 +55,7 @@ namespace Maestro
 
         public void Pause()
         {
-            Refresh();
+            while(!Refresh());
             Write("pause");
             System.Console.WriteLine(Read());
             Player.controls.pause();
@@ -64,7 +64,7 @@ namespace Maestro
 
         public void Skip()
         {
-            Refresh();
+            while(!Refresh());
             Write("next");
             System.Console.WriteLine(Read());
             CloseControlStream();
@@ -72,7 +72,7 @@ namespace Maestro
 
         public void Back()
         {
-            Refresh();
+            while(!Refresh());
             Write("previous");
             System.Console.WriteLine(Read());
             CloseControlStream();
@@ -80,7 +80,7 @@ namespace Maestro
 
         public void Seek(String relTime)
         {
-            Refresh();
+            while(!Refresh());
             Write("seekcur " + relTime);
             System.Console.WriteLine(Read());
             CloseControlStream();
@@ -88,7 +88,7 @@ namespace Maestro
 
         public void SeekPercentage(double percentage, int songLength)
         {
-            Refresh();
+            while(!Refresh());
             int secondsToSeek = (int)Math.Floor(percentage * songLength);
             Write("seekcur " + secondsToSeek);
             System.Console.WriteLine(Read());
@@ -97,7 +97,7 @@ namespace Maestro
 
         public void Stop()
         {
-            Refresh();
+            while(!Refresh());
             Write("stop");
             System.Console.WriteLine(Read());
             CloseControlStream();
@@ -105,7 +105,7 @@ namespace Maestro
 
         public void Add(String filepath)
         {
-            Refresh();
+            while(!Refresh());
             Write("add " + "\"" + filepath + "\"");
             System.Console.WriteLine(Read());
             CloseControlStream();
@@ -113,7 +113,7 @@ namespace Maestro
 
         public void Clear()
         {
-            Refresh();
+            while(!Refresh());
             Write("clear");
             System.Console.WriteLine(Read());
             CloseControlStream();
@@ -126,7 +126,7 @@ namespace Maestro
 
         public String[] GetSongInfo()
         {
-            Refresh();
+            while(!Refresh());
             Write("currentsong");
             String temp = Read();
             System.Console.WriteLine(temp);
@@ -136,7 +136,7 @@ namespace Maestro
 
         public String[] GetInternalPlaylist()
         {
-            Refresh();
+            while(!Refresh());
             Write("playlist");
             String temp = Read();
             System.Console.WriteLine(temp);
@@ -161,7 +161,7 @@ namespace Maestro
 
         public void Mute()
         {
-            Refresh();
+            while(!Refresh());
             Write("setvol 0");
             System.Console.WriteLine(Read());
             Muted = true;
@@ -170,7 +170,7 @@ namespace Maestro
 
         public void Unmute()
         {
-            Refresh();
+            while(!Refresh());
             Write("setvol 100");
             System.Console.WriteLine(Read());
             Muted = false;
@@ -218,12 +218,21 @@ namespace Maestro
             Thread.Sleep(100);
         }
 
-        public void Refresh()
+        public Boolean Refresh()
         {
             client = new TcpClient();
-            client.Connect(ServerAddress, ConnectionPort);
+            try
+            {
+                client.Connect(ServerAddress, ConnectionPort);
+            }
+            catch (SocketException sockex)
+            {
+                System.Console.WriteLine("Retrying to connect...");
+                return false;
+            }
             MPDControlStream = client.GetStream();
             Read();
+            return true;
         }
 
         public void CloseControlStream()
