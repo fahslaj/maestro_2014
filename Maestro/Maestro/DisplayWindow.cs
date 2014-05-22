@@ -113,6 +113,24 @@ namespace Maestro
             return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[0].Value;
         }
 
+        private string GetSelectedReviewContent()
+        {
+            if (GetSelectedRowNumber() < 0)
+                return null;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[4].Value;
+
+            return s;
+        }
+
+        private string GetSelectedReviewMedia()
+        {
+            if (GetSelectedRowNumber() < 0)
+                return null;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[4].Value;
+
+            return s;
+        }
+
         private void DisplayWindow_FormClosed(object sender = null, FormClosedEventArgs e = null)
         {
             if (CurrentUser != null)
@@ -286,8 +304,17 @@ namespace Maestro
                     attributes += " OR ";
                 }
             }
-            selectedTable = DBAccessor.selectCurrentPlaylist(attributes);
-            dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            
+            DataTable table = DBAccessor.selectCurrentPlaylist(attributes);
+            /*table.Columns.Add("Order");
+            table.PrimaryKey = new DataColumn[]{table.Columns[0]};
+            for (int i = 0; i < playlist.Length; i++)
+            {
+                int ind = selectedTable.Rows.IndexOf(selectedTable.Rows.Find(playlist[i].Split('/')[0]));
+                selectedTable.Rows[ind].SetField<int>(selectedTable.Columns[selectedTable.Columns.Count - 1], i);
+            }
+            table.Columns.Remove("Filepath");*/
+            dataGridView1.DataSource = new BindingSource(table, null);
         }
 
         private void editPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
@@ -346,7 +373,9 @@ namespace Maestro
 
         private void showReviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            /*ReviewEditor re = new ReviewEditor("");
+            re.Content = GetSelectedReviewContent();
+            re.Show();*/
         }
 
 
