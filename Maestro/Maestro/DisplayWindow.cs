@@ -274,8 +274,9 @@ namespace Maestro
 
         private void searchMediaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            selectedTable = DBAccessor.selectAllTable("Media");
+            selectedTable = DBAccessor.selectAllTable("MediaView");
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["Filepath"].Visible = false;
         }
 
         private void createNewPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
@@ -337,7 +338,8 @@ namespace Maestro
 
         private void myReviewsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO "" "" same as above but with username matchup to playlist
+            this.selectedTable = DBAccessor.selectAllWhere("Reviews", "Username", this.CurrentUser);
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
         private void addFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -364,7 +366,7 @@ namespace Maestro
         {
 
         }
-
+        
         private void searchSongsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectedTable = DBAccessor.selectAllTable("SongView");

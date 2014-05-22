@@ -70,6 +70,21 @@ namespace Maestro
 
         }
 
+        public static DataTable selectAllWhere(String tableName, String attributeName, String attributeValue)
+        {
+            String query = "SELECT * FROM "+tableName+" WHERE "+attributeName+" = '"+attributeValue+"'";
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                //string sqlQuery = @"SELECT * from Items";
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable table = new DataTable();
+                da.Fill(table);
+                return table;
+                //dataGridView1.DataSource = new BindingSource(table, null);
+            }
+        }
+
         public static DataTable insertEntry(String attributes, String tableName)
         {
             String query = "";
