@@ -4,7 +4,7 @@ Write reviews of artists [MEDIUM]
 Make textboxes safe [EASY]
 Add playlists to queue [EASY]
 Adjust network transfer buffer size [MEDIUM]
-Finish Playlists completely (Likes, follows, etc.)
+Create removal option for favorites and follows
 Write final report
 Double check against grading rubric for both presentation and report
 Assign sections to talk about during presentation [EASY]

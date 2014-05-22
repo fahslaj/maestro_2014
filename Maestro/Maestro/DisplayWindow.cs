@@ -235,8 +235,12 @@ namespace Maestro
         {
             AddEntryWindow aew = new AddEntryWindow(selectedTable);
             aew.ShowDialog();
+            Console.WriteLine(aew.album + " " + aew.name + " " + aew.artist);
             Manager.UploadSong(aew.filepath, aew.artist, aew.album, aew.name, aew.genre, aew.releaseDate, aew.length, CurrentUser, aew.track_no);
+            Manager.streamer.Refresh();
             Manager.streamer.Write("update");
+            Manager.streamer.CloseControlStream();
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -388,11 +392,6 @@ namespace Maestro
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
-        private void expandPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //TODO Get selected row's key information and join playlist with belongs to
-        }
-
         private void myReviewsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.selectedTable = DBAccessor.selectAllWhere("Reviews", "Username", this.CurrentUser);
@@ -423,7 +422,7 @@ namespace Maestro
         private void SearchButton_Click(object sender, EventArgs e)
         {
             //TODO search through all media for keywords
-            selectedTable = DBAccessor.selectSearchTable(CurrentTable, this.SearchBar.Text);
+            selectedTable = DBAccessor.selectSearchTable(selectedTable.TableName, this.SearchBar.Text);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
             dataGridView1.Columns["Filepath"].Visible = false;
         }

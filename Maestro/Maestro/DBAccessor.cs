@@ -56,6 +56,11 @@ namespace Maestro
                 tableName = "Reviews";
                 searchOn = "MediaFilepath";
             }
+            else
+            {
+                tableName = "Media";
+                searchOn = "Filepath";
+            }
 
             if (searchKeywords.Contains(" "))
             {
@@ -68,7 +73,7 @@ namespace Maestro
             }
             else searchKeywords += "%";
             String query = "SELECT * FROM " + tableName + " WHERE " + searchOn + " LIKE '%" + searchKeywords + "';";
-
+            Console.WriteLine(query);
             // create to strings for the connection and the query
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
@@ -104,6 +109,7 @@ namespace Maestro
 
         public static void uploadSong(string attributes)
         {
+            //Console.WriteLine(attributes);
             string[] strings = attributes.Split('|');
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
@@ -293,6 +299,7 @@ namespace Maestro
                 sqlConn.Open();
                 SqlCommand cmd = new SqlCommand("AddPlaylist", sqlConn) { CommandType = CommandType.StoredProcedure };
                 cmd.Parameters.Add("@Author", SqlDbType.VarChar).Value = Username;
+                cmd.Parameters.Add("@Date", SqlDbType.DateTime).Value = DateTime.Now;
                 cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Name;
                 cmd.ExecuteNonQuery();
                 sqlConn.Close();

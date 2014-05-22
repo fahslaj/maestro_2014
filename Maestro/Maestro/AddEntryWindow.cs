@@ -27,6 +27,7 @@ namespace Maestro
         {
             this.dt = dt;
             InitializeComponent();
+            this.TypeBox.Text = "Song";
         }
 
         private void UploadConfirmButton_Click(object sender, EventArgs e)
