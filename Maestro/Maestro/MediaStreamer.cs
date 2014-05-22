@@ -56,9 +56,11 @@ namespace Maestro
         public void Pause()
         {
             while(!Refresh());
+
             Write("pause");
-            System.Console.WriteLine(Read());
+            //System.Console.WriteLine(Read());
             Player.controls.pause();
+            //System.Console.WriteLine("Made it here");
             CloseControlStream();
         }
 
@@ -227,6 +229,8 @@ namespace Maestro
             }
             catch (SocketException sockex)
             {
+                if (client.Connected)
+                    System.Console.WriteLine("Not connected any more");
                 System.Console.WriteLine("Retrying to connect...");
                 return false;
             }
