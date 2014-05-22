@@ -54,14 +54,6 @@ namespace Maestro
             Manager.Login(CurrentUser);
         }
 
-        private void RegisterButton_Click(object sender, EventArgs e)
-        {
-            GetSelectedRowNumber();
-            RegisterWindow rw = new RegisterWindow();
-            rw.ShowDialog();
-            Manager.Register(rw.username);
-        }
-
         private void AddEntryButton_Click(object sender, EventArgs e)
         {
             //GetSelectedRowNumber();
@@ -69,20 +61,6 @@ namespace Maestro
             aew.ShowDialog();
             
             Manager.streamer.Write("update");
-        }
-
-        private void PlaySelectedButton_Click(object sender, EventArgs e)
-        {
-            PlayMediaWindow pmw = new PlayMediaWindow(Manager.streamer);
-            int rowNum = GetSelectedRowNumber();
-
-            if (rowNum >= 0)
-            {
-                DataRow row = selectedTable.Rows[GetSelectedRowNumber()];
-                System.Console.WriteLine(rowNum);
-            }
-            pmw.Show();
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -122,7 +100,7 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return null;
-            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[5].Value;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Content"].Value;
 
             return s;
         }
@@ -131,7 +109,11 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return null;
-            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[1].Value;
+            string s = "No Name";
+            if (dataGridView1.Columns.Contains("Name"))
+                s =  (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Name"].Value;
+            else if (dataGridView1.Columns.Contains("MediaName"))
+                s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["MediaName"].Value;
 
             return s;
         }
@@ -140,7 +122,7 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return 0;
-            int s = (int)dataGridView1.Rows[GetSelectedRowNumber()].Cells[4].Value;
+            int s = (int)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Rating"].Value;
 
             return s;
         }

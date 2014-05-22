@@ -15,6 +15,7 @@ namespace Maestro
         private TextBox textBox3;
         private Button RegisterConfirmButton;
         public String username;
+        public Boolean confirmed = false;
 
         public RegisterWindow()
         {
@@ -28,6 +29,7 @@ namespace Maestro
                 username = textBox1.Text;
                 DBAccessor.insertEntry("'" + textBox1.Text + "'|'" +
                     Math.Abs(textBox2.Text.GetHashCode() + username.GetHashCode()) + "'", "Users");
+                confirmed = true;
                 this.Close();
             }
         }
@@ -66,7 +68,6 @@ namespace Maestro
             this.textBox2.TabIndex = 2;
             this.textBox2.Text = "Password";
             this.textBox2.UseSystemPasswordChar = true;
-
             // 
             // textBox3
             // 
@@ -76,7 +77,6 @@ namespace Maestro
             this.textBox3.TabIndex = 3;
             this.textBox3.Text = "Repeat Password";
             this.textBox3.UseSystemPasswordChar = true;
-
             // 
             // RegisterConfirmButton
             // 
@@ -86,8 +86,6 @@ namespace Maestro
             this.RegisterConfirmButton.TabIndex = 4;
             this.RegisterConfirmButton.Text = "Register";
             this.RegisterConfirmButton.UseVisualStyleBackColor = true;
-            this.RegisterConfirmButton.Click += ConfirmRegistration;
-
             // 
             // RegisterWindow
             // 
@@ -97,9 +95,12 @@ namespace Maestro
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(174, 204);
+            this.MinimumSize = new System.Drawing.Size(174, 204);
             this.Name = "RegisterWindow";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
     }
 }

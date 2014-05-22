@@ -60,6 +60,8 @@ namespace Maestro
         {
             RegisterWindow rw = new RegisterWindow();
             rw.ShowDialog();
+            if (!rw.confirmed)
+                return;
             (new MediaManager()).Register(rw.username);
             MessageBox.Show("Your account was created.");
         }
