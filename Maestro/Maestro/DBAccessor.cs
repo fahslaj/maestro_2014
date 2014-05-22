@@ -439,5 +439,10 @@ namespace Maestro
                 }
             }
         }
+
+        public static void unfollow(String user, String author, DateTime date)
+        {
+
+        }
     }
 }

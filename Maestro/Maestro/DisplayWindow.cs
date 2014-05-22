@@ -407,9 +407,10 @@ namespace Maestro
 
         private void getFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            selectedTable = DBAccessor.getFavorites(this.CurrentUser);
-            dataGridView1.DataSource = new BindingSource(selectedTable, null);
-            dataGridView1.Columns["MediaFilepath"].Visible = false;
+            //selectedTable = DBAccessor.getFavorites(this.CurrentUser);
+            //dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            //dataGridView1.Columns["MediaFilepath"].Visible = false;
+            selectFavorites();
         }
 
         private void PlayNext_Click(object sender, EventArgs e)
@@ -491,7 +492,13 @@ namespace Maestro
 
         private void unFollowPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            int index = GetSelectedRowNumber();
+            if (index == -1)
+                return;
+            DBAccessor.deleteEntry("Follows", "Username = '" + this.CurrentUser + "' and PlaylistDateCreated = '"
+                + (DateTime) this.dataGridView1.Rows[index].Cells["DateCreated"].Value + "' and PlaylistAuthor = '"
+                + (string) this.dataGridView1.Rows[index].Cells["Author"].Value + "'");
+            selectFollowed();
         }
 
         private void removeFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -499,20 +506,31 @@ namespace Maestro
             int index = GetSelectedRowNumber();
             if (index == -1)
                 return;
-            selectedTable = DBAccessor.deleteEntry("Likes", "Username = '" + this.CurrentUser + "' and MediaFilepath = '"
+            DBAccessor.deleteEntry("Likes", "Username = '" + this.CurrentUser + "' and MediaFilepath = '"
                 + (string)this.dataGridView1.Rows[index].Cells["MediaFilepath"].Value + "'");
-            dataGridView1.DataSource = new BindingSource(selectedTable, null);
-            dataGridView1.Columns["MediaFilepath"].Visible = false;
+            selectFavorites();
         }
 
         private void followedPlaylistsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO fix this; it selects all playlists in the db
+            selectFollowed();
+        }
+
+        private void selectFollowed()
+        {
             selectedTable = DBAccessor.selectAllWhere("Follows Join Playlist on Follows.PlaylistAuthor = Playlist.Author"
                 + " AND Follows.PlaylistDateCreated = Playlist.DateCreated", "Follows.Username", this.CurrentUser);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["PlaylistAuthor"].Visible = false;
+            dataGridView1.Columns["PlaylistDateCreated"].Visible = false;
         }
 
+        private void selectFavorites()
+        {
+            selectedTable = DBAccessor.getFavorites(this.CurrentUser);
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["MediaFilepath"].Visible = false;
+        }
     }
 }
  
