@@ -237,9 +237,10 @@ namespace Maestro
             aew.ShowDialog();
             Console.WriteLine(aew.album + " " + aew.name + " " + aew.artist);
             Manager.UploadSong(aew.filepath, aew.artist, aew.album, aew.name, aew.genre, aew.releaseDate, aew.length, CurrentUser, aew.track_no);
-            Manager.streamer.Refresh();
+            /*Manager.streamer.Refresh();
             Manager.streamer.Write("update");
-            Manager.streamer.CloseControlStream();
+            Manager.streamer.CloseControlStream();*/
+            Manager.streamer.Update();
 
         }
 
