@@ -203,7 +203,7 @@ namespace Maestro
         {
             DisplayManager.ShowMainMenu();
             CloseNextCall = true;
-            this.DisplayWindow_FormClosed();
+            //this.DisplayWindow_FormClosed();
             this.Close();
         }
 

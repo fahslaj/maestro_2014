@@ -22,6 +22,7 @@ namespace Maestro
         public int length;
         public int releaseDate;
         public int track_no;
+        private Boolean noSave = true;
 
         public AddEntryWindow(DataTable dt)
         {
@@ -38,6 +39,7 @@ namespace Maestro
             album = this.albumTextBox.Text;
             track_no = int.Parse(this.Track_NoBox.Text);
             releaseDate = int.Parse(this.ReleaseDateBox.Text);
+            noSave = false;
             this.Close();
         }
 
@@ -61,6 +63,15 @@ namespace Maestro
             length = (int)tagFile.Properties.Duration.TotalSeconds;
 
             System.Console.WriteLine(tagFile.Properties.Duration + "");
+        }
+
+        private void CloseForm(object sender, FormClosingEventArgs e)
+        {
+            if (noSave)
+            {
+                System.Console.WriteLine("Exited with X button");
+                this.filepath = "";
+            }
         }
     }
 }
