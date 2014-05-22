@@ -307,14 +307,24 @@ namespace Maestro
             }
             
             DataTable table = DBAccessor.selectCurrentPlaylist(attributes);
-            /*table.Columns.Add("Order");
-            table.PrimaryKey = new DataColumn[]{table.Columns[0]};
+            table.Columns.Add("Order");
+            //table.PrimaryKey = new DataColumn[]{table.Columns[0]};
+            int ind = -1;
             for (int i = 0; i < playlist.Length; i++)
             {
-                int ind = selectedTable.Rows.IndexOf(selectedTable.Rows.Find(playlist[i].Split('/')[0]));
-                selectedTable.Rows[ind].SetField<int>(selectedTable.Columns[selectedTable.Columns.Count - 1], i);
+                for (int j = 0; j < table.Rows.Count; j++)
+                {
+                    System.Console.WriteLine(table.Rows[j].Field<String>(0));
+                    if (table.Rows[j].Field<String>(0) == playlist[i])
+                    {
+                        ind = j;
+                        break;
+                    }
+                }
+                //int ind = table.Rows.IndexOf(table.Rows.Find(playlist[i]));
+                table.Rows[ind].SetField<int>(table.Columns[table.Columns.Count - 1], i+1);
             }
-            table.Columns.Remove("Filepath");*/
+            table.Columns.Remove("Filepath");
             dataGridView1.DataSource = new BindingSource(table, null);
         }
 

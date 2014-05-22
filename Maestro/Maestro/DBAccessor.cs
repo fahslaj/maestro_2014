@@ -53,7 +53,7 @@ namespace Maestro
 
         public static DataTable selectCurrentPlaylist(String condition)
         {
-            String query = "SELECT Name, Artist, Length, Genre, Uploader, ReleaseDate FROM Media WHERE " + condition;
+            String query = "SELECT * FROM Media WHERE " + condition;
 
             // create to strings for the connection and the query
 
