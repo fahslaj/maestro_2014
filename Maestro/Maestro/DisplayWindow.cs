@@ -211,7 +211,7 @@ namespace Maestro
         {
             AddEntryWindow aew = new AddEntryWindow(selectedTable);
             aew.ShowDialog();
-            Manager.UploadSong(aew.filepath, aew.artist, aew.album, aew.name, aew.genre, aew.releaseDate, aew.length, CurrentUser);
+            Manager.UploadSong(aew.filepath, aew.artist, aew.album, aew.name, aew.genre, aew.releaseDate, aew.length, CurrentUser, aew.track_no);
             Manager.streamer.Write("update");
         }
 
@@ -388,6 +388,11 @@ namespace Maestro
             /*ReviewEditor re = new ReviewEditor("");
             re.Content = GetSelectedReviewContent();
             re.Show();*/
+        }
+
+        private void clearCurrentPlayQueueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Manager.streamer.Clear();
         }
 
 
