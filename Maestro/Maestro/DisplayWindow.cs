@@ -501,7 +501,6 @@ namespace Maestro
             selectedTable = DBAccessor.deleteEntry("Likes", "Username = '" + this.CurrentUser + "' and MediaFilepath = '"
                 + (string)this.dataGridView1.Rows[index].Cells["MediaFilepath"].Value + "'");
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
-            dataGridView1.Columns["MediaFilepath"].Visible = false;
         }
 
         private void followedPlaylistsToolStripMenuItem_Click(object sender, EventArgs e)
