@@ -39,6 +39,7 @@
             this.RemoveButton = new System.Windows.Forms.Button();
             this.SubmitButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.AddButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentPlaylistDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllMediaDataGrid)).BeginInit();
             this.SuspendLayout();
@@ -56,6 +57,7 @@
             // 
             this.PlaylistNameBox.Location = new System.Drawing.Point(117, 13);
             this.PlaylistNameBox.Name = "PlaylistNameBox";
+            this.PlaylistNameBox.ReadOnly = true;
             this.PlaylistNameBox.Size = new System.Drawing.Size(452, 22);
             this.PlaylistNameBox.TabIndex = 1;
             this.PlaylistNameBox.Text = "Insert Name Here";
@@ -106,7 +108,7 @@
             // 
             this.ShiftUpButton.Location = new System.Drawing.Point(13, 246);
             this.ShiftUpButton.Name = "ShiftUpButton";
-            this.ShiftUpButton.Size = new System.Drawing.Size(122, 30);
+            this.ShiftUpButton.Size = new System.Drawing.Size(111, 30);
             this.ShiftUpButton.TabIndex = 6;
             this.ShiftUpButton.Text = "^^ Shift Up ^^";
             this.ShiftUpButton.UseVisualStyleBackColor = true;
@@ -114,7 +116,7 @@
             // 
             // ShiftDownButton
             // 
-            this.ShiftDownButton.Location = new System.Drawing.Point(141, 246);
+            this.ShiftDownButton.Location = new System.Drawing.Point(130, 246);
             this.ShiftDownButton.Name = "ShiftDownButton";
             this.ShiftDownButton.Size = new System.Drawing.Size(122, 30);
             this.ShiftDownButton.TabIndex = 7;
@@ -124,9 +126,9 @@
             // 
             // RemoveButton
             // 
-            this.RemoveButton.Location = new System.Drawing.Point(269, 246);
+            this.RemoveButton.Location = new System.Drawing.Point(309, 246);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(76, 30);
+            this.RemoveButton.Size = new System.Drawing.Size(68, 30);
             this.RemoveButton.TabIndex = 8;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
@@ -152,11 +154,22 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // AddButton
+            // 
+            this.AddButton.Location = new System.Drawing.Point(258, 246);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(45, 30);
+            this.AddButton.TabIndex = 11;
+            this.AddButton.Text = "Add";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
             // PlaylistEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 532);
+            this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SubmitButton);
             this.Controls.Add(this.RemoveButton);
@@ -190,5 +203,6 @@
         private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.Button SubmitButton;
         private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button AddButton;
     }
 }

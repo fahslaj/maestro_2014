@@ -30,6 +30,7 @@ namespace Maestro
             CurrentTable = "SongView";
             selectedTable = DBAccessor.selectAllTable(CurrentTable);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["Filepath"].Visible = false;
 //            byte[] address = { 137, 112, 128, 188 };
 //            streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, 8000);
             
@@ -101,7 +102,7 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return null;
-            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[1].Value;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Name"].Value;
             
             return s;
         }
@@ -110,7 +111,7 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return null;
-            return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[0].Value;
+            return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Filepath"].Value;
         }
 
         private string GetSelectedReviewContent()
@@ -302,9 +303,8 @@ namespace Maestro
 
         private void createNewPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PlaylistEditor pe = new PlaylistEditor();
+            PlaylistEditor pe = new PlaylistEditor(this.CurrentUser, true);
             pe.Show();
-            //TODO Make it work.
         }
 
         private void searchReviewsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -353,9 +353,16 @@ namespace Maestro
 
         private void editPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PlaylistEditor pe = new PlaylistEditor();
+            PlaylistEditor pe = new PlaylistEditor(CurrentUser);
+            if (GetSelectedRowNumber() == -1)
+                return;
+            if ((string)this.dataGridView1.Rows[GetSelectedRowNumber()].Cells["Author"].Value != this.CurrentUser)
+            {
+                MessageBox.Show("You may not edit other users' playlists!");
+                return;
+            }
+            pe.SetPlaylist((string)this.dataGridView1.Rows[GetSelectedRowNumber()].Cells["Name"].Value);
             pe.Show();
-            // TODO Make it work
         }
 
         private void searchAllPlaylistsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -373,6 +380,7 @@ namespace Maestro
         {
             this.selectedTable = DBAccessor.selectAllWhere("Reviews", "Username", this.CurrentUser);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["Filepath"].Visible = false;
         }
 
         private void addFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -394,6 +402,7 @@ namespace Maestro
             //TODO search through all media for keywords
             selectedTable = DBAccessor.selectSearchTable(CurrentTable, this.SearchBar.Text);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["Filepath"].Visible = false;
         }
 
         private void albumToolStripMenuItem_Click(object sender, EventArgs e)
@@ -406,6 +415,7 @@ namespace Maestro
             selectedTable = DBAccessor.selectAllTable("SongView");
             CurrentTable = "SongView";
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["Filepath"].Visible = false;
         }
 
         private void showReviewToolStripMenuItem_Click(object sender, EventArgs e)

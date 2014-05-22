@@ -199,21 +199,6 @@ namespace Maestro
 
         }
 
-        public static DataTable insertIntoDB(string tableName, object[] attributeValues)
-        {
-            string query = "SELECT * FROM " + tableName;
-
-            using (SqlConnection sqlConn = new SqlConnection(connString))
-            {
-                //string sqlQuery = @"SELECT * from Items";
-                SqlCommand cmd = new SqlCommand(query, sqlConn);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                return dt;
-            }
-        }
-
         public static Boolean verifyLoginInfo(string username, string password)
         {
             string query = "SELECT * FROM Users WHERE Username = '" + username + "' and Passwd = '"
@@ -288,6 +273,19 @@ namespace Maestro
                 for (int i = 0; i < dt.Columns.Count; i++)
                     songInfo[i] = (dt.Rows[i][0]).ToString();
                 return songInfo;*/
+            }
+        }
+
+        public static void AddPlaylist(String Username, String Name)
+        {
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand("AddPlaylist", sqlConn) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Add("@Author", SqlDbType.VarChar).Value = Username;
+                cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Name;
+                cmd.ExecuteNonQuery();
+                sqlConn.Close();
             }
         }
 
