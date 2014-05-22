@@ -288,6 +288,7 @@
             this.followPlaylistToolStripMenuItem.Name = "followPlaylistToolStripMenuItem";
             this.followPlaylistToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
             this.followPlaylistToolStripMenuItem.Text = "Follow Playlist";
+            this.followPlaylistToolStripMenuItem.Click += new System.EventHandler(this.followPlaylistToolStripMenuItem_Click);
             // 
             // showCurrentPlayQueueToolStripMenuItem
             // 

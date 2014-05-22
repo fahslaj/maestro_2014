@@ -404,5 +404,32 @@ namespace Maestro
                 return dt;
             }
         }
+
+        public static void follow(String user, String author, DateTime date)
+        {
+            string query = "SELECT COUNT(*) FROM Follows WHERE Username ='" + user + "' AND PlaylistAuthor = '"
+                + author + "' AND PlaylistDateCreated = '" + date + "';";
+            int count = 0;
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                count = (int) cmd.ExecuteScalar();
+                sqlConn.Close();
+            }
+
+            if (count == 0)
+            {
+                query = "INSERT INTO Follows (Username, PlaylistAuthor, PlaylistDateCreated) VALUES('" +
+                    user + "', '" + author + "', '" + date + "');";
+                using (SqlConnection sqlConn = new SqlConnection(connString))
+                {
+                    SqlCommand cmd = new SqlCommand(query, sqlConn);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                }
+            }
+        }
     }
 }
