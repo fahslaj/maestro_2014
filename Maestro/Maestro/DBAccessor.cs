@@ -35,10 +35,22 @@ namespace Maestro
         public static DataTable selectSearchTable(String tableName, String searchKeywords)
         {
             String searchOn = "";
-            //add ability to search other tables
-            if(tableName.Equals("SongView")) searchOn = "Filepath";
-            else if(tableName.Equals("MediaView")) searchOn = "Filepath";
-            else if(tableName.Equals("ReviewView")) searchOn = "Filepath";
+            //add ability to search other tables?
+            if (tableName.Equals("SongView"))
+            {
+                tableName = "Song";
+                searchOn = "Filepath";
+            }
+            else if (tableName.Equals("MediaView"))
+            {
+                tableName = "Media";
+                searchOn = "Filepath";
+            }
+            else if (tableName.Equals("ReviewView"))
+            {
+                tableName = "Reviews";
+                searchOn = "MediaFilepath";
+            }
             String query = "SELECT * FROM " + tableName + " WHERE " + searchOn + " LIKE '%" + searchKeywords + "%';";
 
             // create to strings for the connection and the query

@@ -294,7 +294,7 @@ namespace Maestro
         private void searchMediaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectedTable = DBAccessor.selectAllTable("MediaView");
-            CurrentTable = "MediaView";
+            CurrentTable = "Media";
 
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
             dataGridView1.Columns["Filepath"].Visible = false;
@@ -310,7 +310,7 @@ namespace Maestro
         private void searchReviewsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectedTable = DBAccessor.selectAllTable("ReviewView");
-            CurrentTable = "ReviewView";
+            CurrentTable = "Reviews";
 
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
