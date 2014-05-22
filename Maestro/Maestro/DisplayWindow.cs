@@ -30,6 +30,7 @@ namespace Maestro
             CurrentTable = "SongView";
             selectedTable = DBAccessor.selectAllTable(CurrentTable);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["Filepath"].Visible = false;
 //            byte[] address = { 137, 112, 128, 188 };
 //            streamer = new MediaStreamer(new System.Net.IPAddress(address), 6600, 8000);
             
