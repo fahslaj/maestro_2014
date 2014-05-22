@@ -309,12 +309,9 @@ namespace Maestro
 
         private void searchReviewsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            selectedTable = DBAccessor.selectAllTable("Reviews");
-            CurrentTable = "ReviewView";
-=======
             selectedTable = DBAccessor.selectAllTable("ReviewView");
->>>>>>> 17f2741904aacd29f37892133912977cdd537939
+            CurrentTable = "ReviewView";
+
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
