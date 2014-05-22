@@ -416,6 +416,7 @@
             this.SearchBar.Size = new System.Drawing.Size(543, 22);
             this.SearchBar.TabIndex = 18;
             this.SearchBar.Text = "Search";
+            this.SearchBar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SearchBar_KeyPress);
             // 
             // PlayNext
             // 

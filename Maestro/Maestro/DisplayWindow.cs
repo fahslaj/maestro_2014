@@ -509,6 +509,14 @@ namespace Maestro
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
             dataGridView1.Columns["MediaFilepath"].Visible = false;
         }
+
+        private void SearchBar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
  
