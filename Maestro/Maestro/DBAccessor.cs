@@ -46,6 +46,11 @@ namespace Maestro
                 tableName = "Media";
                 searchOn = "Filepath";
             }
+            else if (tableName.Equals("PlaylistView"))
+            {
+                tableName = "Media";
+                searchOn = "Filepath";
+            }
             else if (tableName.Equals("ReviewView"))
             {
                 tableName = "Reviews";
@@ -161,16 +166,20 @@ namespace Maestro
 
         public static DataTable updateEntry(String tablename, DataRow oldrow, String attributes)
         {
+            /*
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
-                string sqlQuery = @"UPDATE " + tablename + " SET " + " WHERE ";
+                string sqlQuery = @"UPDATE " + tablename + " SET " + attributes + " WHERE ";
+                for (int i = 0; i < oldrow.Table.Columns.Count; i++)
+                    sqlQuery += "[" + oldrow.Table.Columns[i].ColumnName + "] = '" + (oldrow[i].ToString()) + "' ";
                 SqlCommand cmd = new SqlCommand(sqlQuery, sqlConn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable table = new DataTable();
                 da.Fill(table);
                 //dataGridView1.DataSource = new BindingSource(table, null);
                 return table;
-            }
+            }*/
+            return null;
 
         }
 
@@ -183,6 +192,7 @@ namespace Maestro
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable table = new DataTable();
                 da.Fill(table);
+                Console.WriteLine(sqlQuery);
                 //dataGridView1.DataSource = new BindingSource(table, null);
                 return table;
             }
