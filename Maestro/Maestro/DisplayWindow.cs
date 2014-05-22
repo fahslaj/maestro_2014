@@ -384,8 +384,17 @@ namespace Maestro
 
         private void addFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DBAccessor.addFavorite(this.CurrentUser, (string) dataGridView1.
-                Rows[GetSelectedRowNumber()].Cells["Filepath"].Value);
+            string fp = (string) dataGridView1.Rows[GetSelectedRowNumber()].Cells["Filepath"].Value;
+            //Console.WriteLine("FILEPATH ******** " + fp);
+            //Console.WriteLine("USER ******** " + this.CurrentUser);
+            if(fp != null) DBAccessor.addFavorite(this.CurrentUser, fp);
+        }
+
+        private void getFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedTable = DBAccessor.getFavorites(this.CurrentUser);
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["MediaFilepath"].Visible = false;
         }
 
         private void PlayNext_Click(object sender, EventArgs e)
