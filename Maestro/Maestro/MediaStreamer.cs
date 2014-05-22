@@ -121,6 +121,14 @@ namespace Maestro
             CloseControlStream();
         }
 
+        public void Update()
+        {
+            while (!Refresh()) ;
+            Write("update");
+            System.Console.WriteLine(Read());
+            CloseControlStream();
+        }
+
         public void Close()
         {
             Player.close();
