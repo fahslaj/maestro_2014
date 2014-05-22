@@ -415,6 +415,20 @@ namespace Maestro
             Manager.streamer.Clear();
         }
 
+        private void unsubscribeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch (MessageBox.Show("Are you sure?\nThis will remove you account.", "Warning", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.Yes:
+                    Manager.Unregister(CurrentUser);
+                    MessageBox.Show("You are now unsubscribed from Maestro.");
+                    ReturnToMainMenu();
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
     }
 }

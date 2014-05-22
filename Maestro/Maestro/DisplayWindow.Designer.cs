@@ -55,6 +55,7 @@
             this.expandPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.followPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showCurrentPlayQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearCurrentPlayQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeReviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.myReviewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +68,6 @@
             this.SearchBar = new System.Windows.Forms.TextBox();
             this.PlayNext = new System.Windows.Forms.Button();
             this.SearchButton = new System.Windows.Forms.Button();
-            this.clearCurrentPlayQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -154,6 +154,7 @@
             this.unsubscribeToolStripMenuItem.Name = "unsubscribeToolStripMenuItem";
             this.unsubscribeToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.unsubscribeToolStripMenuItem.Text = "Unsubscribe";
+            this.unsubscribeToolStripMenuItem.Click += new System.EventHandler(this.unsubscribeToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -293,6 +294,13 @@
             this.showCurrentPlayQueueToolStripMenuItem.Text = "Show Current Play Queue";
             this.showCurrentPlayQueueToolStripMenuItem.Click += new System.EventHandler(this.showCurrentPlayQueueToolStripMenuItem_Click);
             // 
+            // clearCurrentPlayQueueToolStripMenuItem
+            // 
+            this.clearCurrentPlayQueueToolStripMenuItem.Name = "clearCurrentPlayQueueToolStripMenuItem";
+            this.clearCurrentPlayQueueToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
+            this.clearCurrentPlayQueueToolStripMenuItem.Text = "Clear Current Play Queue";
+            this.clearCurrentPlayQueueToolStripMenuItem.Click += new System.EventHandler(this.clearCurrentPlayQueueToolStripMenuItem_Click);
+            // 
             // reviewToolStripMenuItem
             // 
             this.reviewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -397,13 +405,6 @@
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
-            // 
-            // clearCurrentPlayQueueToolStripMenuItem
-            // 
-            this.clearCurrentPlayQueueToolStripMenuItem.Name = "clearCurrentPlayQueueToolStripMenuItem";
-            this.clearCurrentPlayQueueToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
-            this.clearCurrentPlayQueueToolStripMenuItem.Text = "Clear Current Play Queue";
-            this.clearCurrentPlayQueueToolStripMenuItem.Click += new System.EventHandler(this.clearCurrentPlayQueueToolStripMenuItem_Click);
             // 
             // DisplayWindow
             // 
