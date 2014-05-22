@@ -181,11 +181,11 @@ namespace Maestro
 
         public String Read()
         {
-            byte[] InBuffer = new byte[3000];
+            byte[] InBuffer = new byte[1000];
             //Refresh();
             try
             {
-                MPDControlStream.Read(InBuffer, 0, 3000);
+                MPDControlStream.Read(InBuffer, 0, 1000);
             }
             catch (System.IO.IOException ioex)
             {
@@ -193,7 +193,7 @@ namespace Maestro
                 TcpClient client = new TcpClient();
                 client.Connect(ServerAddress, ConnectionPort);
                 MPDControlStream = client.GetStream();
-                MPDControlStream.Read(InBuffer, 0, 3000);
+                MPDControlStream.Read(InBuffer, 0, 1000);
             }
             //CloseControlStream();
             return System.Text.Encoding.Default.GetString(InBuffer);
