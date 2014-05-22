@@ -44,14 +44,14 @@ namespace Maestro
 
         public static void LoginButton_Click(object sender, EventArgs e)
         {
-            if (!DBAccessor.verifyLoginInfo(mm.textBox1.Text, mm.textBox2.Text))
+            if (!DBAccessor.verifyLoginInfo(mm.UsernameTextbox.Text, mm.PasswordTextbox.Text))
             {
                 MessageBox.Show("Invalid User Information. Try again.");
                 return;
             }
 
             DisplayWindow dw = new DisplayWindow();
-            dw.SetUser(mm.textBox1.Text);
+            dw.SetUser(mm.UsernameTextbox.Text);
             HideMainMenu();
             dw.ShowDialog();
         }

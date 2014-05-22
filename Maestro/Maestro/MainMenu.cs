@@ -10,8 +10,8 @@ namespace Maestro
     public class MainMenu : Form
     {
         private PictureBox pictureBox1;
-        public TextBox textBox1;
-        public TextBox textBox2;
+        public TextBox UsernameTextbox;
+        public TextBox PasswordTextbox;
         private Button LoginButton;
         private Button RegisterButton;
     
@@ -26,8 +26,8 @@ namespace Maestro
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.UsernameTextbox = new System.Windows.Forms.TextBox();
+            this.PasswordTextbox = new System.Windows.Forms.TextBox();
             this.LoginButton = new System.Windows.Forms.Button();
             this.RegisterButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -43,24 +43,26 @@ namespace Maestro
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // textBox1
+            // UsernameTextbox
             // 
-            this.textBox1.Location = new System.Drawing.Point(235, 300);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(211, 22);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Username";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.UsernameTextbox.Location = new System.Drawing.Point(235, 300);
+            this.UsernameTextbox.Name = "UsernameTextbox";
+            this.UsernameTextbox.Size = new System.Drawing.Size(211, 22);
+            this.UsernameTextbox.TabIndex = 1;
+            this.UsernameTextbox.Text = "Username";
+            this.UsernameTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.UsernameTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UsernameTextbox_KeyPress);
             // 
-            // textBox2
+            // PasswordTextbox
             // 
-            this.textBox2.Location = new System.Drawing.Point(235, 328);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(211, 22);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "Password";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox2.UseSystemPasswordChar = true;
+            this.PasswordTextbox.Location = new System.Drawing.Point(235, 328);
+            this.PasswordTextbox.Name = "PasswordTextbox";
+            this.PasswordTextbox.Size = new System.Drawing.Size(211, 22);
+            this.PasswordTextbox.TabIndex = 2;
+            this.PasswordTextbox.Text = "Password";
+            this.PasswordTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PasswordTextbox.UseSystemPasswordChar = true;
+            this.PasswordTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PasswordTextbox_KeyPress);
             // 
             // LoginButton
             // 
@@ -85,8 +87,8 @@ namespace Maestro
             this.ClientSize = new System.Drawing.Size(458, 425);
             this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.LoginButton);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.PasswordTextbox);
+            this.Controls.Add(this.UsernameTextbox);
             this.Controls.Add(this.pictureBox1);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(476, 470);
@@ -103,6 +105,22 @@ namespace Maestro
         private void MainMenu_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void UsernameTextbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void PasswordTextbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

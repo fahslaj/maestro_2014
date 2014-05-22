@@ -10,9 +10,9 @@ namespace Maestro
     class RegisterWindow : Form
     {
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox UsernameTextbox;
+        private TextBox PasswordTextbox;
+        private TextBox RepeatPasswordTextbox;
         private Button RegisterConfirmButton;
         public String username;
 
@@ -23,11 +23,11 @@ namespace Maestro
 
         public void ConfirmRegistration(object sender, EventArgs e)
         {
-            if (textBox2.Text == textBox3.Text)
+            if (PasswordTextbox.Text == RepeatPasswordTextbox.Text)
             {
-                username = textBox1.Text;
-                DBAccessor.insertEntry("'" + textBox1.Text + "'|'" +
-                    Math.Abs(textBox2.Text.GetHashCode() + username.GetHashCode()) + "'", "Users");
+                username = UsernameTextbox.Text;
+                DBAccessor.insertEntry("'" + UsernameTextbox.Text + "'|'" +
+                    Math.Abs(PasswordTextbox.Text.GetHashCode() + username.GetHashCode()) + "'", "Users");
                 this.Close();
             }
         }
@@ -35,9 +35,9 @@ namespace Maestro
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.UsernameTextbox = new System.Windows.Forms.TextBox();
+            this.PasswordTextbox = new System.Windows.Forms.TextBox();
+            this.RepeatPasswordTextbox = new System.Windows.Forms.TextBox();
             this.RegisterConfirmButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -50,33 +50,34 @@ namespace Maestro
             this.label1.TabIndex = 0;
             this.label1.Text = "Register New User:";
             // 
-            // textBox1
+            // UsernameTextbox
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(129, 22);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Username";
+            this.UsernameTextbox.Location = new System.Drawing.Point(15, 29);
+            this.UsernameTextbox.Name = "UsernameTextbox";
+            this.UsernameTextbox.Size = new System.Drawing.Size(129, 22);
+            this.UsernameTextbox.TabIndex = 1;
+            this.UsernameTextbox.Text = "Username";
+            this.UsernameTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UsernameTextbox_KeyPress);
             // 
-            // textBox2
+            // PasswordTextbox
             // 
-            this.textBox2.Location = new System.Drawing.Point(15, 57);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(129, 22);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "Password";
-            this.textBox2.UseSystemPasswordChar = true;
-
+            this.PasswordTextbox.Location = new System.Drawing.Point(15, 57);
+            this.PasswordTextbox.Name = "PasswordTextbox";
+            this.PasswordTextbox.Size = new System.Drawing.Size(129, 22);
+            this.PasswordTextbox.TabIndex = 2;
+            this.PasswordTextbox.Text = "Password";
+            this.PasswordTextbox.UseSystemPasswordChar = true;
+            this.PasswordTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PasswordTextbox_KeyPress);
             // 
-            // textBox3
+            // RepeatPasswordTextbox
             // 
-            this.textBox3.Location = new System.Drawing.Point(15, 85);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(129, 22);
-            this.textBox3.TabIndex = 3;
-            this.textBox3.Text = "Repeat Password";
-            this.textBox3.UseSystemPasswordChar = true;
-
+            this.RepeatPasswordTextbox.Location = new System.Drawing.Point(15, 85);
+            this.RepeatPasswordTextbox.Name = "RepeatPasswordTextbox";
+            this.RepeatPasswordTextbox.Size = new System.Drawing.Size(129, 22);
+            this.RepeatPasswordTextbox.TabIndex = 3;
+            this.RepeatPasswordTextbox.Text = "Repeat Password";
+            this.RepeatPasswordTextbox.UseSystemPasswordChar = true;
+            this.RepeatPasswordTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RepeatPasswordTextbox_KeyPress);
             // 
             // RegisterConfirmButton
             // 
@@ -86,20 +87,43 @@ namespace Maestro
             this.RegisterConfirmButton.TabIndex = 4;
             this.RegisterConfirmButton.Text = "Register";
             this.RegisterConfirmButton.UseVisualStyleBackColor = true;
-            this.RegisterConfirmButton.Click += ConfirmRegistration;
-
             // 
             // RegisterWindow
             // 
             this.ClientSize = new System.Drawing.Size(156, 159);
             this.Controls.Add(this.RegisterConfirmButton);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.RepeatPasswordTextbox);
+            this.Controls.Add(this.PasswordTextbox);
+            this.Controls.Add(this.UsernameTextbox);
             this.Controls.Add(this.label1);
             this.Name = "RegisterWindow";
             this.ResumeLayout(false);
             this.PerformLayout();
+
+        }
+
+        private void RepeatPasswordTextbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void UsernameTextbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void PasswordTextbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
