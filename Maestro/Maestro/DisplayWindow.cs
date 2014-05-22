@@ -80,7 +80,7 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return null;
-            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Name"].Value;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Title"].Value;
             
             return s;
         }
@@ -512,7 +512,7 @@ namespace Maestro
 
         private void SearchBar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true;
             }
