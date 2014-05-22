@@ -313,6 +313,13 @@ namespace Maestro
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
+        private void followPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string author = (string) this.dataGridView1.Rows[GetSelectedRowNumber()].Cells["Author"].Value;
+            DateTime date = (DateTime) this.dataGridView1.Rows[GetSelectedRowNumber()].Cells["DateCreated"].Value;
+            DBAccessor.follow(this.CurrentUser, author, date);
+        }
+
         private void searchReviewsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectedTable = DBAccessor.selectAllTable("ReviewView");
