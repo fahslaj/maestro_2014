@@ -204,6 +204,8 @@
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.ArtistLabel);
             this.Controls.Add(this.NameLabel);
+            this.MaximumSize = new System.Drawing.Size(350, 472);
+            this.MinimumSize = new System.Drawing.Size(350, 472);
             this.Name = "AddEntryWindow";
             this.Text = "AddEntryWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CloseForm);

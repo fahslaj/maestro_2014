@@ -15,6 +15,7 @@ namespace Maestro
         private TextBox RepeatPasswordTextbox;
         private Button RegisterConfirmButton;
         public String username;
+        public Boolean confirmed = false;
 
         public RegisterWindow()
         {
@@ -28,6 +29,7 @@ namespace Maestro
                 username = UsernameTextbox.Text;
                 DBAccessor.insertEntry("'" + UsernameTextbox.Text + "'|'" +
                     Math.Abs(PasswordTextbox.Text.GetHashCode() + username.GetHashCode()) + "'", "Users");
+                confirmed = true;
                 this.Close();
             }
         }
@@ -87,6 +89,7 @@ namespace Maestro
             this.RegisterConfirmButton.TabIndex = 4;
             this.RegisterConfirmButton.Text = "Register";
             this.RegisterConfirmButton.UseVisualStyleBackColor = true;
+            this.RegisterConfirmButton.Click += new System.EventHandler(this.ConfirmRegistration);
             // 
             // RegisterWindow
             // 
@@ -96,10 +99,11 @@ namespace Maestro
             this.Controls.Add(this.PasswordTextbox);
             this.Controls.Add(this.UsernameTextbox);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(174, 204);
+            this.MinimumSize = new System.Drawing.Size(174, 204);
             this.Name = "RegisterWindow";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private void RepeatPasswordTextbox_KeyPress(object sender, KeyPressEventArgs e)

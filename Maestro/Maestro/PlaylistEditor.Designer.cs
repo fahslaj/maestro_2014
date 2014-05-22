@@ -171,6 +171,8 @@
             this.Controls.Add(this.CurrentPlaylistDataGrid);
             this.Controls.Add(this.PlaylistNameBox);
             this.Controls.Add(this.PlaylistNameLabel);
+            this.MaximumSize = new System.Drawing.Size(599, 577);
+            this.MinimumSize = new System.Drawing.Size(599, 577);
             this.Name = "PlaylistEditor";
             this.Text = "PlaylistEditor";
             ((System.ComponentModel.ISupportInitialize)(this.CurrentPlaylistDataGrid)).EndInit();

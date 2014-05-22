@@ -54,14 +54,6 @@ namespace Maestro
             Manager.Login(CurrentUser);
         }
 
-        private void RegisterButton_Click(object sender, EventArgs e)
-        {
-            GetSelectedRowNumber();
-            RegisterWindow rw = new RegisterWindow();
-            rw.ShowDialog();
-            Manager.Register(rw.username);
-        }
-
         private void AddEntryButton_Click(object sender, EventArgs e)
         {
             //GetSelectedRowNumber();
@@ -69,20 +61,6 @@ namespace Maestro
             aew.ShowDialog();
             
             Manager.streamer.Write("update");
-        }
-
-        private void PlaySelectedButton_Click(object sender, EventArgs e)
-        {
-            PlayMediaWindow pmw = new PlayMediaWindow(Manager.streamer);
-            int rowNum = GetSelectedRowNumber();
-
-            if (rowNum >= 0)
-            {
-                DataRow row = selectedTable.Rows[GetSelectedRowNumber()];
-                System.Console.WriteLine(rowNum);
-            }
-            pmw.Show();
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -122,7 +100,7 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return null;
-            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[5].Value;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Content"].Value;
 
             return s;
         }
@@ -131,7 +109,11 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return null;
-            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[1].Value;
+            string s = "No Name";
+            if (dataGridView1.Columns.Contains("Name"))
+                s =  (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Name"].Value;
+            else if (dataGridView1.Columns.Contains("MediaName"))
+                s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["MediaName"].Value;
 
             return s;
         }
@@ -140,7 +122,7 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return 0;
-            int s = (int)dataGridView1.Rows[GetSelectedRowNumber()].Cells[4].Value;
+            int s = (int)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Rating"].Value;
 
             return s;
         }
@@ -157,7 +139,6 @@ namespace Maestro
                     //String output = ssh.CreateCommand("ps aux | grep 'mpd userconfs/" + this.CurrentUser + ".conf' | cut -c 11-15").Execute();
                     String output = Manager.ssh.CreateCommand("cat /run/mpd/" + CurrentUser + ".pid").Execute();
                     Manager.ssh.CreateCommand("kill " + output).Execute();
-
 
                     Manager.ssh.Disconnect();
                 }
@@ -241,7 +222,6 @@ namespace Maestro
             Manager.streamer.Write("update");
             Manager.streamer.CloseControlStream();*/
             Manager.streamer.Update();
-
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -292,7 +272,8 @@ namespace Maestro
             {
                 re.RatingBar.Value = DBAccessor.GetCurrentRating(this.CurrentUser, this.GetSelectedMediaFilepath());
                 re.ShowDialog();
-                if(re.submit) DBAccessor.UpdateReview(this.CurrentUser, this.GetSelectedMediaFilepath(), re.Rating, re.Content);
+                if(re.submit) DBAccessor.UpdateReview(this.CurrentUser, this.GetSelectedMediaFilepath(),
+                    this.GetSelectedReviewRating(), re.Content);
             }
             //item has already been reviewed, so it can't be reviewed again
             else if (reviewType == 2)
@@ -407,9 +388,6 @@ namespace Maestro
 
         private void getFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //selectedTable = DBAccessor.getFavorites(this.CurrentUser);
-            //dataGridView1.DataSource = new BindingSource(selectedTable, null);
-            //dataGridView1.Columns["MediaFilepath"].Visible = false;
             selectFavorites();
         }
 
@@ -507,7 +485,7 @@ namespace Maestro
             if (index == -1)
                 return;
             DBAccessor.deleteEntry("Likes", "Username = '" + this.CurrentUser + "' and MediaFilepath = '"
-                + (string)this.dataGridView1.Rows[index].Cells["MediaFilepath"].Value + "'");
+                + (string)this.dataGridView1.Rows[index].Cells["MediaFilepath"].Value + "'"); 
             selectFavorites();
         }
 
