@@ -482,7 +482,8 @@ namespace Maestro
             int index = GetSelectedRowNumber();
             if (index == -1)
                 return;
-            selectedTable = DBAccessor.selectAllWhere("PlaylistView", "Author = '"+this.CurrentUser+"' and [Playlist Name]", (string)this.dataGridView1.Rows[index].Cells["Name"].Value);
+            selectedTable = DBAccessor.selectAllWhere("PlaylistView", "Author = '" + this.CurrentUser +
+                "' and [Playlist Name]", (string)this.dataGridView1.Rows[index].Cells["Name"].Value);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
             dataGridView1.Columns["MediaFilepath"].Visible = false;
         }
@@ -497,18 +498,19 @@ namespace Maestro
             int index = GetSelectedRowNumber();
             if (index == -1)
                 return;
-            selectedTable = DBAccessor.deleteEntry("Likes", "Username = '" + this.CurrentUser + "' and MediaFilepath = '" + (string)this.dataGridView1.Rows[index].Cells["MediaFilepath"].Value + "'");
+            selectedTable = DBAccessor.deleteEntry("Likes", "Username = '" + this.CurrentUser + "' and MediaFilepath = '"
+                + (string)this.dataGridView1.Rows[index].Cells["MediaFilepath"].Value + "'");
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
             dataGridView1.Columns["MediaFilepath"].Visible = false;
         }
 
         private void followedPlaylistsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            selectedTable = DBAccessor.selectAllWhere("Follows Join Playlist on Follows.PlaylistAuthor = Playlist.Author", "Username", this.CurrentUser);
+            //TODO fix this; it selects all playlists in the db
+            selectedTable = DBAccessor.selectAllWhere("Follows Join Playlist on Follows.PlaylistAuthor = Playlist.Author"
+                + " AND Follows.PlaylistDateCreated = Playlist.DateCreated", "Follows.Username", this.CurrentUser);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
-            dataGridView1.Columns["MediaFilepath"].Visible = false;
         }
-
 
     }
 }

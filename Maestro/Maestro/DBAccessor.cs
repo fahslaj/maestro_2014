@@ -294,6 +294,7 @@ namespace Maestro
 
         public static void AddPlaylist(String Username, String Name)
         {
+            //Console.WriteLine("Date addpLAYLIST: " + date);
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 sqlConn.Open();
