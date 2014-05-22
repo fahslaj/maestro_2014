@@ -394,7 +394,7 @@ namespace Maestro
 
         public static DataTable getMyPlaylists(String user)
         {
-            string query = "SELECT * FROM Playlists WHERE Username = '" + user + "';";
+            string query = "SELECT * FROM Playlist WHERE Author = '" + user + "';";
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 SqlCommand cmd = new SqlCommand(query, sqlConn);
