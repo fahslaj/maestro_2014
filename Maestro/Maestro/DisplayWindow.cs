@@ -140,7 +140,6 @@ namespace Maestro
                     String output = Manager.ssh.CreateCommand("cat /run/mpd/" + CurrentUser + ".pid").Execute();
                     Manager.ssh.CreateCommand("kill " + output).Execute();
 
-
                     Manager.ssh.Disconnect();
                 }
                 catch (Exception ex)
@@ -223,7 +222,6 @@ namespace Maestro
             Manager.streamer.Write("update");
             Manager.streamer.CloseControlStream();*/
             Manager.streamer.Update();
-
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -274,7 +272,8 @@ namespace Maestro
             {
                 re.RatingBar.Value = DBAccessor.GetCurrentRating(this.CurrentUser, this.GetSelectedMediaFilepath());
                 re.ShowDialog();
-                if(re.submit) DBAccessor.UpdateReview(this.CurrentUser, this.GetSelectedMediaFilepath(), re.Rating, re.Content);
+                if(re.submit) DBAccessor.UpdateReview(this.CurrentUser, this.GetSelectedMediaFilepath(),
+                    this.GetSelectedReviewRating(), re.Content);
             }
             //item has already been reviewed, so it can't be reviewed again
             else if (reviewType == 2)
@@ -389,9 +388,6 @@ namespace Maestro
 
         private void getFavoritesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //selectedTable = DBAccessor.getFavorites(this.CurrentUser);
-            //dataGridView1.DataSource = new BindingSource(selectedTable, null);
-            //dataGridView1.Columns["MediaFilepath"].Visible = false;
             selectFavorites();
         }
 
