@@ -109,8 +109,9 @@ namespace Maestro
             int firstRow = AllMediaDataGrid.Rows.GetFirstRow(DataGridViewElementStates.Selected);
             if (firstRow == -1)
                 return;
+            Console.WriteLine(this.Username);
             DBAccessor.insertEntry("'" + AllMediaDataGrid.Rows[firstRow].Cells["Filepath"].Value + "'|'" +
-                    this.Username + "'|'" + this.PlaylistName+"'|"+(this.PlaylistSize++), "Belongs_To");
+                    this.PlaylistName + "'|'" + this.Username +"'|"+(this.PlaylistSize++), "Belongs_To");
             UpdateTables();
         }
     }
