@@ -56,10 +56,20 @@ namespace Maestro
                 tableName = "Reviews";
                 searchOn = "MediaFilepath";
             }
-            String query = "SELECT * FROM " + tableName + " WHERE " + searchOn + " LIKE '%" + searchKeywords + "%';";
+
+            if (searchKeywords.Contains(" "))
+            {
+                String[] arr = searchKeywords.Split(' ');
+                searchKeywords = "";
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    searchKeywords += arr[i] + "%";
+                }
+            }
+            else searchKeywords += "%";
+            String query = "SELECT * FROM " + tableName + " WHERE " + searchOn + " LIKE '%" + searchKeywords + "';";
 
             // create to strings for the connection and the query
-
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 //string sqlQuery = @"SELECT * from Items";
@@ -341,6 +351,45 @@ namespace Maestro
             return result;
         }
 
+        public static void addFavorite(String user, String fp)
+        {
+            string query = "SELECT COUNT(*) FROM Likes WHERE Username ='" +
+                user + "' AND MediaFilepath = '" + fp + "';";
+            int count = 0;
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                count = (int) cmd.ExecuteScalar();
+                sqlConn.Close();
+            }
 
+            if (count == 0)
+            {
+                query = "INSERT INTO Likes (Username, MediaFilepath) VALUES('" +
+                    user + "', '" + fp + "');";
+                using (SqlConnection sqlConn = new SqlConnection(connString))
+                {
+                    SqlCommand cmd = new SqlCommand(query, sqlConn);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                }
+            }
+        }
+
+        public static DataTable getFavorites(String user)
+        {
+            string query = "SELECT * FROM Likes JOIN Media ON Likes.MediaFilepath = Media.Filepath" +
+                " WHERE Likes.Username = '" + user + "';";
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
     }
 }

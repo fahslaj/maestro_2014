@@ -1,0 +1,10 @@
+Edit media metatdata in database [DIFFICULT]
+Album art [DIFFICULT]
+Write reviews of artists [MEDIUM]
+Make textboxes safe [EASY]
+Add playlists to queue [EASY]
+Adjust network transfer buffer size [MEDIUM]
+Finish Playlists completely (Likes, follows, etc.)
+Write final report
+Double check against grading rubric for both presentation and report
+Assign sections to talk about during presentation [EASY]

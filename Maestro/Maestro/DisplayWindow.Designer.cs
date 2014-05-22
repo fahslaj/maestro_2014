@@ -202,7 +202,8 @@
             // 
             this.favoritesToolStripMenuItem.Name = "favoritesToolStripMenuItem";
             this.favoritesToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
-            this.favoritesToolStripMenuItem.Text = "Favorites";
+            this.favoritesToolStripMenuItem.Text = "My Favorites";
+            this.favoritesToolStripMenuItem.Click += new System.EventHandler(this.getFavoritesToolStripMenuItem_Click);
             // 
             // addFavoriteToolStripMenuItem
             // 
