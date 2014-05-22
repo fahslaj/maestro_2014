@@ -498,7 +498,7 @@ namespace Maestro
 
         private void followedPlaylistsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            selectedTable = DBAccessor.selectAllWhere("Follows Join PlaylistView on Follows.PlaylistAuthor = PlaylistView.Author", "Username", this.CurrentUser);
+            selectedTable = DBAccessor.selectAllWhere("Follows Join Playlist on Follows.PlaylistAuthor = Playlist.Author", "Username", this.CurrentUser);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
             dataGridView1.Columns["MediaFilepath"].Visible = false;
         }
