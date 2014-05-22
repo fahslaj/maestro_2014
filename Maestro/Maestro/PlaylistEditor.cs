@@ -81,7 +81,6 @@ namespace Maestro
             if (firstRow == -1)
                 return;
             DBAccessor.deleteEntry("Belongs_To", "MediaFilepath = '"+(string)CurrentPlaylistDataGrid.Rows[firstRow].Cells["MediaFilepath"].Value +"' and PlaylistAuthor = '"+this.Username+"'");
-            this.PlaylistSize--;
             UpdateTables();
         }
 
