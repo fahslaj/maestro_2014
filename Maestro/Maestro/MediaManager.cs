@@ -64,7 +64,7 @@ namespace Maestro
             //           ssh.Disconnect();
         }
         
-        public void UploadSong(String songFilepath, String artist, String album, String name, String genre, int releaseDate, int length, String username)
+        public void UploadSong(String songFilepath, String artist, String album, String name, String genre, int releaseDate, int length, String username, int track_no)
         {
             System.Console.WriteLine("In Uploadsong");
             SftpClient sftpClient = new SftpClient("137.112.128.188", "mpd", "mpd");
@@ -81,7 +81,7 @@ namespace Maestro
             //System.Console.WriteLine(tagFile.Tag.Year);
             String uploadFilepath = artist + "/" + album + "/" + path[path.Length - 1];
             //uploadFilepath.Replace(" ", "\\ ");
-            DBAccessor.insertEntry("'" + uploadFilepath + "'|'" + name + "'|'" + artist + "'|" + length + "|'" + genre + "'|'Song'|'" + username + "'|" + releaseDate, "Media");
+            DBAccessor.uploadSong("'" + uploadFilepath + "'|'" + name + "'|'" + artist + "'|" + length + "|'" + genre + "'|'" + username + "'|" + releaseDate + "|'" + artist+"/"+album+"'|"+track_no+"|'"+album+"'");
             try
             {
                 sftpClient.UploadFile(file, "/var/lib/mpd/music/" + uploadFilepath);

@@ -70,6 +70,28 @@ namespace Maestro
 
         }
 
+        public static void uploadSong(string attributes)
+        {
+            string[] strings = attributes.Split('|');
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand("UploadSong", sqlConn) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Add("@Filepath", SqlDbType.VarChar).Value = strings[0];
+                cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = strings[1];
+                cmd.Parameters.Add("@Artist", SqlDbType.VarChar).Value = strings[2];
+                cmd.Parameters.Add("@Length", SqlDbType.Int).Value = strings[3];
+                cmd.Parameters.Add("@Genre", SqlDbType.VarChar).Value = strings[4];
+                cmd.Parameters.Add("@Uploader", SqlDbType.VarChar).Value = strings[5];
+                cmd.Parameters.Add("@ReleaseDate", SqlDbType.Int).Value = strings[6];
+                cmd.Parameters.Add("@AlbumFilepath", SqlDbType.VarChar).Value = strings[7];
+                cmd.Parameters.Add("@TrackNo", SqlDbType.Int).Value = strings[8];
+                cmd.Parameters.Add("@AlbumName", SqlDbType.VarChar).Value = strings[9];
+                cmd.ExecuteNonQuery();
+                sqlConn.Close();
+            }
+        }
+
         public static DataTable selectAllWhere(String tableName, String attributeName, String attributeValue)
         {
             String query = "SELECT * FROM "+tableName+" WHERE "+attributeName+" = '"+attributeValue+"'";

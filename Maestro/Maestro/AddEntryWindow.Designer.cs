@@ -43,6 +43,8 @@
             this.UploadConfirmButton = new System.Windows.Forms.Button();
             this.albumName = new System.Windows.Forms.Label();
             this.albumTextBox = new System.Windows.Forms.TextBox();
+            this.Track_NoBox = new System.Windows.Forms.TextBox();
+            this.Track_NoLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // NameLabel
@@ -165,11 +167,29 @@
             this.albumTextBox.Size = new System.Drawing.Size(297, 22);
             this.albumTextBox.TabIndex = 13;
             // 
+            // Track_NoBox
+            // 
+            this.Track_NoBox.Location = new System.Drawing.Point(226, 12);
+            this.Track_NoBox.Name = "Track_NoBox";
+            this.Track_NoBox.Size = new System.Drawing.Size(87, 22);
+            this.Track_NoBox.TabIndex = 14;
+            // 
+            // Track_NoLabel
+            // 
+            this.Track_NoLabel.AutoSize = true;
+            this.Track_NoLabel.Location = new System.Drawing.Point(154, 12);
+            this.Track_NoLabel.Name = "Track_NoLabel";
+            this.Track_NoLabel.Size = new System.Drawing.Size(66, 17);
+            this.Track_NoLabel.TabIndex = 15;
+            this.Track_NoLabel.Text = "Track No";
+            // 
             // AddEntryWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(332, 427);
+            this.Controls.Add(this.Track_NoLabel);
+            this.Controls.Add(this.Track_NoBox);
             this.Controls.Add(this.albumTextBox);
             this.Controls.Add(this.albumName);
             this.Controls.Add(this.UploadConfirmButton);
@@ -208,5 +228,7 @@
         private System.Windows.Forms.Button UploadConfirmButton;
         private System.Windows.Forms.Label albumName;
         private System.Windows.Forms.TextBox albumTextBox;
+        private System.Windows.Forms.TextBox Track_NoBox;
+        private System.Windows.Forms.Label Track_NoLabel;
     }
 }
