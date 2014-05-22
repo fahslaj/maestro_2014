@@ -380,7 +380,6 @@ namespace Maestro
         {
             this.selectedTable = DBAccessor.selectAllWhere("Reviews", "Username", this.CurrentUser);
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
-            dataGridView1.Columns["Filepath"].Visible = false;
         }
 
         private void addFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
