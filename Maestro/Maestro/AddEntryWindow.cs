@@ -21,6 +21,7 @@ namespace Maestro
         public string genre;
         public int length;
         public int releaseDate;
+        public int track_no;
 
         public AddEntryWindow(DataTable dt)
         {
@@ -34,6 +35,7 @@ namespace Maestro
             artist = this.ArtistTextbox.Text;
             genre = this.GenreTextBox.Text;
             album = this.albumTextBox.Text;
+            track_no = int.Parse(this.Track_NoBox.Text);
             releaseDate = int.Parse(this.ReleaseDateBox.Text);
             this.Close();
         }
@@ -54,6 +56,7 @@ namespace Maestro
             this.albumTextBox.Text = tagFile.Tag.Album;
             this.GenreTextBox.Text = tagFile.Tag.FirstGenre;
             this.ReleaseDateBox.Text = tagFile.Tag.Year + "";
+            this.Track_NoBox.Text = tagFile.Tag.Track + "";
             length = (int)tagFile.Properties.Duration.TotalSeconds;
 
             System.Console.WriteLine(tagFile.Properties.Duration + "");

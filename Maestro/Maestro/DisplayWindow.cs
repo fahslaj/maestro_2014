@@ -113,6 +113,24 @@ namespace Maestro
             return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[0].Value;
         }
 
+        private string GetSelectedReviewContent()
+        {
+            if (GetSelectedRowNumber() < 0)
+                return null;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[4].Value;
+
+            return s;
+        }
+
+        private string GetSelectedReviewMedia()
+        {
+            if (GetSelectedRowNumber() < 0)
+                return null;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[4].Value;
+
+            return s;
+        }
+
         private void DisplayWindow_FormClosed(object sender = null, FormClosedEventArgs e = null)
         {
             if (CurrentUser != null)
@@ -193,7 +211,7 @@ namespace Maestro
         {
             AddEntryWindow aew = new AddEntryWindow(selectedTable);
             aew.ShowDialog();
-            Manager.UploadSong(aew.filepath, aew.artist, aew.album, aew.name, aew.genre, aew.releaseDate, aew.length, CurrentUser);
+            Manager.UploadSong(aew.filepath, aew.artist, aew.album, aew.name, aew.genre, aew.releaseDate, aew.length, CurrentUser, aew.track_no);
             Manager.streamer.Write("update");
         }
 
@@ -256,9 +274,14 @@ namespace Maestro
 
         private void searchMediaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             selectedTable = DBAccessor.selectAllTable("Media");
             CurrentTable = "Media";
+=======
+            selectedTable = DBAccessor.selectAllTable("MediaView");
+>>>>>>> c1ee1d50d9eb9c1ffa1baf88e0b5a9af1900f8ac
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["Filepath"].Visible = false;
         }
 
         private void createNewPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
@@ -287,8 +310,27 @@ namespace Maestro
                     attributes += " OR ";
                 }
             }
-            selectedTable = DBAccessor.selectCurrentPlaylist(attributes);
-            dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            
+            DataTable table = DBAccessor.selectCurrentPlaylist(attributes);
+            table.Columns.Add("Order");
+            //table.PrimaryKey = new DataColumn[]{table.Columns[0]};
+            int ind = -1;
+            for (int i = 0; i < playlist.Length; i++)
+            {
+                for (int j = 0; j < table.Rows.Count; j++)
+                {
+                    System.Console.WriteLine(table.Rows[j].Field<String>(0));
+                    if (table.Rows[j].Field<String>(0) == playlist[i])
+                    {
+                        ind = j;
+                        break;
+                    }
+                }
+                //int ind = table.Rows.IndexOf(table.Rows.Find(playlist[i]));
+                table.Rows[ind].SetField<int>(table.Columns[table.Columns.Count - 1], i+1);
+            }
+            table.Columns.Remove("Filepath");
+            dataGridView1.DataSource = new BindingSource(table, null);
         }
 
         private void editPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
@@ -311,7 +353,8 @@ namespace Maestro
 
         private void myReviewsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO "" "" same as above but with username matchup to playlist
+            this.selectedTable = DBAccessor.selectAllWhere("Reviews", "Username", this.CurrentUser);
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
         private void addFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -338,7 +381,7 @@ namespace Maestro
         {
 
         }
-
+        
         private void searchSongsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectedTable = DBAccessor.selectAllTable("SongView");
@@ -347,7 +390,14 @@ namespace Maestro
 
         private void showReviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            /*ReviewEditor re = new ReviewEditor("");
+            re.Content = GetSelectedReviewContent();
+            re.Show();*/
+        }
+
+        private void clearCurrentPlayQueueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Manager.streamer.Clear();
         }
 
 
