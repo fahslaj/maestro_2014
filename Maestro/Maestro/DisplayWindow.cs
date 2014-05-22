@@ -144,15 +144,23 @@ namespace Maestro
         {
             if (CurrentUser != null)
             {
-                //Manager.streamer.Pause();
-                
-                //Handle killing mpd process
-                //String output = ssh.CreateCommand("ps aux | grep 'mpd userconfs/" + this.CurrentUser + ".conf' | cut -c 11-15").Execute();
-                String output = Manager.ssh.CreateCommand("cat /run/mpd/" + CurrentUser + ".pid").Execute();
-                Manager.ssh.CreateCommand("kill " + output).Execute();
+                try
+                {
+                    //Manager.streamer.Pause();
+                    Manager.streamer.Close();
+                    //Handle killing mpd process
+                    //String output = ssh.CreateCommand("ps aux | grep 'mpd userconfs/" + this.CurrentUser + ".conf' | cut -c 11-15").Execute();
+                    String output = Manager.ssh.CreateCommand("cat /run/mpd/" + CurrentUser + ".pid").Execute();
+                    Manager.ssh.CreateCommand("kill " + output).Execute();
 
-                Manager.streamer.Close();
-                Manager.ssh.Disconnect();
+
+                    Manager.ssh.Disconnect();
+                }
+                catch (Exception ex)
+                {
+                    //System.Console.WriteLine(ex);
+                    return;
+                }
             }
         }
 
