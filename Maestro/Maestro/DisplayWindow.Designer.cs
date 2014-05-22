@@ -68,6 +68,9 @@
             this.PlayNext = new System.Windows.Forms.Button();
             this.SearchButton = new System.Windows.Forms.Button();
             this.addToQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unFollowPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeFavoriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.followedPlaylistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageDisplayerBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -169,6 +172,7 @@
             this.uploadMediaToolStripMenuItem,
             this.favoritesToolStripMenuItem,
             this.addFavoriteToolStripMenuItem,
+            this.removeFavoriteToolStripMenuItem,
             this.searchMediaToolStripMenuItem,
             this.searchSongsToolStripMenuItem});
             this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
@@ -224,6 +228,7 @@
             this.createNewPlaylistToolStripMenuItem,
             this.editPlaylistToolStripMenuItem,
             this.myPlaylistsToolStripMenuItem,
+            this.followedPlaylistsToolStripMenuItem,
             this.searchAllPlaylistsToolStripMenuItem,
             this.selectedPlaylistToolStripMenuItem,
             this.showCurrentPlayQueueToolStripMenuItem,
@@ -265,6 +270,7 @@
             this.selectedPlaylistToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.expandPlaylistToolStripMenuItem,
             this.followPlaylistToolStripMenuItem,
+            this.unFollowPlaylistToolStripMenuItem,
             this.addToQueueToolStripMenuItem});
             this.selectedPlaylistToolStripMenuItem.Name = "selectedPlaylistToolStripMenuItem";
             this.selectedPlaylistToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
@@ -409,6 +415,27 @@
             this.addToQueueToolStripMenuItem.Text = "Add All To Queue";
             this.addToQueueToolStripMenuItem.Click += new System.EventHandler(this.addToQueueToolStripMenuItem_Click);
             // 
+            // unFollowPlaylistToolStripMenuItem
+            // 
+            this.unFollowPlaylistToolStripMenuItem.Name = "unFollowPlaylistToolStripMenuItem";
+            this.unFollowPlaylistToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
+            this.unFollowPlaylistToolStripMenuItem.Text = "UnFollow Playlist";
+            this.unFollowPlaylistToolStripMenuItem.Click += new System.EventHandler(this.unFollowPlaylistToolStripMenuItem_Click);
+            // 
+            // removeFavoriteToolStripMenuItem
+            // 
+            this.removeFavoriteToolStripMenuItem.Name = "removeFavoriteToolStripMenuItem";
+            this.removeFavoriteToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.removeFavoriteToolStripMenuItem.Text = "Remove Favorite";
+            this.removeFavoriteToolStripMenuItem.Click += new System.EventHandler(this.removeFavoriteToolStripMenuItem_Click);
+            // 
+            // followedPlaylistsToolStripMenuItem
+            // 
+            this.followedPlaylistsToolStripMenuItem.Name = "followedPlaylistsToolStripMenuItem";
+            this.followedPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
+            this.followedPlaylistsToolStripMenuItem.Text = "Followed Playlists";
+            this.followedPlaylistsToolStripMenuItem.Click += new System.EventHandler(this.followedPlaylistsToolStripMenuItem_Click);
+            // 
             // DisplayWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -479,6 +506,9 @@
         private System.Windows.Forms.ToolStripMenuItem showReviewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearCurrentPlayQueueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToQueueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unFollowPlaylistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeFavoriteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem followedPlaylistsToolStripMenuItem;
     }
 }
 

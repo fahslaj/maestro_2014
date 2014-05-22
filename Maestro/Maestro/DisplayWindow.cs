@@ -481,6 +481,28 @@ namespace Maestro
             dataGridView1.Columns["MediaFilepath"].Visible = false;
         }
 
+        private void unFollowPlaylistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void removeFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int index = GetSelectedRowNumber();
+            if (index == -1)
+                return;
+            selectedTable = DBAccessor.deleteEntry("Likes", "Username = '" + this.CurrentUser + "' and MediaFilepath = '" + (string)this.dataGridView1.Rows[index].Cells["MediaFilepath"].Value + "'");
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["MediaFilepath"].Visible = false;
+        }
+
+        private void followedPlaylistsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedTable = DBAccessor.selectAllWhere("Follows Join PlaylistView on Follows.PlaylistAuthor = PlaylistView.Author", "Username", this.CurrentUser);
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["MediaFilepath"].Visible = false;
+        }
+
 
     }
 }
