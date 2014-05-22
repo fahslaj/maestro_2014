@@ -206,6 +206,7 @@
             this.Controls.Add(this.NameLabel);
             this.Name = "AddEntryWindow";
             this.Text = "AddEntryWindow";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CloseForm);
             this.ResumeLayout(false);
             this.PerformLayout();
 
