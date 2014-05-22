@@ -91,7 +91,8 @@ namespace Maestro
 
         private void CreatePlaylist()
         {
-            DBAccessor.AddPlaylist(this.Username, this.PlaylistName);
+            //Console.WriteLine("DATE FOR NOW: " + DateTime.Now);
+            DBAccessor.AddPlaylist(this.Username, DateTime.Now, this.PlaylistName);
         }
 
         private void UpdateTables()

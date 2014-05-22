@@ -286,13 +286,15 @@ namespace Maestro
             }
         }
 
-        public static void AddPlaylist(String Username, String Name)
+        public static void AddPlaylist(String Username, DateTime date, String Name)
         {
+            //Console.WriteLine("Date addpLAYLIST: " + date);
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 sqlConn.Open();
                 SqlCommand cmd = new SqlCommand("AddPlaylist", sqlConn) { CommandType = CommandType.StoredProcedure };
                 cmd.Parameters.Add("@Author", SqlDbType.VarChar).Value = Username;
+                cmd.Parameters.Add("@Date", SqlDbType.DateTime).Value = date;
                 cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = Name;
                 cmd.ExecuteNonQuery();
                 sqlConn.Close();
