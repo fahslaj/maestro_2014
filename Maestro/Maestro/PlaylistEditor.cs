@@ -16,6 +16,7 @@ namespace Maestro
         public string PlaylistName;
         private string Username;
         public int PlaylistSize = 0;
+        public DataTable CurrentTable;
 
         public PlaylistEditor(string username, Boolean isCreation = false)
         {
@@ -27,6 +28,10 @@ namespace Maestro
                 this.PlaylistNameBox.Text = this.PlaylistName;
                 CreatePlaylist();
                 UpdateTables();
+                DataTable dt = DBAccessor.selectAllWhere("PlaylistView", "[Playlist Name]", PlaylistName);
+                foreach (DataRow dr in dt.Rows)
+                    if (((int)dr["PlaylistIndex"]) > this.PlaylistSize)
+                        this.PlaylistSize = (int)dr["PlaylistIndex"];
             }
         }
 
@@ -34,36 +39,53 @@ namespace Maestro
         {
             this.PlaylistName = PlaylistName;
             this.PlaylistNameBox.Text = PlaylistName;
+            DataTable dt = DBAccessor.selectAllWhere("PlaylistView", "[Playlist Name]", PlaylistName);
+            foreach (DataRow dr in dt.Rows)
+                if (((int)dr["PlaylistIndex"]) > this.PlaylistSize)
+                    this.PlaylistSize = (int)dr["PlaylistIndex"];
             UpdateTables();
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-
+            DataTable search;
+            search = DBAccessor.selectSearchTable("PlaylistView", this.SearchBox.Text);
+            this.AllMediaDataGrid.DataSource = new BindingSource(search, null);
         }
 
         private void ShiftUpButton_Click(object sender, EventArgs e)
         {
-
+            /*
+            int firstRow = this.CurrentPlaylistDataGrid.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            if (firstRow == -1)
+                return;
+            int index = (int)this.CurrentPlaylistDataGrid.Rows[firstRow].Cells["PlaylistIndex"].Value;
+            if (index <= 0)
+                return;
+            DBAccessor.updateEntry("Belongs_To", CurrentTable.Rows[firstRow], "PlaylistIndex = " + (index - 1));*/
         }
 
         private void ShiftDownButton_Click(object sender, EventArgs e)
         {
-
+            /*
+            int firstRow = this.CurrentPlaylistDataGrid.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            if (firstRow == -1)
+                return;
+            int index = (int)this.CurrentPlaylistDataGrid.Rows[firstRow].Cells["PlaylistIndex"].Value;
+            DBAccessor.updateEntry("Belongs_To", CurrentTable.Rows[firstRow], "PlaylistIndex = " + (index + 1));*/
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-
+            int firstRow = this.CurrentPlaylistDataGrid.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            if (firstRow == -1)
+                return;
+            DBAccessor.deleteEntry("Belongs_To", "MediaFilepath = '"+(string)CurrentPlaylistDataGrid.Rows[firstRow].Cells["MediaFilepath"].Value +"' and PlaylistAuthor = '"+this.Username+"'");
+            this.PlaylistSize--;
+            UpdateTables();
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
-        {
-            this.PlaylistName = this.PlaylistNameBox.Text;
-            this.Close();
-        }
-
-        private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -75,10 +97,8 @@ namespace Maestro
 
         private void UpdateTables()
         {
-            DataTable dt = DBAccessor.selectAllWhere("Playlist JOIN Belongs_To on Playlist.Name = Belongs_To.PlaylistName and Playlist.Author = Belongs_To.PlaylistAuthor", "Name", PlaylistName);
-            foreach (DataRow dr in dt.Rows)
-                if (((int)dr["PlaylistIndex"]) > this.PlaylistSize)
-                    this.PlaylistSize = (int)dr["PlaylistIndex"];
+            DataTable dt = DBAccessor.selectAllWhere("PlaylistView", "[Playlist Name]", PlaylistName);
+            CurrentTable = dt;
             this.CurrentPlaylistDataGrid.DataSource = new BindingSource(dt, null);
 
             dt = DBAccessor.selectAllTable("MediaView");
@@ -88,8 +108,10 @@ namespace Maestro
         private void AddButton_Click(object sender, EventArgs e)
         {
             int firstRow = AllMediaDataGrid.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            if (firstRow == -1)
+                return;
             DBAccessor.insertEntry("'" + AllMediaDataGrid.Rows[firstRow].Cells["Filepath"].Value + "'|'" +
-                    this.Username + "'|'" + this.PlaylistName+"'|"+(++this.PlaylistSize), "Belongs_To");
+                    this.Username + "'|'" + this.PlaylistName+"'|"+(this.PlaylistSize++), "Belongs_To");
             UpdateTables();
         }
     }

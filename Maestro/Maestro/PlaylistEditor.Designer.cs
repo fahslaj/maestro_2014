@@ -38,7 +38,6 @@
             this.ShiftDownButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.SubmitButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentPlaylistDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllMediaDataGrid)).BeginInit();
@@ -112,6 +111,7 @@
             this.ShiftUpButton.TabIndex = 6;
             this.ShiftUpButton.Text = "^^ Shift Up ^^";
             this.ShiftUpButton.UseVisualStyleBackColor = true;
+            this.ShiftUpButton.Visible = false;
             this.ShiftUpButton.Click += new System.EventHandler(this.ShiftUpButton_Click);
             // 
             // ShiftDownButton
@@ -122,6 +122,7 @@
             this.ShiftDownButton.TabIndex = 7;
             this.ShiftDownButton.Text = "vv Shift Down vv";
             this.ShiftDownButton.UseVisualStyleBackColor = true;
+            this.ShiftDownButton.Visible = false;
             this.ShiftDownButton.Click += new System.EventHandler(this.ShiftDownButton_Click);
             // 
             // RemoveButton
@@ -136,23 +137,13 @@
             // 
             // SubmitButton
             // 
-            this.SubmitButton.Location = new System.Drawing.Point(383, 246);
+            this.SubmitButton.Location = new System.Drawing.Point(463, 246);
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.Size = new System.Drawing.Size(90, 30);
             this.SubmitButton.TabIndex = 9;
-            this.SubmitButton.Text = "Submit";
+            this.SubmitButton.Text = "Done";
             this.SubmitButton.UseVisualStyleBackColor = true;
             this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
-            // 
-            // CancelButton
-            // 
-            this.CancelButton.Location = new System.Drawing.Point(479, 246);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(90, 30);
-            this.CancelButton.TabIndex = 10;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // AddButton
             // 
@@ -170,7 +161,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 532);
             this.Controls.Add(this.AddButton);
-            this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SubmitButton);
             this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.ShiftDownButton);
@@ -202,7 +192,6 @@
         private System.Windows.Forms.Button ShiftDownButton;
         private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.Button SubmitButton;
-        private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button AddButton;
     }
 }
