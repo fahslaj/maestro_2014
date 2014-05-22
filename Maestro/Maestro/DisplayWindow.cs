@@ -117,7 +117,7 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return null;
-            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[4].Value;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[5].Value;
 
             return s;
         }
@@ -126,7 +126,16 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return null;
-            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[4].Value;
+            string s = (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells[1].Value;
+
+            return s;
+        }
+
+        private int GetSelectedReviewRating()
+        {
+            if (GetSelectedRowNumber() < 0)
+                return 0;
+            int s = (int)dataGridView1.Rows[GetSelectedRowNumber()].Cells[4].Value;
 
             return s;
         }
@@ -135,14 +144,23 @@ namespace Maestro
         {
             if (CurrentUser != null)
             {
-                Manager.streamer.Pause();
-                Manager.streamer.Close();
-                //Handle killing mpd process
-                //String output = ssh.CreateCommand("ps aux | grep 'mpd userconfs/" + this.CurrentUser + ".conf' | cut -c 11-15").Execute();
-                String output = Manager.ssh.CreateCommand("cat /run/mpd/" + CurrentUser + ".pid").Execute();
-                Manager.ssh.CreateCommand("kill " + output).Execute();
+                try
+                {
+                    //Manager.streamer.Pause();
+                    Manager.streamer.Close();
+                    //Handle killing mpd process
+                    //String output = ssh.CreateCommand("ps aux | grep 'mpd userconfs/" + this.CurrentUser + ".conf' | cut -c 11-15").Execute();
+                    String output = Manager.ssh.CreateCommand("cat /run/mpd/" + CurrentUser + ".pid").Execute();
+                    Manager.ssh.CreateCommand("kill " + output).Execute();
 
-                Manager.ssh.Disconnect();
+
+                    Manager.ssh.Disconnect();
+                }
+                catch (Exception ex)
+                {
+                    //System.Console.WriteLine(ex);
+                    return;
+                }
             }
         }
 
@@ -180,6 +198,7 @@ namespace Maestro
         {
             DisplayManager.ShowMainMenu();
             CloseNextCall = true;
+            this.DisplayWindow_FormClosed();
             this.Close();
         }
 
@@ -275,6 +294,8 @@ namespace Maestro
         private void searchMediaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectedTable = DBAccessor.selectAllTable("MediaView");
+            CurrentTable = "Media";
+
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
             dataGridView1.Columns["Filepath"].Visible = false;
         }
@@ -287,7 +308,9 @@ namespace Maestro
 
         private void searchReviewsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            selectedTable = DBAccessor.selectAllTable("Reviews");
+            selectedTable = DBAccessor.selectAllTable("ReviewView");
+            CurrentTable = "Reviews";
+
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
         }
 
@@ -388,20 +411,36 @@ namespace Maestro
         private void searchSongsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectedTable = DBAccessor.selectAllTable("SongView");
+            CurrentTable = "SongView";
             dataGridView1.DataSource = new BindingSource(selectedTable, null);
             dataGridView1.Columns["Filepath"].Visible = false;
         }
 
         private void showReviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*ReviewEditor re = new ReviewEditor("");
-            re.Content = GetSelectedReviewContent();
-            re.Show();*/
+
+            ReviewEditor re = new ReviewEditor(GetSelectedReviewMedia(), true);
+            re.SetContentAndRating(GetSelectedReviewContent(), GetSelectedReviewRating());
+            re.Show();
         }
 
         private void clearCurrentPlayQueueToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Manager.streamer.Clear();
+        }
+
+        private void unsubscribeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switch (MessageBox.Show("Are you sure?\nThis will remove you account.", "Warning", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.Yes:
+                    Manager.Unregister(CurrentUser);
+                    MessageBox.Show("You are now unsubscribed from Maestro.");
+                    ReturnToMainMenu();
+                    break;
+                default:
+                    break;
+            }
         }
 
 
