@@ -259,6 +259,7 @@
             this.myPlaylistsToolStripMenuItem.Name = "myPlaylistsToolStripMenuItem";
             this.myPlaylistsToolStripMenuItem.Size = new System.Drawing.Size(244, 24);
             this.myPlaylistsToolStripMenuItem.Text = "My Playlists";
+            this.myPlaylistsToolStripMenuItem.Click += new System.EventHandler(this.myPlaylistsToolStripMenuItem_Click);
             // 
             // searchAllPlaylistsToolStripMenuItem
             // 

@@ -381,5 +381,18 @@ namespace Maestro
                 return dt;
             }
         }
+
+        public static DataTable getMyPlaylists(String user)
+        {
+            string query = "SELECT * FROM Playlists WHERE Username = '" + user + "';";
+            using (SqlConnection sqlConn = new SqlConnection(connString))
+            {
+                SqlCommand cmd = new SqlCommand(query, sqlConn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
     }
 }

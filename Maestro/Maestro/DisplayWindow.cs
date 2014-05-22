@@ -307,6 +307,12 @@ namespace Maestro
             pe.Show();
         }
 
+        private void myPlaylistsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectedTable = DBAccessor.getMyPlaylists(this.CurrentUser);
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
+        }
+
         private void searchReviewsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selectedTable = DBAccessor.selectAllTable("ReviewView");
@@ -385,8 +391,6 @@ namespace Maestro
         private void addFavoriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string fp = (string) dataGridView1.Rows[GetSelectedRowNumber()].Cells["Filepath"].Value;
-            //Console.WriteLine("FILEPATH ******** " + fp);
-            //Console.WriteLine("USER ******** " + this.CurrentUser);
             if(fp != null) DBAccessor.addFavorite(this.CurrentUser, fp);
         }
 
