@@ -111,7 +111,11 @@ namespace Maestro
         {
             if (GetSelectedRowNumber() < 0)
                 return null;
-            return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Filepath"].Value;
+            if (dataGridView1.Columns.Contains("Filepath"))
+                return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["Filepath"].Value;
+            else if (dataGridView1.Columns.Contains("MediaFilepath"))
+                return (string)dataGridView1.Rows[GetSelectedRowNumber()].Cells["MediaFilepath"].Value;
+            return null;
         }
 
         private string GetSelectedReviewContent()
@@ -455,6 +459,26 @@ namespace Maestro
                 default:
                     break;
             }
+        }
+
+        private void addToQueueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Columns.Contains("Filepath"))
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    Manager.streamer.Add((string)this.dataGridView1.Rows[i].Cells["Filepath"].Value);
+            else if (dataGridView1.Columns.Contains("MediaFilepath"))
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    Manager.streamer.Add((string)this.dataGridView1.Rows[i].Cells["MediaFilepath"].Value);
+       }
+
+        private void expandPlaylistToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            int index = GetSelectedRowNumber();
+            if (index == -1)
+                return;
+            selectedTable = DBAccessor.selectAllWhere("PlaylistView", "Author = '"+this.CurrentUser+"' and [Playlist Name]", (string)this.dataGridView1.Rows[index].Cells["Name"].Value);
+            dataGridView1.DataSource = new BindingSource(selectedTable, null);
+            dataGridView1.Columns["MediaFilepath"].Visible = false;
         }
 
 
