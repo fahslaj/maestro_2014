@@ -51,10 +51,20 @@ namespace Maestro
                 tableName = "Reviews";
                 searchOn = "MediaFilepath";
             }
-            String query = "SELECT * FROM " + tableName + " WHERE " + searchOn + " LIKE '%" + searchKeywords + "%';";
+
+            if (searchKeywords.Contains(" "))
+            {
+                String[] arr = searchKeywords.Split(' ');
+                searchKeywords = "";
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    searchKeywords += arr[i] + "%";
+                }
+            }
+            else searchKeywords += "%";
+            String query = "SELECT * FROM " + tableName + " WHERE " + searchOn + " LIKE '%" + searchKeywords + "';";
 
             // create to strings for the connection and the query
-
             using (SqlConnection sqlConn = new SqlConnection(connString))
             {
                 //string sqlQuery = @"SELECT * from Items";
@@ -333,6 +343,9 @@ namespace Maestro
             return result;
         }
 
+        public static void addFavorite(String user, String fp)
+        {
 
+        }
     }
 }
