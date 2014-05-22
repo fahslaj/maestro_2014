@@ -86,6 +86,7 @@ namespace Maestro
             this.RegisterConfirmButton.TabIndex = 4;
             this.RegisterConfirmButton.Text = "Register";
             this.RegisterConfirmButton.UseVisualStyleBackColor = true;
+            this.RegisterConfirmButton.Click += new System.EventHandler(this.ConfirmRegistration);
             // 
             // RegisterWindow
             // 
