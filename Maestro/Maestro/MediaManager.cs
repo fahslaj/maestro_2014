@@ -121,5 +121,10 @@ namespace Maestro
             file.Close();
             sftpClient.Disconnect();
         }*/
+
+        public void Unregister(String username)
+        {
+            DBAccessor.deleteEntry("Users", "Username = '" + username + "'");
+        }
     }
 }
